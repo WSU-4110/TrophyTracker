@@ -2,11 +2,14 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Button, Navbar } from "flowbite-react";
+import { Button, Navbar, Avatar } from "flowbite-react";
 import { signIn, signOut, useSession } from "next-auth/react";
+import ProfilePic from "./ProfilePic";
+
+
+
 export default function Nav() {
   const { data: session } = useSession();
-
   return (
     <Navbar fluid rounded>
       <Navbar.Brand as={Link} href="https://flowbite-react.com">
@@ -27,9 +30,13 @@ export default function Nav() {
             Sign in
           </Button>
         ) : (
-          <Button color="dark" onClick={() => signOut()}>
-            Sign out
-          </Button>
+          <>
+            <Button className="mr-3" color="dark" onClick={() => signOut()}>
+              Sign out
+            </Button>
+            <ProfilePic img={session.user.image} name={session.user.name} rounded color="info"
+            />
+          </>
         )}
         <Navbar.Toggle />
       </div>
