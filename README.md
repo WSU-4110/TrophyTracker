@@ -1,3 +1,37 @@
+# Installation
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/wsU-4110/TrophyTracker
+cd TrophyTracker
+```
+
+2. Install dependencies
+
+```bash
+npm install
+```
+
+3. Create a `.env.local` file in the root of the project with the following content:
+
+```bash
+NEXTAUTH_URL="http://localhost:3000"
+NEXTAUTH_SECRET="value from `openssl rand -base64 32`"
+
+DISCORD_CLIENT_ID=""
+DISCORD_CLIENT_SECRET=""
+
+GITHUB_ID=""
+GITHUB_SECRET=""
+```
+
+Fill out the contents of the `.env.local` file with the appropriate values or just ask a team member for the values or just use the copy and paste the file from a team member.
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/dfd55312-f061-440b-b78b-d9d712454fc9/deploy-status)](https://app.netlify.com/sites/trophytracker/deploys)
+
+---
+
 # Create T3 App
 
 This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
@@ -10,9 +44,7 @@ If you are not familiar with the different technologies used in this project, pl
 
 - [Next.js](https://nextjs.org)
 - [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
 - [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
 
 ## Learn More
 
