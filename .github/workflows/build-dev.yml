@@ -1,4 +1,8 @@
 name: Build Dev
+env:
+  NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+  GITHUB_SECRET: ${{ secrets.GH_SECRET }}
+  GITHUB_ID: ${{ secrets.GH_ID }}
 on:
   pull_request:
     branches:
