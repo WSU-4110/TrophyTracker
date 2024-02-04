@@ -1,6 +1,13 @@
 name: Build Dev
-on: [pull_request]
-branch: [development]
+env:
+  NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+  GITHUB_SECRET: ${{ secrets.GH_SECRET }}
+  GITHUB_ID: ${{ secrets.GH_ID }}
+  NEXTAUTH_URL: https://trophy-tracker-wsu.vercel.app
+on:
+  pull_request:
+    branches:
+      - development
 jobs:
   build:
     runs-on: ubuntu-latest

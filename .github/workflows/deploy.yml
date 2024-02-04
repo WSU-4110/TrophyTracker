@@ -4,8 +4,20 @@ env:
   VERCEL_PROJECT_ID: ${{ secrets.PROJECT_ID }}
   PREVIEW_URL: trophy-tracker-wsu-preview.vercel.app
   PROD_URL: trophy-tracker-wsu.vercel.app
-on: [push, pull_request, workflow_dispatch]
-branch: [main]
+  NEXTAUTH_URL: https://trophy-tracker-wsu.vercel.app
+  NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+  GITHUB_SECRET: ${{ secrets.GH_SECRET }}
+  GITHUB_ID: ${{ secrets.GH_ID }}
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+      - development
+  workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-latest
