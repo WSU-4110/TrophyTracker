@@ -1,0 +1,64 @@
+name: Deploy
+env:
+  VERCEL_ORG_ID: ${{ secrets.ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.PROJECT_ID }}
+  PREVIEW_URL: trophy-tracker-wsu-preview.vercel.app
+  PROD_URL: trophy-tracker-wsu.vercel.app
+on: [push, pull_request, workflow_dispatch]
+branch: [main]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "19.x"
+      - name: Install Dependencies
+        run: npm install
+      - name: Lint
+        run: npm run lint
+      - name: Build
+        run: npm run build
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "19.x"
+      - name: Install Dependencies
+        run: |
+          npm install
+          npm install -g vercel
+      - name: Deploy
+        run: |
+          # if it's a push or workflow_dispatch, deploy to production, if it's a pull request, deploy to preview
+          if [ ${{ github.event_name }} == 'push' ] || [ ${{ github.event_name }} == 'workflow_dispatch' ]; then
+            vercel --prod --token=${{ secrets.VERCEL_TOKEN }}
+          else
+            # get preview url
+            url="$(vercel deploy --token=${{ secrets.VERCEL_TOKEN }})"
+            vercel alias --token=${{ secrets.VERCEL_TOKEN }} set "$url" "$PREVIEW_URL"
+          fi
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+    comment:
+      if: github.event_name == 'pull_request'
+      needs: [build, deploy]
+      runs-on: ubuntu-latest
+      steps:
+        - name: Comment to PR
+          env:
+            URL: ${{ github.event.issue.comments_url }}
+            GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          run: |
+            curl \
+              -X POST \
+              $URL \
+              -H "Content-Type: application/json" \
+              -H "Authorization: token $GITHUB_TOKEN" \
+              --data '{ "body": "Deployed to $PREVIEW_URL (Prod: $PROD_URL)" }'
