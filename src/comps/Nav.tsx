@@ -8,11 +8,13 @@ import ProfilePic from "./ProfilePic";
 import { HiLogout, HiCog, HiOutlineUserCircle } from "react-icons/hi";
 import React from "react";
 import { Poppins } from "next/font/google";
+import { usePathname } from "next/navigation";
 
 const poppins = Poppins({ weight: "400", subsets: ["latin"] });
 
 export default function Nav() {
   const { data: session } = useSession();
+  const pathname = usePathname();
   const Profile = React.useMemo(
     () =>
       session && (
@@ -68,11 +70,18 @@ export default function Nav() {
         )}
       </div>
       <Navbar.Collapse>
-        <Navbar.Link as={Link} href="/" active>
+        <Navbar.Link as={Link} href="/" active={pathname.startsWith("/")}>
           Home
         </Navbar.Link>
-        <Navbar.Link as={Link} href="#">
+        <Navbar.Link as={Link} href="#" active={pathname.startsWith("/about")}>
           About
+        </Navbar.Link>
+        <Navbar.Link
+          as={Link}
+          href="/users"
+          active={pathname.startsWith("/users")}
+        >
+          Users
         </Navbar.Link>
         <Navbar.Link as={Link} href="#">
           Contact

@@ -28,7 +28,9 @@ export default async function RootLayout({
       <body className={`font-sans ${inter.variable}`}>
         <SessionProvider session={session}>
           <Nav />
-          {children}
+          <main className="flex min-h-screen w-full flex-col justify-start bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white md:items-start">
+            <span className="m-8 py-3">{children}</span>
+          </main>
         </SessionProvider>
       </body>
     </html>
