@@ -69,8 +69,8 @@ jobs:
         with:
           comment: >
             Deployed to Vercel :rocket: 
-            ${{ if (github.event.pull_request.head.ref == 'development') }}[Preview](https://$PREVIEW_URL)${{ endif }}
-            ${{ if (github.event.pull_request.head.ref == 'main') }}[Production](https://$PROD_URL)${{ endif }}
+            ${{ github.event.pull_request.head.ref == 'development' ? "[Preview](https://$PREVIEW_URL)" : "" }}
+            ${{ github.event.pull_request.head.ref == 'main' ? "[Production](https://$PROD_URL)" : "" }}
 
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
