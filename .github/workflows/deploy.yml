@@ -59,19 +59,19 @@ jobs:
           fi
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-    comment:
-      if: github.event_name == 'pull_request'
-      needs: [build, deploy]
-      runs-on: ubuntu-latest
-      steps:
-        - name: Comment to PR
-          env:
-            URL: ${{ github.event.issue.comments_url }}
-            GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          run: |
-            curl \
-              -X POST \
-              $URL \
-              -H "Content-Type: application/json" \
-              -H "Authorization: token $GITHUB_TOKEN" \
-              --data '{ "body": "Deployed to $PREVIEW_URL (Prod: $PROD_URL)" }'
+  comment:
+    if: github.event_name == 'pull_request'
+    needs: [build, deploy]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Comment to PR
+        env:
+          URL: ${{ github.event.issue.comments_url }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          curl \
+            -X POST \
+            $URL \
+            -H "Content-Type: application/json" \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            --data '{ "body": "Deployed to $PREVIEW_URL (Prod: $PROD_URL)" }'
