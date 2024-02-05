@@ -67,10 +67,10 @@ jobs:
       - name: Comment to pr
         uses: KeisukeYamashita/create-comment@v1
         with:
-          comment: |
+          comment: >
             Deployed to Vercel :rocket: 
-            [Preview](https://$PREVIEW_URL)
-            [Production](https://$PROD_URL)
+            ${{ github.event.pull_request.head.ref == 'development' && "[Preview](https://$PREVIEW_URL)" }}
+            ${{ github.event.pull_request.head.ref == 'main' && "[Production](https://$PROD_URL)" }}
 
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
