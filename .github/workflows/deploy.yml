@@ -49,8 +49,8 @@ jobs:
           npm install -g vercel
       - name: Deploy
         run: |
-          # if it's a push or workflow_dispatch, deploy to production, if it's a pull request, deploy to preview
-          if [ ${{ github.event_name }} == 'push' ] || [ ${{ github.event_name }} == 'workflow_dispatch' ]; then
+          # if it's a push or workflow_dispatch and branch != development, deploy to production, if it's a pull request, deploy to preview
+          if [ ${{ github.event_name }} == 'push' ] || [ ${{ github.event_name }} == 'workflow_dispatch' ] && [ ${{ github.ref }} != 'refs/heads/development' ]; then
             vercel --prod --token=${{ secrets.VERCEL_TOKEN }}
           else
             # get preview url
@@ -69,8 +69,9 @@ jobs:
           curl \
             -X POST \
             "${{ github.event.pull_request.comments_url }}" \
-            -H "Content-Type: application/json" \
-            -H "Authorization: token ${{ secrets.GH_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.GH_TOKEN }}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
             --data '{ "body": "Deployed to https://$(PREVIEW_URL) (Prod: $(NEXTAUTH_URL))" }'
         env:
           URL: ${{ github.event.issue.comments_url }}
