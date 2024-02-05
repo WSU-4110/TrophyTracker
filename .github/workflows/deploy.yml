@@ -20,57 +20,58 @@ on:
       - development
   workflow_dispatch:
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "19.x"
-      - name: Install Dependencies
-        run: npm install
-      - name: Lint
-        run: npm run lint
-      - name: Build
-        run: npm run build
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "19.x"
-      - name: Install Dependencies
-        run: |
-          npm install
-          npm install -g vercel
-      - name: Deploy
-        run: |
-          # if it's a push or workflow_dispatch and branch != development, deploy to production, if it's a pull request, deploy to preview
-          if [ ${{ github.event_name }} == 'push' ] || [ ${{ github.event_name }} == 'workflow_dispatch' ] && [ ${{ github.ref }} != 'refs/heads/development' ]; then
-            vercel --prod --token=${{ secrets.VERCEL_TOKEN }}
-          else
-            # get preview url
-            url="$(vercel deploy --token=${{ secrets.VERCEL_TOKEN }})"
-            vercel alias --token=${{ secrets.VERCEL_TOKEN }} set "$url" "$PREVIEW_URL"
-          fi
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+  # build:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: Use Node.js
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: "19.x"
+  #     - name: Install Dependencies
+  #       run: npm install
+  #     - name: Lint
+  #       run: npm run lint
+  #     - name: Build
+  #       run: npm run build
+  # deploy:
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: Use Node.js
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: "19.x"
+  #     - name: Install Dependencies
+  #       run: |
+  #         npm install
+  #         npm install -g vercel
+  #     - name: Deploy
+  #       run: |
+  #         # if it's a push or workflow_dispatch and branch != development, deploy to production, if it's a pull request, deploy to preview
+  #         if [ ${{ github.event_name }} == 'push' ] || [ ${{ github.event_name }} == 'workflow_dispatch' ] && [ ${{ github.ref }} != 'refs/heads/development' ]; then
+  #           vercel --prod --token=${{ secrets.VERCEL_TOKEN }}
+  #         else
+  #           # get preview url
+  #           url="$(vercel deploy --token=${{ secrets.VERCEL_TOKEN }})"
+  #           vercel alias --token=${{ secrets.VERCEL_TOKEN }} set "$url" "$PREVIEW_URL"
+  #         fi
+  #       env:
+  #         VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
   comment:
     if: github.event_name == 'pull_request'
-    needs: [build, deploy]
+    # needs: [build, deploy]
     runs-on: ubuntu-latest
     steps:
       - name: Comment to pr
         uses: KeisukeYamashita/create-comment@v1
         with:
           comment: >
-            Deployed to Vercel :rocket:\n
-            ${{ github.event.pull_request.base.ref == 'development' && '[Preview](https://trophy-tracker-wsu-preview.vercel.app)' || '' }}
-            ${{ github.event.pull_request.base.ref == 'main' && '[Production](https://trophy-tracker-wsu.vercel.app)' || '' }}
+            Deployed to Vercel :rocket:
+
+            ${{ github.event.pull_request.base.ref == 'development' && '[Visit Preview](https://trophy-tracker-wsu-preview.vercel.app)' || '' }}
+            ${{ github.event.pull_request.base.ref == 'main' && '[Visit Production](https://trophy-tracker-wsu.vercel.app)' || '' }}
 
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
