@@ -2,6 +2,9 @@ import ProfilePic from "@/comps/ProfilePic";
 import User from "@/db/Models/User";
 import connect from "@/db/connect";
 
+export const revalidate = 60;
+export const dynamic = "force-static";
+
 export default async function Users() {
   await connect();
   const users = await User.find({});
