@@ -1,7 +1,9 @@
 import ProfilePic from "@/comps/ProfilePic";
 import User from "@/db/Models/User";
+import connect from "@/db/connect";
 
 export default async function Users() {
+  await connect();
   const users = await User.find({});
 
   return (
