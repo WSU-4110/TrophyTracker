@@ -54,6 +54,7 @@ export const authOptions: NextAuthOptions = {
           name: user.name,
           img: user.image,
           email: user.email,
+          lastLogin: new Date(),
         };
 
         await User.updateOne({ uid: user.id }, updateObj, {

@@ -6,6 +6,7 @@ interface ProfilePicProps {
   rounded: boolean;
   color: keyof FlowbiteColors;
   className?: string;
+  children?: React.ReactNode | React.ReactNode[];
 }
 const getInitials = (name: string) =>
   name
@@ -19,6 +20,7 @@ export default function ProfilePic(props: ProfilePicProps) {
     color: props.color || "light",
     rounded: props.rounded,
     className: props?.className,
+    children: props?.children,
   };
 
   if (props.img) {

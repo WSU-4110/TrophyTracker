@@ -5,6 +5,7 @@ export interface User {
   name?: string;
   img?: string;
   email?: string;
+  lastLogin: Date;
 }
 
 const userSchema = new Schema<User>({
@@ -12,6 +13,7 @@ const userSchema = new Schema<User>({
   name: { type: String, required: false },
   img: { type: String, required: false },
   email: { type: String, required: false },
+  lastLogin: { type: Date, required: true },
 });
 
 export default (models.User as Model<User>) ?? model("User", userSchema);
