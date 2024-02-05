@@ -14,7 +14,7 @@ export default async function Users() {
               <div className="space-y-1 font-medium dark:text-white">
                 <div>{user.name}</div>
                 <div className="text-sm text-gray-500 dark:text-gray-400">
-                  Last active {user.lastLogin.toLocaleString()}
+                  Last login {user.lastLogin.toLocaleDateString()}
                 </div>
               </div>
             </ProfilePic>
