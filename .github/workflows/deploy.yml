@@ -65,13 +65,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Comment to PR
-        env:
-          URL: ${{ github.event.issue.comments_url }}
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           curl \
             -X POST \
-            $URL \
+            "${{ github.event.issue.comments_url }}" \
             -H "Content-Type: application/json" \
-            -H "Authorization: token $GITHUB_TOKEN" \
-            --data '{ "body": "Deployed to $PREVIEW_URL (Prod: $PROD_URL)" }'
+            -H "Authorization: token ${{ secrets.GH_TOKEN }}" \
+            --data '{ "body": "Deployed to https://$PREVIEW_URL (Prod: $NEXTAUTH_URL)" }'
+        env:
+          URL: ${{ github.event.issue.comments_url }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
