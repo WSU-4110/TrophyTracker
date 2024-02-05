@@ -64,17 +64,13 @@ jobs:
     needs: [build, deploy]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/github-script@v6
+      - name: Comment to pr
+        uses: KeisukeYamashita/create-comment@v1
         with:
-          script: |
-            const prNumber = context.payload.pull_request.number;
-            const commentBody = `Deployed to Vercel. Preview URL: https://${process.env.PREVIEW_URL}. Prod URL: https://${process.env.PROD_URL}`;
+          comment: |
+            Deployed to Vercel :rocket: 
+            [Preview](https://$PREVIEW_URL)
+            [Production](https://$PROD_URL)
 
-            github.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: prNumber,
-              body: commentBody
-            });
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
