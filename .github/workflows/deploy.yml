@@ -67,8 +67,6 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            const { context, github } = require('@actions/github');
-
             const prNumber = context.payload.pull_request.number;
             const commentBody = `Deployed to Vercel. Preview URL: https://${process.env.PREVIEW_URL}. Prod URL: https://${process.env.PROD_URL}`;
 
