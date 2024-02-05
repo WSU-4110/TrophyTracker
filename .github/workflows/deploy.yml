@@ -68,9 +68,9 @@ jobs:
         uses: KeisukeYamashita/create-comment@v1
         with:
           comment: >
-            Deployed to Vercel :rocket: 
-            ${{ github.event.pull_request.head.ref == 'development' && '[Preview](https://trophy-tracker-wsu-preview.vercel.app)' }}
-            ${{ github.event.pull_request.head.ref == 'main' && '[Production](https://trophy-tracker-wsu.vercel.app)' }}
+            Deployed to Vercel :rocket:\n
+            ${{ github.event.pull_request.base.ref == 'development' && '[Preview](https://trophy-tracker-wsu-preview.vercel.app)' || '' }}
+            ${{ github.event.pull_request.base.ref == 'main' && '[Production](https://trophy-tracker-wsu.vercel.app)' || '' }}
 
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
