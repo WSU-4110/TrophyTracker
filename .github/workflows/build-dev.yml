@@ -4,6 +4,7 @@ env:
   GITHUB_SECRET: ${{ secrets.GH_SECRET }}
   GITHUB_ID: ${{ secrets.GH_ID }}
   NEXTAUTH_URL: https://trophy-tracker-wsu.vercel.app
+  MONGODB_URI: ${{ secrets.MONGODB_URI }}
 on:
   pull_request:
     branches:
