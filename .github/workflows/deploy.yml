@@ -69,8 +69,8 @@ jobs:
         with:
           comment: >
             Deployed to Vercel :rocket: 
-            ${{ github.event.pull_request.head.ref == 'development' && "[Preview](https://trophy-tracker-wsu-preview.vercel.app)" }}
-            ${{ github.event.pull_request.head.ref == 'main' && "[Production](https://trophy-tracker-wsu.vercel.app)" }}
+            ${{ github.event.pull_request.head.ref == 'development' && '[Preview](https://trophy-tracker-wsu-preview.vercel.app)' }}
+            ${{ github.event.pull_request.head.ref == 'main' && '[Production](https://trophy-tracker-wsu.vercel.app)' }}
 
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
