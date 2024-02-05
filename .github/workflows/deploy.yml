@@ -51,7 +51,7 @@ jobs:
         run: |
           # if it's a push or workflow_dispatch and branch != development, deploy to production, if it's a pull request, deploy to preview
           if [ ${{ github.event_name }} == 'push' ] || [ ${{ github.event_name }} == 'workflow_dispatch' ] && [ ${{ github.ref }} != 'refs/heads/development' ]; then
-            vercel --prod --token=${{ secrets.VERCEL_TOKEN }}
+            vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}
           else
             # get preview url
             url="$(vercel deploy --token=${{ secrets.VERCEL_TOKEN }})"
