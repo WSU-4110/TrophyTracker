@@ -1,14 +1,18 @@
 import ProfilePic from "@/comps/ProfilePic";
 import User from "@/db/Models/User";
 import connect from "@/db/connect";
+import { cache } from "react";
 
 export const revalidate = 60;
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
 
 export default async function Users() {
-  await connect();
-  const users = await User.find({});
+  const cachedUsers = cache(async () => {
+    await connect();
+    return await User.find({});
+  });
 
+  const users = await cachedUsers();
   return (
     <div>
       <h1 className="mb-2 text-5xl font-extrabold">Users</h1>
