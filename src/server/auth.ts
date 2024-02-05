@@ -6,6 +6,8 @@ import {
 import GithubProvider from "next-auth/providers/github";
 
 import { env } from "@/env.cjs";
+import connect from "@/db/connect";
+import User from "@/db/Models/User";
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -35,13 +37,33 @@ declare module "next-auth" {
  */
 export const authOptions: NextAuthOptions = {
   callbacks: {
-    session: ({ session, token }) => ({
-      ...session,
-      user: {
-        ...session.user,
-        id: token.sub,
-      },
-    }),
+    session: async ({ session, token }) => {
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id: token.sub,
+        },
+      };
+    },
+    signIn: async ({ user }) => {
+      try {
+        await connect();
+        const updateObj = {
+          uid: user.id,
+          name: user.name,
+          img: user.image,
+          email: user.email,
+        };
+
+        await User.updateOne({ uid: user.id }, updateObj, {
+          upsert: true,
+        });
+      } catch (err) {
+        console.error("Cannot connect to database...", err);
+      }
+      return true;
+    },
   },
   providers: [
     /**
