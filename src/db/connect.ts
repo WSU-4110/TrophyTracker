@@ -1,14 +1,6 @@
 import mongoose, { type ConnectOptions } from "mongoose";
 
-const options = {
-  useNewUrlParser: true,
-  useUnifiedTopology: false,
-  maxPoolSize: 1,
-  minPoolSize: 1,
-  socketTimeoutMS: 17000,
-  serverSelectionTimeoutMS: 12000,
-  maxIdleTimeMS: 20000,
-};
+const options = {};
 
 const connect = async () => {
   try {
