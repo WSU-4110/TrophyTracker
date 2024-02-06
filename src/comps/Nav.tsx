@@ -20,14 +20,19 @@ export default function Nav() {
   const [status, setStatus] =
     React.useState<typeof previousStatus>(previousStatus);
   React.useEffect(() => {
-    getSession()
-      .then((newSession) => {
-        if (newSession !== staleSession) {
-          setSession(newSession ?? null);
-          setStatus(newSession ? "authenticated" : "unauthenticated");
-        }
-      })
-      .catch(() => setStatus("unauthenticated"));
+    setStatus("loading");
+    if (!staleSession) {
+      getSession()
+        .then((newSession) => {
+          if (newSession !== staleSession) {
+            setSession(newSession ?? null);
+            setStatus(newSession ? "authenticated" : "unauthenticated");
+          }
+        })
+        .catch(() => setStatus("unauthenticated"));
+    } else {
+      setStatus("unauthenticated");
+    }
   }, [staleSession]);
   const pathname = usePathname();
   const Profile = React.useMemo(
