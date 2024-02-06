@@ -24,10 +24,8 @@ export default function Nav() {
     if (!staleSession) {
       getSession()
         .then((newSession) => {
-          if (newSession !== staleSession) {
-            setSession(newSession ?? null);
-            setStatus(newSession ? "authenticated" : "unauthenticated");
-          }
+          setSession(newSession ?? null);
+          setStatus(newSession ? "authenticated" : "unauthenticated");
         })
         .catch(() => setStatus("unauthenticated"));
     } else {
