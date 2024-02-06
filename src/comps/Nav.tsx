@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Button, Navbar, Dropdown } from "flowbite-react";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { Button, Navbar, Dropdown, Spinner } from "flowbite-react";
+import { getSession, signIn, signOut, useSession } from "next-auth/react";
 import ProfilePic from "./ProfilePic";
 import { HiLogout, HiCog, HiOutlineUserCircle } from "react-icons/hi";
 import React from "react";
@@ -13,7 +13,25 @@ import { usePathname } from "next/navigation";
 const poppins = Poppins({ weight: "400", subsets: ["latin"] });
 
 export default function Nav() {
-  const { data: session } = useSession();
+  const { data: staleSession, status: previousStatus } = useSession({
+    required: false,
+  });
+  const [session, setSession] = React.useState(staleSession);
+  const [status, setStatus] =
+    React.useState<typeof previousStatus>(previousStatus);
+  React.useEffect(() => {
+    setStatus("loading");
+    if (!staleSession) {
+      getSession()
+        .then((newSession) => {
+          setSession(newSession ?? null);
+          setStatus(newSession ? "authenticated" : "unauthenticated");
+        })
+        .catch(() => setStatus("unauthenticated"));
+    } else {
+      setStatus("unauthenticated");
+    }
+  }, [staleSession]);
   const pathname = usePathname();
   const Profile = React.useMemo(
     () =>
@@ -63,10 +81,15 @@ export default function Nav() {
             </Dropdown>
             <Navbar.Toggle />
           </>
+        ) : status === "loading" ? (
+          <Spinner />
         ) : (
-          <Button color="info" onClick={() => signIn()}>
-            Sign in
-          </Button>
+          <>
+            <Button color="info" onClick={() => signIn()}>
+              Sign in
+            </Button>
+            <Navbar.Toggle />
+          </>
         )}
       </div>
       <Navbar.Collapse>
