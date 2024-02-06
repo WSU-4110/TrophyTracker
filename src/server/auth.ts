@@ -3,11 +3,11 @@ import {
   type DefaultSession,
   type NextAuthOptions,
 } from "next-auth";
-import DiscordProvider from "next-auth/providers/discord";
 import GithubProvider from "next-auth/providers/github";
 
-
 import { env } from "@/env.cjs";
+import connect from "@/db/connect";
+import User from "@/db/Models/User";
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -37,19 +37,36 @@ declare module "next-auth" {
  */
 export const authOptions: NextAuthOptions = {
   callbacks: {
-    session: ({ session, token }) => ({
-      ...session,
-      user: {
-        ...session.user,
-        id: token.sub,
-      },
-    }),
+    session: async ({ session, token }) => {
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id: token.sub,
+        },
+      };
+    },
+    signIn: async ({ user }) => {
+      try {
+        await connect();
+        const updateObj = {
+          uid: user.id,
+          name: user.name,
+          img: user.image,
+          email: user.email,
+          lastLogin: new Date(),
+        };
+
+        await User.updateOne({ uid: user.id }, updateObj, {
+          upsert: true,
+        });
+      } catch (err) {
+        console.error("Cannot connect to database...", err);
+      }
+      return true;
+    },
   },
   providers: [
-    DiscordProvider({
-      clientId: env.DISCORD_CLIENT_ID,
-      clientSecret: env.DISCORD_CLIENT_SECRET,
-    }),
     /**
      * ...add more providers here.
      *

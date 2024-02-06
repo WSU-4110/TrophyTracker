@@ -8,11 +8,13 @@ import ProfilePic from "./ProfilePic";
 import { HiLogout, HiCog, HiOutlineUserCircle } from "react-icons/hi";
 import React from "react";
 import { Poppins } from "next/font/google";
+import { usePathname } from "next/navigation";
 
 const poppins = Poppins({ weight: "400", subsets: ["latin"] });
 
 export default function Nav() {
   const { data: session } = useSession();
+  const pathname = usePathname();
   const Profile = React.useMemo(
     () =>
       session && (
@@ -28,7 +30,7 @@ export default function Nav() {
 
   return (
     <Navbar fluid rounded>
-      <Navbar.Brand as={Link} href="https://flowbite-react.com">
+      <Navbar.Brand as={Link} href="/">
         <Image
           src="/logo.png"
           width={40}
@@ -36,7 +38,7 @@ export default function Nav() {
           className="mr-3"
           alt="Trophy Tracker Logo"
         />
-        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+        <span className="self-center whitespace-nowrap text-xl font-semibold tracking-tighter dark:text-white">
           <span className={poppins.className}>Trophy Tracker</span>
         </span>
       </Navbar.Brand>
@@ -68,11 +70,22 @@ export default function Nav() {
         )}
       </div>
       <Navbar.Collapse>
-        <Navbar.Link href="#" active>
+        <Navbar.Link as={Link} href="/" active={pathname == "/"}>
           Home
         </Navbar.Link>
-        <Navbar.Link href="#">About</Navbar.Link>
-        <Navbar.Link href="#">Contact</Navbar.Link>
+        <Navbar.Link as={Link} href="#" active={pathname.startsWith("/about")}>
+          About
+        </Navbar.Link>
+        <Navbar.Link
+          as={Link}
+          href="/users"
+          active={pathname.startsWith("/users")}
+        >
+          Users
+        </Navbar.Link>
+        <Navbar.Link as={Link} href="#">
+          Contact
+        </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
   );
