@@ -1,3 +1,4 @@
+
 # Installation
 
 1. Clone the repository
@@ -22,7 +23,6 @@ Fill out the contents of the `.env.local` file with the appropriate values by as
 ---
 
 # Create T3 App
-# Pierre branch
 
 This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
 
