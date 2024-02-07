@@ -72,10 +72,10 @@ export default function Nav() {
           Home
         </Navbar.Link>
         <Navbar.Link as={Link} href="#">
-          About
-        </Navbar.Link>
-        <Navbar.Link as={Link} href="#">
           Contact
+        </Navbar.Link>
+        <Navbar.Link as={Link} href="/about">
+          About Us
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
