@@ -5,6 +5,10 @@
 await import("./src/env.cjs");
 
 /** @type {import("next").NextConfig} */
-const config = {};
+const config = {
+    experimental: {
+        serverComponentsExternalPackages: ["mongoose"]
+    }
+};
 
 export default config;
