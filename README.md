@@ -1,5 +1,3 @@
-# Venkat Dev Branch
-
 # Installation
 
 1. Clone the repository
