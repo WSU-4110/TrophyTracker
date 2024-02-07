@@ -23,6 +23,7 @@ export const env = createEnv({
     ),
     GITHUB_ID: z.string(),
     GITHUB_SECRET: z.string(),
+    MONGODB_URI: z.string().url(),
   },
 
   /**
@@ -42,6 +43,7 @@ export const env = createEnv({
     NODE_ENV: process.env.NODE_ENV,
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
+    MONGODB_URI: process.env.MONGODB_URI,
     GITHUB_ID: process.env.GITHUB_ID,
     GITHUB_SECRET: process.env.GITHUB_SECRET,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
