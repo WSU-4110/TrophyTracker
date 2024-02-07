@@ -76,8 +76,15 @@ export default function Nav() {
         <Navbar.Link as={Link} href="#">
           Contact
         </Navbar.Link>
-        <Navbar.Link as={Link} href="/about">
+        <Navbar.Link as={Link} href="/about" active={pathname.startsWith("/about")}>
           About Us
+        </Navbar.Link>
+        <Navbar.Link
+          as={Link}
+          href="/users"
+          active={pathname.startsWith("/users")}
+        >
+          Users
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
