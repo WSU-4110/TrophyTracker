@@ -31,7 +31,7 @@ export default async function RootLayout({
         <Suspense fallback={<Spinner />}>
           <SessionProvider session={session}>
             <Nav />
-            <main className="flex min-h-screen w-full flex-col justify-start bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white md:items-start">
+            <main className="flex min-h-screen w-full flex-col items-center justify-center bg-gradient-to-b from-[#307ba6] to-[#007cc4] text-white">
               <span className="m-8 py-3">{children}</span>
             </main>
           </SessionProvider>
