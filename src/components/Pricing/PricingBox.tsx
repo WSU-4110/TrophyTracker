@@ -12,11 +12,11 @@ interface PricingBoxProps {
   children: React.ReactNode;
 }
 
-const PricingBox = ({ product }) => {
+const PricingBox = ({ product }: { product: any }) => {
   const {} = product;
 
   // POST request
-  const handleSubscription = async (e) => {
+  const handleSubscription = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const { data } = await axios.post(
       "/api/payment",
