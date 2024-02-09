@@ -1,8 +1,9 @@
+import { Schema, model } from 'mongoose';
 import { User } from './User';
 import { Game } from './Game';
 import { Comment } from './Comment';
 
-export class Achievement {
+export interface Achievement {
   author: User;
   name: string;
   game: Game;
@@ -10,22 +11,16 @@ export class Achievement {
   likes: User[];
   difficulty: number;
   content: string;
-
-  constructor(
-    author: User,
-    name: string,
-    game: Game,
-    comments: Comment[],
-    likes: User[],
-    difficulty: number,
-    content: string
-  ) {
-    this.author = author;
-    this.name = name;
-    this.game = game;
-    this.comments = comments;
-    this.likes = likes;
-    this.difficulty = difficulty;
-    this.content = content;
-  }
 }
+
+const achievementSchema = new Schema<Achievement>({
+  author: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+  name: { type: String, required: true },
+  game: { type: Schema.Types.ObjectId, ref: 'Game', required: true },
+  comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
+  likes: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  difficulty: { type: Number, required: true },
+  content: { type: String, required: true },
+});
+
+export const AchievementModel = model<Achievement>('Achievement', achievementSchema);

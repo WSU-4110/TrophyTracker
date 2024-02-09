@@ -1,14 +1,17 @@
+import { Schema, model } from 'mongoose';
 import { User } from './User';
 import { Achievement } from './Achievement';
 
-export class Comment {
+export interface Comment {
   author: User;
   content: string;
   achievement: Achievement;
-
-  constructor(author: User, content: string, achievement: Achievement) {
-    this.author = author;
-    this.content = content;
-    this.achievement = achievement;
-  }
 }
+
+const commentSchema = new Schema<Comment>({
+  author: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+  content: { type: String, required: true },
+  achievement: { type: Schema.Types.ObjectId, ref: 'Achievement', required: true },
+});
+
+export const CommentModel = model<Comment>('Comment', commentSchema);
