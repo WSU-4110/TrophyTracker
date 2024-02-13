@@ -8,4 +8,5 @@ const categorySchema = new Schema<Category>({
   name: { type: String, required: true },
 });
 
-export const CategoryModel = (models.Category as Model<Category>) ?? model<Category>("Category", categorySchema);
+export default (models.Category as Model<Category>) ??
+  model("Category", categorySchema);
