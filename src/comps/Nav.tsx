@@ -93,7 +93,7 @@ export default function Nav() {
         )}
       </div>
       <Navbar.Collapse>
-        <Navbar.Link as={Link} href="/" active={pathname == "/"}>
+        <Navbar.Link as={Link} href="/home" active={pathname.startsWith("/contact")}>
           Home
         </Navbar.Link>
         <Navbar.Link as={Link} href="/contact" active={pathname.startsWith("/contact")} >
