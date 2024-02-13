@@ -96,7 +96,7 @@ export default function Nav() {
         <Navbar.Link as={Link} href="/" active={pathname == "/"}>
           Home
         </Navbar.Link>
-        <Navbar.Link as={Link} href="#">
+        <Navbar.Link as={Link} href="/contact" active={pathname.startsWith("/contact")} >
           Contact
         </Navbar.Link>
         <Navbar.Link as={Link} href="/about" active={pathname.startsWith("/about")}>
