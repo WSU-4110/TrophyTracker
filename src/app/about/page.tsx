@@ -1,16 +1,14 @@
-import React from 'react';
+import About from '@/components/About'
+import Breadcrumb from '@/components/Common/Breadcrumb'
+import Team from '@/components/Team'
+import { type Metadata } from 'next'
 
-const AboutUs = () => {
-  return (
-    <div>
-      {/* Hero Section */}
-      <div className="bg-cover bg-center h-96 text-white py-24 px-4 object-fill" style={{ backgroundImage: "url('/testbackround.jpg')" }}>
-        <div className="md:w-1/2">
-          <p className="font-bold text-sm uppercase">Welcome to TrophyTracker</p>
-          <p className="text-3xl font-bold">About Us</p>
-          <p className="text-2xl mb-4">Track all your achievemnts across multiple platforms all in one spot.</p>
-        </div>
-      </div>
+export const metadata: Metadata = {
+  title: 'About Us | Welcome to TrophyTracker',
+  description:
+    'Track all your achievemnts across multiple platforms all in one spot.'
+}
+
 
       {/* Our Mission Section */}
       <div className="py-8 px-4">
@@ -26,4 +24,4 @@ const AboutUs = () => {
   );
 };
 
-export default AboutUs;
+export default AboutPage

@@ -1,38 +1,38 @@
-"use client";
+'use client'
 
-import Link from "next/link";
-import Image from "next/image";
-import { Button, Navbar, Dropdown, Spinner } from "flowbite-react";
-import { getSession, signIn, signOut, useSession } from "next-auth/react";
-import ProfilePic from "./ProfilePic";
-import { HiLogout, HiCog, HiOutlineUserCircle } from "react-icons/hi";
-import React from "react";
-import { Poppins } from "next/font/google";
-import { usePathname } from "next/navigation";
+import Link from 'next/link'
+import Image from 'next/image'
+import { Button, Navbar, Dropdown, Spinner } from 'flowbite-react'
+import { getSession, signIn, signOut, useSession } from 'next-auth/react'
+import ProfilePic from './ProfilePic'
+import { HiLogout, HiCog, HiOutlineUserCircle } from 'react-icons/hi'
+import React from 'react'
+import { Poppins } from 'next/font/google'
+import { usePathname } from 'next/navigation'
 
-const poppins = Poppins({ weight: "400", subsets: ["latin"] });
+const poppins = Poppins({ weight: '400', subsets: ['latin'] })
 
-export default function Nav() {
+export default function Nav () {
   const { data: staleSession, status: previousStatus } = useSession({
-    required: false,
-  });
-  const [session, setSession] = React.useState(staleSession);
+    required: false
+  })
+  const [session, setSession] = React.useState(staleSession)
   const [status, setStatus] =
-    React.useState<typeof previousStatus>(previousStatus);
+    React.useState<typeof previousStatus>(previousStatus)
   React.useEffect(() => {
-    setStatus("loading");
+    setStatus('loading')
     if (!staleSession) {
       getSession()
         .then((newSession) => {
-          setSession(newSession ?? null);
-          setStatus(newSession ? "authenticated" : "unauthenticated");
+          setSession(newSession ?? null)
+          setStatus(newSession ? 'authenticated' : 'unauthenticated')
         })
-        .catch(() => setStatus("unauthenticated"));
+        .catch(() => { setStatus('unauthenticated') })
     } else {
-      setStatus("unauthenticated");
+      setStatus('unauthenticated')
     }
-  }, [staleSession]);
-  const pathname = usePathname();
+  }, [staleSession])
+  const pathname = usePathname()
   const Profile = React.useMemo(
     () =>
       session && (
@@ -43,8 +43,8 @@ export default function Nav() {
           color="info"
         />
       ),
-    [session],
-  );
+    [session]
+  )
 
   return (
     <Navbar fluid rounded>
@@ -61,7 +61,8 @@ export default function Nav() {
         </span>
       </Navbar.Brand>
       <div className="flex md:order-2">
-        {session ? (
+        {session
+          ? (
           <>
             <Dropdown arrowIcon={false} inline label={Profile}>
               <Dropdown.Header>
@@ -75,41 +76,45 @@ export default function Nav() {
               </Dropdown.Item>
               <Dropdown.Item icon={HiCog}>Settings</Dropdown.Item>
               <Dropdown.Divider />
-              <Dropdown.Item icon={HiLogout} onClick={() => signOut()}>
+              <Dropdown.Item icon={HiLogout} onClick={async () => { await signOut() }}>
                 Sign out
               </Dropdown.Item>
             </Dropdown>
             <Navbar.Toggle />
           </>
-        ) : status === "loading" ? (
+            )
+          : status === 'loading'
+            ? (
           <Spinner />
-        ) : (
+              )
+            : (
           <>
-            <Button color="info" onClick={() => signIn()}>
+            <Button color="info" onClick={async () => { await signIn() }}>
               Sign in
             </Button>
             <Navbar.Toggle />
           </>
-        )}
+              )}
       </div>
       <Navbar.Collapse>
-        <Navbar.Link as={Link} href="/home" active={pathname.startsWith("/contact")}>
+
+        <Navbar.Link as={Link} href="/home" active={pathname.startsWith("/home")}>
           Home
         </Navbar.Link>
         <Navbar.Link as={Link} href="/contact" active={pathname.startsWith("/contact")} >
           Contact
         </Navbar.Link>
-        <Navbar.Link as={Link} href="/about" active={pathname.startsWith("/about")}>
+        <Navbar.Link as={Link} href="/about" active={pathname.startsWith('/about')}>
           About Us
         </Navbar.Link>
         <Navbar.Link
           as={Link}
           href="/users"
-          active={pathname.startsWith("/users")}
+          active={pathname.startsWith('/users')}
         >
           Users
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
-  );
+  )
 }
