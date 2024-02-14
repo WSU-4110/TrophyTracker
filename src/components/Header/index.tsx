@@ -1,3 +1,8 @@
+/* eslint-disable react/jsx-key */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/prefer-optional-chain */
 "use client";
 import { signOut, useSession } from "next-auth/react";
 import { useTheme } from "next-themes";
@@ -219,7 +224,7 @@ const Header = () => {
 
                               <span className="pl-1">
                                 <svg
-                                  className={`duration-300 lg:group-hover:rotate-180`}
+                                  className={`lg:grouprotate-180 duration-300`}
                                   width="16"
                                   height="17"
                                   viewBox="0 0 16 17"

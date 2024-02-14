@@ -1,36 +1,36 @@
-import { Testimonial } from "@/types/testimonial";
-import SectionTitle from "../Common/SectionTitle";
-import SingleTestimonial from "./SingleTestimonial";
+import { type Testimonial } from '@/types/testimonial'
+import SectionTitle from '../Common/SectionTitle'
+import SingleTestimonial from './SingleTestimonial'
 
 const testimonialData: Testimonial[] = [
   {
     id: 1,
-    name: "Sukrut Nadigotti",
-    designation: "Software Developer",
+    name: 'Sukrut Nadigotti',
+    designation: 'Software Developer',
     content:
       "Our members are so impressed. It's intuitive. It's clean. It's distraction free. If you're building a community.",
-    image: "/images/testimonials/author-01.png",
-    star: 5,
+    image: '/images/testimonials/author-01.png',
+    star: 5
   },
   {
     id: 2,
-    name: "Sukrut Nadigotti",
-    designation: "Software Developer",
+    name: 'Sukrut Nadigotti',
+    designation: 'Software Developer',
     content:
       "Our members are so impressed. It's intuitive. It's clean. It's distraction free. If you're building a community.",
-    image: "/images/testimonials/author-02.png",
-    star: 5,
+    image: '/images/testimonials/author-02.png',
+    star: 5
   },
   {
     id: 3,
-    name: "Sukrut Nadigotti",
-    designation: "Software Developer",
+    name: 'Sukrut Nadigotti',
+    designation: 'Software Developer',
     content:
       "Our members are so impressed. It's intuitive. It's clean. It's distraction free. If you're building a community.",
-    image: "/images/testimonials/author-03.png",
-    star: 5,
-  },
-];
+    image: '/images/testimonials/author-03.png',
+    star: 5
+  }
+]
 
 const Testimonials = () => {
   return (
@@ -51,7 +51,7 @@ const Testimonials = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Testimonials;
+export default Testimonials

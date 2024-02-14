@@ -1,45 +1,45 @@
-import { TeamType } from "@/types/team";
-import SectionTitle from "../Common/SectionTitle";
-import SingleTeam from "./SingleTeam";
+import { type TeamType } from '@/types/team'
+import SectionTitle from '../Common/SectionTitle'
+import SingleTeam from './SingleTeam'
 
 const teamData: TeamType[] = [
   {
     id: 1,
-    name: "Sukrut Nadigotti",
-    designation: "Software Developer",
-    image: "/images/team/team-01.png",
-    facebookLink: "/#",
-    twitterLink: "/#",
-    instagramLink: "/#",
+    name: 'Sukrut Nadigotti',
+    designation: 'Software Developer',
+    image: '/images/team/team-01.png',
+    facebookLink: '/#',
+    twitterLink: '/#',
+    instagramLink: '/#'
   },
   {
     id: 2,
-    name: "Sukrut Nadigotti",
-    designation: "Software Developer",
-    image: "/images/team/team-02.png",
-    facebookLink: "/#",
-    twitterLink: "/#",
-    instagramLink: "/#",
+    name: 'Sukrut Nadigotti',
+    designation: 'Software Developer',
+    image: '/images/team/team-02.png',
+    facebookLink: '/#',
+    twitterLink: '/#',
+    instagramLink: '/#'
   },
   {
     id: 3,
-    name: "Sukrut Nadigotti",
-    designation: "Software Developer",
-    image: "/images/team/team-03.png",
-    facebookLink: "/#",
-    twitterLink: "/#",
-    instagramLink: "/#",
+    name: 'Sukrut Nadigotti',
+    designation: 'Software Developer',
+    image: '/images/team/team-03.png',
+    facebookLink: '/#',
+    twitterLink: '/#',
+    instagramLink: '/#'
   },
   {
     id: 4,
-    name: "Sukrut Nadigotti",
-    designation: "Software Developer",
-    image: "/images/team/team-04.png",
-    facebookLink: "/#",
-    twitterLink: "/#",
-    instagramLink: "/#",
-  },
-];
+    name: 'Sukrut Nadigotti',
+    designation: 'Software Developer',
+    image: '/images/team/team-04.png',
+    facebookLink: '/#',
+    twitterLink: '/#',
+    instagramLink: '/#'
+  }
+]
 
 const Team = () => {
   return (
@@ -65,7 +65,7 @@ const Team = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Team;
+export default Team

@@ -1,9 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import axios from "axios";
 import React from "react";
 import OfferList from "./OfferList";
 
 interface PricingBoxProps {
-  price: any;
+  price: unknown;
   purchaseLink: string;
   packageName: string;
   btn: string;
@@ -13,6 +16,7 @@ interface PricingBoxProps {
 }
 
 const PricingBox = ({ product }: { product: any }) => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const {} = product;
 
   // POST request
@@ -29,6 +33,7 @@ const PricingBox = ({ product }: { product: any }) => {
         },
       },
     );
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     window.location.assign(data);
   };
 

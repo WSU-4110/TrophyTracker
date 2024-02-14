@@ -1,5 +1,5 @@
-import Image from "next/image";
-import Link from "next/link";
+import Image from 'next/image'
+import Link from 'next/link'
 
 const Hero = () => {
   return (
@@ -69,7 +69,7 @@ const Hero = () => {
                     <a
                       href="https://github.com/uideck/play-bootstrap/"
                       className="text-white/60 duration-300 ease-in-out hover:text-white"
-                      target="_blank"
+                      target="_blank" rel="noreferrer"
                     >
                       <svg
                         className="fill-current"
@@ -81,7 +81,7 @@ const Hero = () => {
                       >
                         <mask
                           id="mask0_2005_10788"
-                          style={{ maskType: "luminance" }}
+                          style={{ maskType: 'luminance' }}
                           maskUnits="userSpaceOnUse"
                           x="0"
                           y="0"
@@ -103,7 +103,7 @@ const Hero = () => {
                     <a
                       href="https://github.com/TailGrids/play-tailwind/"
                       className="text-white/60 duration-300 ease-in-out hover:text-white"
-                      target="_blank"
+                      target="_blank" rel="noreferrer"
                     >
                       <svg
                         className="fill-current"
@@ -115,7 +115,7 @@ const Hero = () => {
                       >
                         <mask
                           id="mask0_2005_10783"
-                          style={{ maskType: "luminance" }}
+                          style={{ maskType: 'luminance' }}
                           maskUnits="userSpaceOnUse"
                           x="0"
                           y="0"
@@ -133,7 +133,7 @@ const Hero = () => {
                     <a
                       href="https://github.com/NextJSTemplates/play-nextjs"
                       className="text-white/60 duration-300 ease-in-out hover:text-white"
-                      target="_blank"
+                      target="_blank" rel="noreferrer"
                     >
                       <svg
                         className="fill-current"
@@ -151,7 +151,7 @@ const Hero = () => {
                     <a
                       href="https://github.com/TailGrids/play-astro/"
                       className="text-white/60 duration-300 ease-in-out hover:text-white"
-                      target="_blank"
+                      target="_blank" rel="noreferrer"
                     >
                       <svg
                         className="mt-0.5 fill-current"
@@ -180,7 +180,7 @@ const Hero = () => {
                     <a
                       href="https://github.com/NextJSTemplates/play-nextjs"
                       className="text-white/60 duration-300 ease-in-out hover:text-white"
-                      target="_blank"
+                      target="_blank" rel="noreferrer"
                     >
                       <svg
                         className="fill-current"
@@ -1358,7 +1358,7 @@ const Hero = () => {
         </div>
       </section>
     </>
-  );
-};
+  )
+}
 
-export default Hero;
+export default Hero

@@ -1,11 +1,11 @@
-import Link from "next/link";
+import Link from 'next/link'
 
 const Breadcrumb = ({
   pageName,
-  pageDescription,
+  pageDescription
 }: {
-  pageName: string;
-  pageDescription?: string;
+  pageName: string
+  pageDescription?: string
 }) => {
   return (
     <>
@@ -34,8 +34,8 @@ const Breadcrumb = ({
                   <li>
                     <p className="text-body-color flex items-center gap-[10px] text-base font-medium">
                       <span className="text-body-color dark:text-dark-6">
-                        {" "}
-                        /{" "}
+                        {' '}
+                        /{' '}
                       </span>
                       {pageName}
                     </p>
@@ -47,7 +47,7 @@ const Breadcrumb = ({
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Breadcrumb;
+export default Breadcrumb

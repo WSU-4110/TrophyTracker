@@ -8,18 +8,21 @@ const Pricing = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     fetchProducts();
   }, []);
 
   const fetchProducts = async () => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const { data } = await axios.get("/api/getproducts");
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     setProducts(data);
   };
 
   return (
     <section
       id="pricing"
-      className="relative z-20 overflow-hidden bg-white pb-12 pt-20 dark:bg-dark lg:pb-[90px] lg:pt-[120px]"
+      className="dark:bg-dark relative z-20 overflow-hidden bg-white pb-12 pt-20 lg:pb-[90px] lg:pt-[120px]"
     >
       <div className="container">
         <div className="mb-[60px]">
@@ -35,7 +38,7 @@ const Pricing = () => {
           {products.map((product, i) => (
             <PricingBox key={1} product={product} />
           ))}
-          {/*           
+          {/*
           <PricingBox
             popular={false}
             packageName="Lite"

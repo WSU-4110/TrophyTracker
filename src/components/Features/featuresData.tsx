@@ -1,4 +1,4 @@
-import { Feature } from "@/types/feature";
+import { type Feature } from '@/types/feature'
 
 const featuresData: Feature[] = [
   {
@@ -17,10 +17,10 @@ const featuresData: Feature[] = [
         />
       </svg>
     ),
-    title: "TrophyTracker",
-    paragraph: "Lorem Ipsum is simply dummy text of the printing and industry.",
-    btn: "Learn More",
-    btnLink: "/#",
+    title: 'TrophyTracker',
+    paragraph: 'Lorem Ipsum is simply dummy text of the printing and industry.',
+    btn: 'Learn More',
+    btnLink: '/#'
   },
   {
     id: 2,
@@ -38,10 +38,10 @@ const featuresData: Feature[] = [
         />
       </svg>
     ),
-    title: "TrophyTracker",
-    paragraph: "Lorem Ipsum is simply dummy text of the printing and industry.",
-    btn: "Learn More",
-    btnLink: "/#",
+    title: 'TrophyTracker',
+    paragraph: 'Lorem Ipsum is simply dummy text of the printing and industry.',
+    btn: 'Learn More',
+    btnLink: '/#'
   },
   {
     id: 3,
@@ -91,10 +91,10 @@ const featuresData: Feature[] = [
         />
       </svg>
     ),
-    title: "TrophyTracker",
-    paragraph: "Lorem Ipsum is simply dummy text of the printing and industry.",
-    btn: "Learn More",
-    btnLink: "/#",
+    title: 'TrophyTracker',
+    paragraph: 'Lorem Ipsum is simply dummy text of the printing and industry.',
+    btn: 'Learn More',
+    btnLink: '/#'
   },
   {
     id: 4,
@@ -124,10 +124,10 @@ const featuresData: Feature[] = [
         />
       </svg>
     ),
-    title: "TrophyTracker",
-    paragraph: "Lorem Ipsum is simply dummy text of the printing and industry.",
-    btn: "Learn More",
-    btnLink: "/#",
-  },
-];
-export default featuresData;
+    title: 'TrophyTracker',
+    paragraph: 'Lorem Ipsum is simply dummy text of the printing and industry.',
+    btn: 'Learn More',
+    btnLink: '/#'
+  }
+]
+export default featuresData

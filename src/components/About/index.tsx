@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image'
 
 const About = () => {
   return (
@@ -33,7 +33,7 @@ const About = () => {
               <div className="-mx-2 flex flex-wrap sm:-mx-4 lg:-mx-2 xl:-mx-4">
                 <div className="w-full px-2 sm:w-1/2 sm:px-4 lg:px-2 xl:px-4">
                   <div
-                    className={`relative mb-4 sm:mb-8 sm:h-[400px] md:h-[540px] lg:h-[400px] xl:h-[500px] `}
+                    className={'relative mb-4 sm:mb-8 sm:h-[400px] md:h-[540px] lg:h-[400px] xl:h-[500px] '}
                   >
                     <Image
                       src="/images/about/about-image-01.jpg"
@@ -184,7 +184,7 @@ const About = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default About;
+export default About

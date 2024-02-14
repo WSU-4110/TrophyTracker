@@ -1,9 +1,9 @@
-import { TeamType } from "@/types/team";
-import Image from "next/image";
+import { type TeamType } from '@/types/team'
+import Image from 'next/image'
 
 const SingleTeam = ({ team }: { team: TeamType }) => {
   const { image, name, designation, facebookLink, twitterLink, instagramLink } =
-    team;
+    team
   return (
     <div className="w-full px-4 sm:w-1/2 lg:w-1/4 xl:w-1/4">
       <div className="shadow-testimonial dark:bg-dark group mb-8 rounded-xl bg-white px-5 pb-10 pt-12 dark:shadow-none">
@@ -314,7 +314,7 @@ const SingleTeam = ({ team }: { team: TeamType }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SingleTeam;
+export default SingleTeam

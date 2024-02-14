@@ -1,5 +1,5 @@
-const SingleFaq = (props: { question: string; answer: string }) => {
-  const { question, answer } = props;
+const SingleFaq = (props: { question: string, answer: string }) => {
+  const { question, answer } = props
 
   return (
     <>
@@ -24,9 +24,9 @@ const SingleFaq = (props: { question: string; answer: string }) => {
               </p>
             </div>
           </div>
-    
-    </>
-  );
-};
 
-export default SingleFaq;
+    </>
+  )
+}
+
+export default SingleFaq

@@ -1,8 +1,8 @@
-import { Feature } from "@/types/feature";
-import Link from "next/link";
+import { type Feature } from '@/types/feature'
+import Link from 'next/link'
 
 const SingleFeature = ({ feature }: { feature: Feature }) => {
-  const { icon, title, paragraph, btn, btnLink } = feature;
+  const { icon, title, paragraph, btn, btnLink } = feature
   return (
     <div className="w-full px-4 md:w-1/2 lg:w-1/4">
       <div className="wow fadeInUp group mb-12" data-wow-delay=".15s">
@@ -24,7 +24,7 @@ const SingleFeature = ({ feature }: { feature: Feature }) => {
         </Link>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SingleFeature;
+export default SingleFeature

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from 'next/link'
 
 const CallToAction = () => {
   return (
@@ -11,8 +11,8 @@ const CallToAction = () => {
                 <h2 className="mb-2.5 text-3xl font-bold text-white md:text-[38px] md:leading-[1.44]">
                   <span>What Are You Looking For?</span>
                   <span className="text-3xl font-normal md:text-[40px]">
-                    {" "}
-                    Get Started Now{" "}
+                    {' '}
+                    Get Started Now{' '}
                   </span>
                 </h2>
                 <p className="mx-auto mb-6 max-w-[515px] text-base leading-[1.5] text-white">
@@ -96,7 +96,7 @@ const CallToAction = () => {
         </span>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default CallToAction;
+export default CallToAction

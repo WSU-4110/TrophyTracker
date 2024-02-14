@@ -1,5 +1,5 @@
-import SectionTitle from "../Common/SectionTitle";
-import SingleFaq from "./SingleFaq";
+import SectionTitle from '../Common/SectionTitle'
+import SingleFaq from './SingleFaq'
 
 const Faq = () => {
   return (
@@ -629,7 +629,7 @@ const Faq = () => {
         </span>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Faq;
+export default Faq

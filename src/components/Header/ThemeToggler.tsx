@@ -1,11 +1,11 @@
-import { useTheme } from "next-themes";
+import { useTheme } from 'next-themes'
 
 const ThemeToggler = () => {
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme } = useTheme()
   return (
     <button
       aria-label="theme toggler"
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      onClick={() => { setTheme(theme === 'dark' ? 'light' : 'dark') }}
       className="text-body-color flex h-8 w-8 items-center justify-center duration-300 dark:text-white"
     >
       <span>
@@ -26,7 +26,7 @@ const ThemeToggler = () => {
         </svg>
       </span>
     </button>
-  );
-};
+  )
+}
 
-export default ThemeToggler;
+export default ThemeToggler
