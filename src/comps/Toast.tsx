@@ -14,11 +14,13 @@ export default function ToastComp() {
     message: !!message,
     error: !!error,
   });
+  // this might be redundant
   React.useEffect(() => {
     setShowToast((_) => ({ ..._, error: !!error }));
 
     setShowToast((_) => ({ ..._, message: !!message }));
-  }, [error, message]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [error, message, window.location.href]);
   return (
     <span className="mb-1">
       {showToast.error && (
