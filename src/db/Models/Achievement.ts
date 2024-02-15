@@ -8,6 +8,8 @@ export interface Achievement {
   author: User;
   name: string;
   content: string;
+  createdAt: Date;
+  lastModified: Date;
   game: Game;
   platform?: Platforms;
   comments: []; // TODO: Add Comment type
@@ -17,6 +19,8 @@ export interface Achievement {
 
 const achievementSchema = new Schema<Achievement>({
   author: { type: Schema.Types.ObjectId, ref: "User", required: true },
+  createdAt: { type: Date, default: Date.now },
+  lastModified: { type: Date, default: null },
   name: { type: String, required: true },
   content: { type: String, required: true },
   game: { type: Schema.Types.ObjectId, ref: "Game", required: true },
