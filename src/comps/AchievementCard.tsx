@@ -2,40 +2,61 @@ import { User } from "@/db/Models/User";
 import { Card } from "flowbite-react";
 import { type Achievement } from "../db/Models/Achievement";
 import ProfilePic from "./ProfilePic";
+import Difficulty from "./Difficulty";
+import Link from "next/link";
 
 interface AchievementCardProps extends Achievement {
   key?: string | number;
 }
 
 export default function AchievementCard(props: AchievementCardProps) {
+  const authorName =
+    props.author.email ?? props.author.name ?? props.author.uid;
   return (
-    <Card className="max-w-sm" imgSrc={props.game.picture} horizontal>
-      <span>
-        <ProfilePic
-          img={props.author.img}
-          name={props.author.email ?? props.author.name ?? props.author.uid}
-          rounded
-          color="light"
-        />
-      </span>
-      <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-        {props.name}
-      </h5>
-      <p className="font-normal text-gray-700 dark:text-gray-400">
-        {props.content}
-      </p>
-      <hr />
-      {/* difficulty should be stars (1/5) */}
-      <div className="flex items-center gap-1">
-        <p className="text-xs text-gray-500 dark:text-gray-200 ">
-          {props.createdAt.toDateString()}
-        </p>
-        {props.lastModified && (
-          <p className="text-xs italic text-gray-500 dark:text-gray-200">
-            • {props.lastModified.toDateString()} (last modified)
-          </p>
-        )}
+    <div className="relative">
+      <div className="absolute right-2 top-2 z-10">
+        <Difficulty name={props.name} difficulty={props.difficulty} />
       </div>
-    </Card>
+      <Card
+        className="relative max-w-sm bg-white shadow-xl dark:bg-gray-800 dark:text-white"
+        imgSrc={props.game.picture}
+        horizontal
+      >
+        <span className="flex items-center justify-start">
+          <ProfilePic
+            img={props.author.img}
+            name={authorName}
+            rounded
+            color="light"
+          />
+          <Link
+            className="text-md ml-2 text-center text-gray-700 hover:text-purple-900 dark:text-gray-300 dark:hover:text-white"
+            href={`/users/${props.author.uid}`}
+          >
+            {authorName}
+          </Link>
+        </span>
+        <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          {props.name}
+        </h5>
+        <p className="font-normal text-gray-700 dark:text-gray-400">
+          {props.content}
+        </p>
+        <p className="text-xs text-gray-500 dark:text-gray-200">
+          {props.comments.length} comments • {props.likes.length} likes
+        </p>
+        <hr />
+        <div className="flex items-center gap-1">
+          <p className="text-xs text-gray-500 dark:text-gray-200 ">
+            {props.createdAt.toDateString()}
+          </p>
+          {props.lastModified && (
+            <p className="text-xs italic text-gray-500 dark:text-gray-200">
+              • Edited on {props.lastModified.toLocaleString()}
+            </p>
+          )}
+        </div>
+      </Card>
+    </div>
   );
 }
