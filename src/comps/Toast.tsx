@@ -20,7 +20,7 @@ export default function ToastComp() {
 
     setShowToast((_) => ({ ..._, message: !!message }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [error, message, window.location.href]);
+  }, [error, message]);
   return (
     <span className="mb-1">
       {showToast.error && (
