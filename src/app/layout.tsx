@@ -6,6 +6,7 @@ import SessionProvider from "@/comps/SessionProvider";
 import { getServerAuthSession } from "@/server/auth";
 import { Suspense } from "react";
 import { Spinner } from "flowbite-react";
+import ToastComp from "@/comps/Toast";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -32,6 +33,7 @@ export default async function RootLayout({
           <SessionProvider session={session}>
             <Nav />
             <main className="flex min-h-screen w-full flex-col items-center justify-center bg-gradient-to-b from-[#307ba6] to-[#007cc4] text-white">
+              <ToastComp />
               <span className="m-8 py-3">{children}</span>
             </main>
           </SessionProvider>
