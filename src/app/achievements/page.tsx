@@ -1,7 +1,5 @@
 import AchievementCard from "@/comps/AchievementCard";
-import Achievement, {
-  type Achievement as AchivementType,
-} from "@/db/Models/Achievement";
+import Achievement from "@/db/Models/Achievement"; // type Achievement as AchivementType,
 import Game from "@/db/Models/Game";
 import User from "@/db/Models/User";
 import connect from "@/db/connect";
@@ -18,7 +16,9 @@ export default async function page() {
 
   return (
     <div>
-      <h1>Achievements</h1>
+      <h1 className="mb-4 text-center text-3xl font-extrabold md:text-left">
+        Achievements
+      </h1>
       <div>
         {achievements.map(
           ({
@@ -30,10 +30,22 @@ export default async function page() {
             comments,
             likes,
             difficulty,
+            createdAt,
+            lastModified,
           }) => (
             <AchievementCard
               key={_id.toString()}
-              {...{ author, name, content, game, comments, likes, difficulty }}
+              {...{
+                author,
+                name,
+                content,
+                game,
+                comments,
+                likes,
+                difficulty,
+                createdAt,
+                lastModified,
+              }}
             />
           ),
         )}

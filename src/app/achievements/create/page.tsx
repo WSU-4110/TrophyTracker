@@ -47,7 +47,7 @@ export default async function page() {
           <Select id="games" name="game" required>
             {games.map((game) => (
               <option key={game._id.toString()} value={game._id.toString()}>
-                {game.name}{" "}
+                {game.name}
               </option>
             ))}
           </Select>
