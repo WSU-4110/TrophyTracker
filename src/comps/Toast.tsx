@@ -15,20 +15,17 @@ export default function ToastComp() {
     error: !!error,
   });
   React.useEffect(() => {
-    if (error) {
-      setShowToast((_) => ({ ..._, error: true }));
-    }
-    if (message) {
-      setShowToast((_) => ({ ..._, message: true }));
-    }
+    setShowToast((_) => ({ ..._, error: !!error }));
+
+    setShowToast((_) => ({ ..._, message: !!message }));
   }, [error, message]);
   return (
-    <>
+    <span className="mb-1">
       {showToast.error && (
         <Toast className="mb-2">
           <div className="flex items-center gap-2">
             <BsFillInfoCircleFill color="#ff0000" />
-            <p className="text-red-500">{message}</p>
+            <p className="text-red-500">{error}</p>
           </div>
           <Toast.Toggle
             onDismiss={() => setShowToast((_) => ({ ..._, error: false }))}
@@ -46,6 +43,6 @@ export default function ToastComp() {
           />
         </Toast>
       )}
-    </>
+    </span>
   );
 }

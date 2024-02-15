@@ -33,20 +33,21 @@ export default async function page() {
             createdAt,
             lastModified,
           }) => (
-            <AchievementCard
-              key={_id.toString()}
-              {...{
-                author,
-                name,
-                content,
-                game,
-                comments,
-                likes,
-                difficulty,
-                createdAt,
-                lastModified,
-              }}
-            />
+            <span key={_id.toString()} className="mb-2">
+              <AchievementCard
+                {...{
+                  author,
+                  name,
+                  content,
+                  game,
+                  comments,
+                  likes,
+                  difficulty,
+                  createdAt,
+                  lastModified,
+                }}
+              />
+            </span>
           ),
         )}
       </div>
