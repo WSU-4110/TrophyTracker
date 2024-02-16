@@ -6,6 +6,7 @@ import Difficulty from "./Difficulty";
 import Link from "next/link";
 
 interface AchievementCardProps extends Achievement {
+  _id: string;
   key?: string | number;
 }
 
@@ -13,7 +14,7 @@ export default function AchievementCard(props: AchievementCardProps) {
   const authorName =
     props.author.email ?? props.author.name ?? props.author.uid;
   return (
-    <div className="relative">
+    <div className="animate-in relative">
       <div className="absolute right-2 top-2 z-10">
         <Difficulty name={props.name} difficulty={props.difficulty} />
       </div>
@@ -42,9 +43,14 @@ export default function AchievementCard(props: AchievementCardProps) {
         <p className="font-normal text-gray-700 dark:text-gray-400">
           {props.content}
         </p>
-        <p className="text-xs text-gray-500 dark:text-gray-200">
-          {props.comments.length} comments • {props.likes.length} likes
-        </p>
+        <Link
+          href={`/achievement/${props._id}`}
+          className="hover:text-purple-600 hover:underline"
+        >
+          <p className="text-xs text-gray-500 dark:text-gray-200">
+            {props.comments.length} comments • {props.likes.length} likes
+          </p>
+        </Link>
         <hr />
         <div className="flex items-center gap-1">
           <p className="text-xs text-gray-500 dark:text-gray-200 ">
