@@ -4,6 +4,7 @@ import connect from "@/db/connect";
 import validate from "@/utils/validate";
 import { getServerSession } from "next-auth/next";
 import { redirect } from "next/navigation";
+import { isRedirectError } from "next/dist/client/components/redirect";
 
 const achievement = {
   create,
@@ -23,6 +24,12 @@ async function create(formData: FormData) {
     const content = formData.get("content") as string;
     const difficulty = Number(formData.get("difficulty") as string);
     const game = formData.get("game") as string;
+    if (!name || !content || !difficulty || !game) {
+      redirect("/achievements/create/?error=Missing fields");
+    }
+    if (content.length < 12) {
+      redirect("/achievements/create/?error=Description is too short");
+    }
     await connect();
     const thisUser = await User.findOne({ email: session.user.email });
     if (!thisUser) {
@@ -37,6 +44,7 @@ async function create(formData: FormData) {
     });
   } catch (e: unknown) {
     const error = e as Error;
+    if (isRedirectError(error)) throw error;
     if (error.name === "ValidationError") {
       redirect(
         // @ts-expect-error we know the error exists

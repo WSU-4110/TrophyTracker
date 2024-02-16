@@ -4,6 +4,7 @@ import Game from "@/db/Models/Game";
 import User from "@/db/Models/User";
 import connect from "@/db/connect";
 import { Button } from "flowbite-react";
+import { BsPlusSquareFill } from "react-icons/bs";
 export const dynamic = "force-static";
 export const revalidate = 360;
 
@@ -17,9 +18,7 @@ export default async function page() {
 
   return (
     <div>
-      <h1 className="mb-4 text-center text-3xl font-extrabold md:text-left">
-        Achievements
-      </h1>
+      <h1 className="heading mb-4 text-center md:text-left">Achievements</h1>
       <div>
         {achievements.map(
           ({
@@ -57,7 +56,7 @@ export default async function page() {
           className="mt-2 transition-all hover:py-2"
           gradientDuoTone="purpleToPink"
         >
-          Create an Achievement
+          <BsPlusSquareFill size={16} className="mr-1" /> Create an Achievement
         </Button>
       </div>
     </div>

@@ -18,3 +18,9 @@
     }
   }
   
+
+@layer components {
+    .heading {
+        @apply text-4xl font-extrabold;
+    }
+}

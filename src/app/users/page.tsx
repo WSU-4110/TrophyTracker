@@ -1,10 +1,10 @@
-import ProfilePic from '@/comps/ProfilePic'
-import User from '@/db/Models/User'
-import connect from '@/db/connect'
+import ProfilePic from "@/comps/ProfilePic";
+import User from "@/db/Models/User";
+import connect from "@/db/connect";
 // import { unstable_cache } from "next/cache";
 
-export const revalidate = 3600 // 1 hour
-export const dynamic = 'force-static'
+export const revalidate = 3600; // 1 hour
+export const dynamic = "force-static";
 
 // const cachedUsers = unstable_cache(
 //   async () => {
@@ -15,12 +15,12 @@ export const dynamic = 'force-static'
 //   { revalidate: 30 * 60 },
 // );
 
-export default async function Users () {
-  await connect()
-  const users = await User.find({})
+export default async function Users() {
+  await connect();
+  const users = await User.find({});
   return (
     <div>
-      <h1 className="mb-2 text-5xl font-extrabold">Users</h1>
+      <h1 className="heading mb-2">Users</h1>
       <ul>
         {users.map((user) => (
           <span key={user.uid}>
@@ -36,5 +36,5 @@ export default async function Users () {
         ))}
       </ul>
     </div>
-  )
+  );
 }

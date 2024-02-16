@@ -1,4 +1,3 @@
-//  bs BsFillStarFill
 import { BsFillStarFill } from "react-icons/bs";
 
 interface DifficultyProps {
