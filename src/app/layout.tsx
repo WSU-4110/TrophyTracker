@@ -8,9 +8,7 @@ import { Spinner } from "flowbite-react";
 import "../styles/index.css";
 import "../styles/prism-vsc-dark-plus.css";
 import Footer from "@/components/Footer";
-import Header from "@/components/Header";
-import ScrollToTop from "@/components/ScrollToTop";
-import { ThemeProvider } from "next-themes";
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",

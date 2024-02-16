@@ -1,13 +1,14 @@
 import type { Config } from "tailwindcss";
+import { fontFamily } from "tailwindcss/defaultTheme";
 
-const config: Config = {
-  darkMode: "class",
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
-  theme: {},
-  plugins: [require("tailgrids/plugin")],
-};
-export default config;
+export default {
+  content: ["./src/**/*.tsx", "./node_modules/flowbite-react/lib/**/*.js"],
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ["var(--font-sans)", ...fontFamily.sans],
+      },
+    },
+  },
+  plugins: [require("flowbite/plugin"), require("tailgrids/plugin")],
+} satisfies Config;

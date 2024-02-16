@@ -8,8 +8,6 @@ import Features from "@/components/Features";
 import Pricing from "@/components/Pricing";
 import Team from "@/components/Team";
 import Testimonials from "@/components/Testimonials";
-import { getServerSession } from "next-auth/next";
-import Link from "next/link";
 
 export default function HomePage() {
   return (
