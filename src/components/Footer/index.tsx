@@ -1,5 +1,5 @@
-import Image from 'next/image'
-import Link from 'next/link'
+import Image from "next/image";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -290,7 +290,7 @@ const Footer = () => {
             <div className="w-full px-4 md:w-1/3 lg:w-1/2">
               <div className="my-1 flex justify-center md:justify-end">
                 <p className="text-gray-7 text-base">
-                  Designed and Developed by{' '}
+                  Designed and Developed by{" "}
                   <a
                     href="https://tailgrids.com"
                     rel="nofollow noopner noreferrer"
@@ -572,7 +572,7 @@ const Footer = () => {
         </span>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
