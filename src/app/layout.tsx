@@ -1,12 +1,11 @@
 import Nav from "@/comps/Nav";
+import "@/styles/globals.css";
 import { Inter } from "next/font/google";
-
 import SessionProvider from "@/comps/SessionProvider";
 import { getServerAuthSession } from "@/server/auth";
 import { Suspense } from "react";
 import { Spinner } from "flowbite-react";
-import "../styles/index.css";
-import "../styles/prism-vsc-dark-plus.css";
+import ToastComp from "@/comps/Toast";
 import Footer from "@/components/Footer";
 
 const inter = Inter({
@@ -34,9 +33,10 @@ export default async function RootLayout({
           <SessionProvider session={session}>
             <Nav />
             <main>
+              <ToastComp />
               <span>{children}</span>
-              <Footer />
             </main>
+            <Footer />
           </SessionProvider>
         </Suspense>
       </body>
