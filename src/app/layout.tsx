@@ -1,12 +1,12 @@
 import Nav from "@/comps/Nav";
 import "@/styles/globals.css";
 import { Inter } from "next/font/google";
-
 import SessionProvider from "@/comps/SessionProvider";
 import { getServerAuthSession } from "@/server/auth";
 import { Suspense } from "react";
 import { Spinner } from "flowbite-react";
 import ToastComp from "@/comps/Toast";
+import Footer from "@/components/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -32,10 +32,11 @@ export default async function RootLayout({
         <Suspense fallback={<Spinner />}>
           <SessionProvider session={session}>
             <Nav />
-            <main className="flex min-h-screen w-full flex-col items-center justify-center bg-gradient-to-b from-[#307ba6] to-[#007cc4] text-white">
+            <main>
               <ToastComp />
-              <span className="m-8 py-3">{children}</span>
+              <span>{children}</span>
             </main>
+            <Footer />
           </SessionProvider>
         </Suspense>
       </body>

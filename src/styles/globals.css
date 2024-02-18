@@ -20,7 +20,14 @@
   
 
 @layer components {
-    .heading {
+    .tt-heading {
         @apply text-4xl font-extrabold;
+        @apply text-center md:text-left;
+    }
+    .tt-layout {
+      @apply flex flex-wrap justify-center md:justify-start gap-0 md:gap-6;
+    }
+    .tt-page-layout {
+      @apply px-2 md:px-6;
     }
 }

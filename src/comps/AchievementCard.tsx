@@ -1,4 +1,3 @@
-import { User } from "@/db/Models/User";
 import { Card } from "flowbite-react";
 import { type Achievement } from "../db/Models/Achievement";
 import ProfilePic from "./ProfilePic";
@@ -19,7 +18,7 @@ export default function AchievementCard(props: AchievementCardProps) {
         <Difficulty name={props.name} difficulty={props.difficulty} />
       </div>
       <Card
-        className="relative max-w-sm bg-white shadow-xl dark:bg-gray-800 dark:text-white"
+        className="relative max-w-md bg-white shadow-xl dark:bg-gray-800 dark:text-white"
         imgSrc={props.game.picture}
         horizontal
       >

@@ -17,9 +17,9 @@ export default async function page() {
     .populate("game");
 
   return (
-    <div>
-      <h1 className="heading mb-4 text-center md:text-left">Achievements</h1>
-      <div>
+    <div className="tt-page-layout">
+      <h1 className="tt-heading mb-4">Achievements</h1>
+      <div className="tt-layout">
         {achievements.map(
           ({
             _id,
@@ -51,14 +51,14 @@ export default async function page() {
             </span>
           ),
         )}
-        <Button
-          href="/achievements/create"
-          className="mt-2 transition-all hover:py-2"
-          gradientDuoTone="purpleToPink"
-        >
-          <BsPlusSquareFill size={16} className="mr-1" /> Create an Achievement
-        </Button>
       </div>
+      <Button
+        href="/achievements/create"
+        className="mt-2 rounded-none transition-all hover:py-2 md:rounded-t-md"
+        gradientDuoTone="purpleToPink"
+      >
+        <BsPlusSquareFill size={16} className="mr-1" /> Create an Achievement
+      </Button>
     </div>
   );
 }

@@ -1,11 +1,11 @@
 export default function SpecificAchievement({
   params,
 }: {
-  params: { achievement: string };
+  params: { achievement_id: string };
 }) {
   return (
     <div>
-      <h1>Achievement: {params.achievement}</h1>
+      <h1>Achievement: {params.achievement_id}</h1>
     </div>
   );
 }

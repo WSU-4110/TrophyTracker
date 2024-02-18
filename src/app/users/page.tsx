@@ -1,6 +1,7 @@
 import ProfilePic from "@/comps/ProfilePic";
 import User from "@/db/Models/User";
 import connect from "@/db/connect";
+import Link from "next/link";
 // import { unstable_cache } from "next/cache";
 
 export const revalidate = 3600; // 1 hour
@@ -19,11 +20,15 @@ export default async function Users() {
   await connect();
   const users = await User.find({});
   return (
-    <div>
-      <h1 className="heading mb-2">Users</h1>
-      <ul>
+    <div className="tt-page-layout">
+      <h1 className="tt-heading mb-2">Users</h1>
+      <div className="tt-layout">
         {users.map((user) => (
-          <span key={user.uid}>
+          <Link
+            href={`/user/${user.uid}`}
+            className="rounded-md p-2 transition-all hover:bg-slate-200 dark:hover:bg-slate-800"
+            key={user.uid}
+          >
             <ProfilePic img={user.img} name={user.name} rounded color="info">
               <div className="space-y-1 font-medium dark:text-white">
                 <div>{user.name}</div>
@@ -32,9 +37,9 @@ export default async function Users() {
                 </div>
               </div>
             </ProfilePic>
-          </span>
+          </Link>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
