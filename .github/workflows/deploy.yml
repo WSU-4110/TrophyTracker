@@ -36,6 +36,7 @@ jobs:
         run: npm run build
   deploy:
     runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request'
     needs: build
     steps:
       - uses: actions/checkout@v4
@@ -49,8 +50,9 @@ jobs:
           npm install -g vercel
       - name: Deploy
         run: |
-          # if it's a push or workflow_dispatch and branch != development, deploy to production, if it's a pull request, deploy to preview
-          if [ ${{ github.event_name }} == 'push' ] || [ ${{ github.event_name }} == 'workflow_dispatch' ] && [ ${{ github.ref }} != 'refs/heads/development' ]; then
+          # if it's a push to main or development branch or workflow_dispatch deploy to production.
+          if [ ${{ github.event_name == 'push' }} ] && [ ${{ github.ref == 'refs/heads/main' || github.ref == 'refs/heads/development' }} ] || [ ${{ github.event_name == 'workflow_dispatch' }} ]
+          then
             vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}
           else
             # get preview url
@@ -61,17 +63,20 @@ jobs:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
   comment:
     if: github.event_name == 'pull_request'
-    needs: [build, deploy]
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
       - name: Comment to pr
         uses: KeisukeYamashita/create-comment@v1
         with:
           comment: >
-            Deployed to Vercel :rocket:
+            View Vercel deployments (PRs don't deploy anymore):
+            [Visit Preview](https://trophy-tracker-wsu-preview.vercel.app) :warning:
+            [Visit Production](https://trophy-tracker-wsu.vercel.app) :white_check_mark:
 
-            ${{ github.event.pull_request.base.ref == 'development' && '[Visit Preview](https://trophy-tracker-wsu-preview.vercel.app)' || '' }}
-            ${{ github.event.pull_request.base.ref == 'main' && '[Visit Production](https://trophy-tracker-wsu.vercel.app)' || '' }}
+            > ![NOTE]
+
+            > After merging, the prod deployment will be begin.
 
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}

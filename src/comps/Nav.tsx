@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Button, Navbar, Dropdown } from "flowbite-react";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { Button, Navbar, Dropdown, Spinner } from "flowbite-react";
+import { getSession, signIn, signOut, useSession } from "next-auth/react";
 import ProfilePic from "./ProfilePic";
 import { HiLogout, HiCog, HiOutlineUserCircle } from "react-icons/hi";
 import React from "react";
@@ -13,7 +13,27 @@ import { usePathname } from "next/navigation";
 const poppins = Poppins({ weight: "400", subsets: ["latin"] });
 
 export default function Nav() {
-  const { data: session } = useSession();
+  const { data: staleSession, status: previousStatus } = useSession({
+    required: false,
+  });
+  const [session, setSession] = React.useState(staleSession);
+  const [status, setStatus] =
+    React.useState<typeof previousStatus>(previousStatus);
+  React.useEffect(() => {
+    setStatus("loading");
+    if (!staleSession) {
+      getSession()
+        .then((newSession) => {
+          setSession(newSession ?? null);
+          setStatus(newSession ? "authenticated" : "unauthenticated");
+        })
+        .catch(() => {
+          setStatus("unauthenticated");
+        });
+    } else {
+      setStatus("unauthenticated");
+    }
+  }, [staleSession]);
   const pathname = usePathname();
   const Profile = React.useMemo(
     () =>
@@ -57,24 +77,50 @@ export default function Nav() {
               </Dropdown.Item>
               <Dropdown.Item icon={HiCog}>Settings</Dropdown.Item>
               <Dropdown.Divider />
-              <Dropdown.Item icon={HiLogout} onClick={() => signOut()}>
+              <Dropdown.Item
+                icon={HiLogout}
+                onClick={async () => {
+                  await signOut();
+                }}
+              >
                 Sign out
               </Dropdown.Item>
             </Dropdown>
             <Navbar.Toggle />
           </>
+        ) : status === "loading" ? (
+          <Spinner />
         ) : (
-          <Button color="info" onClick={() => signIn()}>
-            Sign in
-          </Button>
+          <>
+            <Button
+              color="info"
+              onClick={async () => {
+                await signIn();
+              }}
+            >
+              Sign in
+            </Button>
+            <Navbar.Toggle />
+          </>
         )}
       </div>
       <Navbar.Collapse>
         <Navbar.Link as={Link} href="/" active={pathname == "/"}>
           Home
         </Navbar.Link>
-        <Navbar.Link as={Link} href="#" active={pathname.startsWith("/about")}>
-          About
+        <Navbar.Link
+          as={Link}
+          href="/achievements"
+          active={pathname.startsWith("/achievement")}
+        >
+          Achievements
+        </Navbar.Link>
+        <Navbar.Link
+          as={Link}
+          href="/about"
+          active={pathname.startsWith("/about")}
+        >
+          About Us
         </Navbar.Link>
         <Navbar.Link
           as={Link}
@@ -82,9 +128,6 @@ export default function Nav() {
           active={pathname.startsWith("/users")}
         >
           Users
-        </Navbar.Link>
-        <Navbar.Link as={Link} href="#">
-          Contact
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>

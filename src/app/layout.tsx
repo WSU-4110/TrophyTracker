@@ -1,9 +1,12 @@
 import Nav from "@/comps/Nav";
 import "@/styles/globals.css";
 import { Inter } from "next/font/google";
-
 import SessionProvider from "@/comps/SessionProvider";
 import { getServerAuthSession } from "@/server/auth";
+import { Suspense } from "react";
+import { Spinner } from "flowbite-react";
+import ToastComp from "@/comps/Toast";
+import Footer from "@/components/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -26,12 +29,16 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`font-sans ${inter.variable}`}>
-        <SessionProvider session={session}>
-          <Nav />
-          <main className="flex min-h-screen w-full flex-col justify-start bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white md:items-start">
-            <span className="m-8 py-3">{children}</span>
-          </main>
-        </SessionProvider>
+        <Suspense fallback={<Spinner />}>
+          <SessionProvider session={session}>
+            <Nav />
+            <main>
+              <ToastComp />
+              <span>{children}</span>
+            </main>
+            <Footer />
+          </SessionProvider>
+        </Suspense>
       </body>
     </html>
   );
