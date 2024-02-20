@@ -27,7 +27,9 @@ export default function Nav() {
           setSession(newSession ?? null);
           setStatus(newSession ? "authenticated" : "unauthenticated");
         })
-        .catch(() => setStatus("unauthenticated"));
+        .catch(() => {
+          setStatus("unauthenticated");
+        });
     } else {
       setStatus("unauthenticated");
     }
@@ -75,7 +77,12 @@ export default function Nav() {
               </Dropdown.Item>
               <Dropdown.Item icon={HiCog}>Settings</Dropdown.Item>
               <Dropdown.Divider />
-              <Dropdown.Item icon={HiLogout} onClick={() => signOut()}>
+              <Dropdown.Item
+                icon={HiLogout}
+                onClick={async () => {
+                  await signOut();
+                }}
+              >
                 Sign out
               </Dropdown.Item>
             </Dropdown>
@@ -85,7 +92,12 @@ export default function Nav() {
           <Spinner />
         ) : (
           <>
-            <Button color="info" onClick={() => signIn()}>
+            <Button
+              color="info"
+              onClick={async () => {
+                await signIn();
+              }}
+            >
               Sign in
             </Button>
             <Navbar.Toggle />
@@ -96,10 +108,18 @@ export default function Nav() {
         <Navbar.Link as={Link} href="/" active={pathname == "/"}>
           Home
         </Navbar.Link>
-        <Navbar.Link as={Link} href="#">
-          Contact
+        <Navbar.Link
+          as={Link}
+          href="/achievements"
+          active={pathname.startsWith("/achievement")}
+        >
+          Achievements
         </Navbar.Link>
-        <Navbar.Link as={Link} href="/about" active={pathname.startsWith("/about")}>
+        <Navbar.Link
+          as={Link}
+          href="/about"
+          active={pathname.startsWith("/about")}
+        >
           About Us
         </Navbar.Link>
         <Navbar.Link
