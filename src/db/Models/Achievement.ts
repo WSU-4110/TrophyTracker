@@ -5,7 +5,7 @@ import { type Game } from "./Game";
 export type Platforms = "PlayStation" | "Xbox" | "PC" | "Nintendo";
 
 export interface Achievement {
-  author: User;
+  author: User; // this can be null IF the population fails (i.e. if the user doesnt exist or was deleted)
   name: string;
   content: string;
   createdAt: Date;

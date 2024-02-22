@@ -10,11 +10,12 @@ interface AchievementCardProps extends Achievement {
 }
 
 export default function AchievementCard(props: AchievementCardProps) {
-  const authorName =
-    props.author.email ?? props.author.name ?? props.author.uid;
+  const authorName = props.author
+    ? props.author.name ?? props.author.email ?? props.author.uid
+    : "[Deleted User]";
   return (
     <div className="animate-in relative">
-      <div className="absolute right-2 top-2 z-10">
+      <div className="absolute right-2 top-2 z-10 cursor-not-allowed transition-opacity hover:opacity-20">
         <Difficulty name={props.name} difficulty={props.difficulty} />
       </div>
       <Card
@@ -24,14 +25,14 @@ export default function AchievementCard(props: AchievementCardProps) {
       >
         <span className="flex items-center justify-start">
           <ProfilePic
-            img={props.author.img}
+            img={props.author ? props.author.img : null}
             name={authorName}
             rounded
             color="light"
           />
           <Link
             className="text-md ml-2 text-center text-gray-700 hover:text-purple-900 dark:text-gray-300 dark:hover:text-white"
-            href={`/users/${props.author.uid}`}
+            href={`/users/${props.author ? props.author.uid : "/?error=This user does not exist."}`}
           >
             {authorName}
           </Link>
