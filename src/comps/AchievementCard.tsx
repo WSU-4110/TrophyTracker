@@ -26,6 +26,7 @@ export default function AchievementCard(props: AchievementCardProps) {
         <span className="flex items-center justify-start">
           <ProfilePic
             img={props.author ? props.author.img : null}
+            className="mt-4"
             name={authorName}
             rounded
             color="light"
