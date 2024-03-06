@@ -70,8 +70,6 @@ const like = async (achievementId: string | ObjectId) => {
     );
     await db.disconnect();
   } catch (e: unknown) {
-    console.log(e);
-
     redirect(
       `${url}?error=An error occurred while liking: ${(e as Error).message}`,
     );
