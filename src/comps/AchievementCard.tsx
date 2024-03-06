@@ -23,17 +23,16 @@ export default function AchievementCard(props: AchievementCardProps) {
         imgSrc={props.game.picture}
         horizontal
       >
-        <span className="flex items-center justify-start">
+        <span className="mt-4 flex items-center justify-start">
           <ProfilePic
             img={props.author ? props.author.img : null}
-            className="mt-4"
             name={authorName}
             rounded
             color="light"
           />
           <Link
             className="text-md ml-2 text-center text-gray-700 hover:text-purple-900 dark:text-gray-300 dark:hover:text-white"
-            href={`/users/${props.author ? props.author.uid : "/?error=This user does not exist."}`}
+            href={`/users/${props.author ? props.author.uid : "?error=This user does not exist."}`}
           >
             {authorName}
           </Link>
