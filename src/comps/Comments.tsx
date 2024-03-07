@@ -42,7 +42,11 @@ export default function Comments(props: CommentsProps) {
         ))}
       </Timeline>
       <form action={createComment}>
-        <TextInput name="content" placeholder="Reply to the conversation" />
+        <TextInput
+          name="content"
+          required
+          placeholder="Reply to the conversation"
+        />
         <input type="hidden" name="id" value={props.achievementId.toString()} />
         <Button type="submit" className="w-full">
           Comment
