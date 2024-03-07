@@ -7,6 +7,7 @@ import Achievement, {
 import Comment, { type Comment as CommentType } from "@/db/Models/Comment";
 import Game from "@/db/Models/Game";
 import connect from "@/db/connect";
+import { redirect } from "next/navigation";
 
 export const revalidate = 360;
 export const dynamic = "force-static";
@@ -27,6 +28,11 @@ export default async function SpecificAchievement({
 }: {
   params: { achievement_id: string };
 }) {
+  if (!params.achievement_id)
+    redirect("/achievements?error=No achievement found");
+  // check if mongo id is valid
+  if (!params.achievement_id.match(/^[0-9a-fA-F]{24}$/))
+    redirect("/achievements?error=Invalid achievement");
   const db = await connect();
   await Game.init();
   await Comment.init();
@@ -41,7 +47,7 @@ export default async function SpecificAchievement({
     ])
     .lean();
   await db.disconnect();
-  if (!achievement) return null;
+  if (!achievement) redirect("/achievements?error=No achievement found");
   return (
     <div className="tt-page-layout mb-8">
       <Breadcrumbs
