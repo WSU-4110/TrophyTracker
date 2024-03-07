@@ -6,6 +6,7 @@ import { type ObjectId } from "mongoose";
 import { getServerAuthSession } from "@/server/auth";
 import { isRedirectError } from "next/dist/client/components/redirect";
 import { redirect } from "next/navigation";
+import ActionsResponse from "@/types/Response";
 
 const create = async (formData: FormData) => {
   "use server";
@@ -54,7 +55,11 @@ const create = async (formData: FormData) => {
   redirect("/achievements/?message=Created Achievement!");
 };
 
-const like = async (achievementId: string | ObjectId) => {
+// TODO: like and unlike should be combined into one function
+
+const like = async (
+  achievementId: string | ObjectId,
+): Promise<ActionsResponse> => {
   "use server";
   // eslint-disable-next-line @typescript-eslint/no-base-to-string
   const url = `/achievement/${achievementId.toString()}`;
@@ -62,7 +67,7 @@ const like = async (achievementId: string | ObjectId) => {
     const db = await connect();
     const session = await getServerAuthSession();
     if (!session) {
-      redirect("/api/auth/signin");
+      return { error: "You must be signed in to like an achievement" };
     }
     await Achievement.updateOne(
       { _id: achievementId },
@@ -70,14 +75,14 @@ const like = async (achievementId: string | ObjectId) => {
     );
     await db.disconnect();
   } catch (e: unknown) {
-    redirect(
-      `${url}?error=An error occurred while liking: ${(e as Error).message}`,
-    );
+    return { error: "An error occurred while liking: " + (e as Error).message };
   }
-  redirect(`${url}?message=Liked Achievement`);
+  return { message: "Liked Achievement" };
 };
 
-const unlike = async (achievementId: string | ObjectId) => {
+const unlike = async (
+  achievementId: string | ObjectId,
+): Promise<ActionsResponse> => {
   "use server";
   // eslint-disable-next-line @typescript-eslint/no-base-to-string
   const url = `/achievement/${achievementId.toString()}`;
@@ -85,7 +90,7 @@ const unlike = async (achievementId: string | ObjectId) => {
     const db = await connect();
     const session = await getServerAuthSession();
     if (!session) {
-      redirect("/api/auth/signin");
+      return { error: "You must be signed in to unlike an achievement" };
     }
     await Achievement.updateOne(
       { _id: achievementId },
@@ -93,11 +98,11 @@ const unlike = async (achievementId: string | ObjectId) => {
     );
     await db.disconnect();
   } catch (e: unknown) {
-    redirect(
-      `${url}?error=An error occurred while un-liking: ${(e as Error).message}`,
-    );
+    return {
+      error: "An error occurred while unliking: " + (e as Error).message,
+    };
   }
-  redirect(`${url}?message=Unliked Achievement`);
+  return { message: "Unliked Achievement" };
 };
 
 const achievement = {

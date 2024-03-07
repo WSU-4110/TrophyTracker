@@ -72,6 +72,7 @@ export const ToastContextProvider = ({
   return (
     <ToastContext.Provider value={{ addToast }}>
       {toasts && (
+        // TODO: make these animations work
         <div className="animate-in mb-2 ml-2 flex items-center justify-center gap-3 transition-all duration-300 ease-in-out md:ml-0 md:justify-start">
           {toasts.map((toast, index) => (
             <Toast key={index}>
