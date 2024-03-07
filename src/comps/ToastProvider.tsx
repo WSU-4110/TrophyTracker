@@ -1,32 +1,31 @@
 "use client";
 
 import { Toast } from "flowbite-react";
-import React, { createContext, type Dispatch } from "react";
-import { BsFillInfoCircleFill } from "react-icons/bs";
+import React, { createContext } from "react";
+import {
+  BsFillInfoCircleFill,
+  BsFillXCircleFill,
+  BsCheckCircleFill,
+} from "react-icons/bs";
 
-export enum ToastType {
-  ERROR,
-  SUCCESS,
-  INFO,
-  WARNING,
-}
-
-const defaultToast = null; // default toast is hidden (duh)
+type ToastType = "info" | "error" | "success" | "warning";
 
 interface ToastSetter {
   message: string;
   type: ToastType;
+  id?: number;
 }
-type ToastSetterType = ToastSetter | null;
+
+type ToastSetterType = ToastSetter[];
 
 // this is the context provider for the toast
 // if null, we dismiss.
 interface ToastContextProviderValues {
-  setToast: Dispatch<ToastSetterType>;
+  addToast: (toast: ToastSetter) => void;
 }
 
-export const ToastContext = createContext<ToastContextProviderValues | null>(
-  null,
+export const ToastContext = createContext<ToastContextProviderValues>(
+  {} as ToastContextProviderValues,
 );
 
 // toast provider context interface
@@ -38,32 +37,52 @@ interface ToastContextProviderProps {
 export const ToastContextProvider = ({
   children,
 }: ToastContextProviderProps) => {
-  const [toast, setToast] = React.useState<ToastSetterType>(defaultToast);
-
+  const [toasts, setToast] = React.useState<ToastSetterType>([]);
+  const addToast = (toast: ToastSetter) => {
+    setToast((prev) => {
+      const thisToast = { ...toast, id: prev.length };
+      return prev ? [...prev, thisToast] : [thisToast];
+    });
+  };
+  const removeToast = (id: number) => {
+    setToast((prev) => {
+      return prev.filter((toast) => toast.id !== id);
+    });
+  };
   return (
-    <ToastContext.Provider value={{ setToast }}>
-      {toast && (
-        <span className="mb-1 w-full">
-          <Toast>
-            {/* TODO: create the toasts for rest of the types */}
-            {toast.type === ToastType.INFO ? (
-              <>
-                <div className="flex items-center gap-2">
-                  <BsFillInfoCircleFill color="#a111f5" />
-                  <p className="text-gray-700">{toast.message}</p>
-                </div>
-              </>
-            ) : toast.type === ToastType.ERROR ? (
-              <>
-                <div className="flex items-center gap-2">
-                  <BsFillInfoCircleFill color="#ff0000" />
-                  <p className="text-red-500">{toast.message}</p>
-                </div>
-              </>
-            ) : null}
-            <Toast.Toggle onDismiss={() => setToast(null)} />
-          </Toast>
-        </span>
+    <ToastContext.Provider value={{ addToast }}>
+      {toasts && (
+        <div className="mb-2 w-full transition-all duration-300 ease-in-out">
+          {toasts.map((toast, index) => (
+            <Toast key={index}>
+              {/* TODO: create the toasts for rest of the types */}
+              {toast.type === "info" ? (
+                <>
+                  <div className="flex items-center gap-2">
+                    <BsFillInfoCircleFill color="#a111f5" />
+                    <p className="text-gray-700">{toast.message}</p>
+                  </div>
+                </>
+              ) : toast.type === "error" ? (
+                <>
+                  <div className="flex items-center gap-2">
+                    <BsFillXCircleFill color="#ff0000" />
+                    <p className="text-red-600">{toast.message}</p>
+                  </div>
+                </>
+              ) : toast.type === "success" ? (
+                <>
+                  <div className="flex items-center gap-2">
+                    <BsCheckCircleFill color="#416D19" />
+                    <p className="text-green-600">{toast.message}</p>
+                  </div>
+                </>
+              ) : null}
+              {/* @ts-expect-error we know ids are provided default */}
+              <Toast.Toggle onDismiss={() => removeToast(toast.id)} />
+            </Toast>
+          ))}
+        </div>
       )}
       {children}
     </ToastContext.Provider>
