@@ -9,14 +9,14 @@ import { BsPlusSquareFill } from "react-icons/bs";
 export const dynamic = "force-static";
 export const revalidate = 360;
 
-export default async function page() {
+export default async function Achievements() {
   const db = await connect();
   await Game.init(); // for expansions
   // await User.init();
   const achievements = await Achievement.find({})
     .populate("author")
     .populate("game");
-  await db.disconnect();
+  // await db.disconnect();
   // FIXME: MongoExpiredSessionError: Cannot use a session that has ended
   return (
     <div className="tt-page-layout">

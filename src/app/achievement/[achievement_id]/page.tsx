@@ -29,6 +29,7 @@ export default async function SpecificAchievement({
   const achievement = await Achievement.findById(params.achievement_id)
     .populate("author")
     .populate("game");
+
   await db.disconnect();
   if (!achievement) return null;
   return (

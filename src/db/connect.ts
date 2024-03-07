@@ -11,7 +11,7 @@ const options = {
 const connect = async () => {
   try {
     console.log("Connecting to database...");
-    return await mongoose.connect(
+    return mongoose.connect(
       process.env.MONGODB_URI!,
       options as ConnectOptions,
     );
