@@ -50,12 +50,14 @@ export default function AchievementClient(props: AchievementClientProps) {
           {pending ? (
             <Spinner size="sm" />
           ) : liked ? (
-            <BsHeartFill />
+            <BsHeartFill size={22} />
           ) : (
-            <BsHeart />
+            <BsHeart size={22} />
           )}
         </div>
-        <span className="inline font-semibold">{props.likes.length}</span>
+        <span className="inline text-xl font-semibold">
+          {props.likes.length}
+        </span>
       </div>
     </div>
   );

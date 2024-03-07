@@ -6,6 +6,7 @@ import { BsFillInfoCircleFill } from "react-icons/bs";
 // BsFillInfoCircleFill
 
 // shows a toast message if the error/message query parameter is present in the URL.
+// this will be for server-sided messages
 export default function ToastComp() {
   const searchParams = useSearchParams();
   const error = searchParams.get("error");

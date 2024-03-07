@@ -59,8 +59,12 @@ export default async function SpecificAchievement({
           <h1 className="tt-heading">{achievement.name}</h1>
           <p>{achievement.content}</p>
           <AchievementClient
-            _id={achievement._id as unknown as string}
-            likes={achievement.likes as unknown as string[]}
+            _id={String(achievement._id)}
+            likes={
+              JSON.parse(
+                JSON.stringify(achievement.likes),
+              ) as unknown as string[]
+            }
             comments={achievement.comments}
             like={achievementActions.like}
             unlike={achievementActions.unlike}
