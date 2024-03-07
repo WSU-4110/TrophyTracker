@@ -1,11 +1,11 @@
-import { Schema, model, type Model, models } from "mongoose";
+import { Schema, model, type Model, models, type ObjectId } from "mongoose";
 import { type User } from "./User";
 import { type Game } from "./Game";
 
 export type Platforms = "PlayStation" | "Xbox" | "PC" | "Nintendo";
 
 export interface Achievement {
-  author: User;
+  author: User; // this can be null IF the population fails (i.e. if the user doesnt exist or was deleted)
   name: string;
   content: string;
   createdAt: Date;

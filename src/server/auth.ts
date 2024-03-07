@@ -1,13 +1,14 @@
 import {
   getServerSession,
   type DefaultSession,
-  type NextAuthOptions
-} from 'next-auth'
-import GithubProvider from 'next-auth/providers/github'
+  type NextAuthOptions,
+} from "next-auth";
+import GithubProvider from "next-auth/providers/github";
 
-import { env } from '@/env.cjs'
-import connect from '@/db/connect'
-import User from '@/db/Models/User'
+import { env } from "@/env.cjs";
+import connect from "@/db/connect";
+import User, { type User as UserType } from "@/db/Models/User";
+import getCleanObjectFromObjectOrDocument from "@/utils/cleanObjectDocument";
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -15,13 +16,14 @@ import User from '@/db/Models/User'
  *
  * @see https://next-auth.js.org/getting-started/typescript#module-augmentation
  */
-declare module 'next-auth' {
+declare module "next-auth" {
   interface Session extends DefaultSession {
     user: {
-      id: string
+      id: string;
+      person: UserType;
       // ...other properties
       // role: UserRole;
-    } & DefaultSession['user']
+    } & DefaultSession["user"];
   }
 
   // interface User {
@@ -37,32 +39,52 @@ declare module 'next-auth' {
  */
 export const authOptions: NextAuthOptions = {
   callbacks: {
-    session: async ({ session, token }) => ({
-      ...session,
-      user: {
-        ...session.user,
-        id: token.sub
+    session: async ({ session, token }) => {
+      const sessionObj = {
+        ...session,
+        user: {
+          ...session.user,
+          id: token.sub,
+        },
+      };
+      if (token && session) {
+        // @ts-expect-error we know the user exists
+        sessionObj.user.person = token.person;
       }
-    }),
+      return Promise.resolve(sessionObj);
+    },
     signIn: async ({ user }) => {
       try {
-        await connect()
+        await connect();
         const updateObj = {
           uid: user.id,
           name: user.name,
           img: user.image,
           email: user.email,
-          lastLogin: new Date()
-        }
+          lastLogin: new Date(),
+        };
 
         await User.updateOne({ uid: user.id }, updateObj, {
-          upsert: true
-        })
+          upsert: true,
+        });
       } catch (err) {
-        console.error('Cannot connect to database...', err)
+        console.error("Cannot connect to database...", err);
       }
-      return true
-    }
+      return true;
+    },
+    jwt: async ({ token, user }) => {
+      if (user) {
+        const db = await connect();
+        const userObj = await User.findOne({ uid: token.sub });
+
+        await db.disconnect();
+        token.person = {
+          ...getCleanObjectFromObjectOrDocument(userObj),
+        };
+        token.id = user.id;
+      }
+      return token;
+    },
   },
   providers: [
     /**
@@ -76,14 +98,15 @@ export const authOptions: NextAuthOptions = {
      */
     GithubProvider({
       clientId: env.GITHUB_ID,
-      clientSecret: env.GITHUB_SECRET
-    })
-  ]
-}
+      clientSecret: env.GITHUB_SECRET,
+    }),
+  ],
+};
 
 /**
  * Wrapper for `getServerSession` so that you don't need to import the `authOptions` in every file.
  *
  * @see https://next-auth.js.org/configuration/nextjs
  */
-export const getServerAuthSession = async () => await getServerSession(authOptions)
+export const getServerAuthSession = async () =>
+  await getServerSession(authOptions);
