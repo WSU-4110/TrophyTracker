@@ -8,16 +8,13 @@ import { Spinner } from "flowbite-react";
 import type Response from "@/types/Response";
 import { ToastContext } from "./ToastProvider";
 import Comments from "./Comments";
-
+import like from "@/server/actions/achievement/like";
+import unlike from "@/server/actions/achievement/unlike";
 interface AchievementClientProps<ResponseType> {
   _id: string;
   likes: string[];
   comments: AchievementType["comments"];
   className?: string;
-  // these are not needed (i was importing them wrong before)
-  // TODO: refactor so that we can just directly import them in here
-  like: (id: string) => Promise<ResponseType>;
-  unlike: (id: string) => Promise<ResponseType>;
 }
 
 export default function AchievementClient(
@@ -45,10 +42,10 @@ export default function AchievementClient(
   if (session.status === "loading") return <Spinner />;
   // TODO: these functions should be combined and in a hook
   if (session.status === "unauthenticated") return null;
-  function like() {
+  function likeHandler() {
     startTransition(async () => {
       // setOptimisticLikes((prev: string[]) => [...prev, myId?.toString()]);
-      const data = await props.like(props._id.toString());
+      const data = await like(props._id.toString());
       if (data.error) {
         addToast({
           message: data.error,
@@ -67,9 +64,9 @@ export default function AchievementClient(
       });
     });
   }
-  function unlike() {
+  function unlikeHandler() {
     startTransition(async () => {
-      const data = await props.unlike(props._id.toString());
+      const data = await unlike(props._id.toString());
       if (data.error) {
         addToast({
           message: data.error,
@@ -95,9 +92,9 @@ export default function AchievementClient(
           <div
             onClick={() => {
               if (liked) {
-                unlike();
+                unlikeHandler();
               } else {
-                like();
+                likeHandler();
               }
             }}
             className="mr-1 mt-1 transition-all hover:animate-pulse  hover:text-red-500"

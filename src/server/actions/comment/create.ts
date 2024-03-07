@@ -1,6 +1,6 @@
 "use server";
 
-import { mongo, type InferSchemaType } from "mongoose";
+import { mongo } from "mongoose";
 import type ActionsResponse from "@/types/Response";
 import connect from "@/db/connect";
 import { getServerAuthSession } from "@/server/auth";
@@ -10,6 +10,14 @@ import validate from "@/utils/validate";
 import { isRedirectError } from "next/dist/client/components/redirect";
 import Achievement from "@/db/Models/Achievement";
 
+/**
+ * Server action to create a comment for an achievement
+ * @param formData FormData with the following fields:
+ * - id: string
+ * - content: string
+ * @returns {Promise<ActionsResponse>}
+ *
+ */
 export default async function create(
   formData: FormData,
 ): Promise<ActionsResponse> {

@@ -7,8 +7,6 @@ import Achievement, {
 import Comment, { type Comment as CommentType } from "@/db/Models/Comment";
 import Game from "@/db/Models/Game";
 import connect from "@/db/connect";
-import achievementActions from "@/server/actions/achievement";
-import { type Document } from "mongoose";
 
 export const revalidate = 360;
 export const dynamic = "force-static";
@@ -83,8 +81,6 @@ export default async function SpecificAchievement({
                 JSON.stringify(achievement.comments),
               ) as unknown as CommentType[]
             }
-            like={achievementActions.like}
-            unlike={achievementActions.unlike}
           />
         </div>
       </div>
