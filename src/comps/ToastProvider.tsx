@@ -11,15 +11,32 @@ import {
 type ToastType = "info" | "error" | "success" | "warning";
 
 interface ToastSetter {
+  /**
+   * message to display in the toast
+   * @type {string}
+   *
+   * */
   message: string;
+  /**
+   * type of the toast
+   * @type {ToastType}
+   * */
   type: ToastType;
+  /**
+   * timeout for the toast
+   * @type {number}
+   * */
+  timeout?: number;
+  /**
+   * id for the toast (not required to provide)
+   * @type {number}
+   * */
   id?: number;
 }
 
 type ToastSetterType = ToastSetter[];
 
 // this is the context provider for the toast
-// if null, we dismiss.
 interface ToastContextProviderValues {
   addToast: (toast: ToastSetter) => void;
 }
@@ -41,6 +58,9 @@ export const ToastContextProvider = ({
   const addToast = (toast: ToastSetter) => {
     setToast((prev) => {
       const thisToast = { ...toast, id: prev.length };
+      setTimeout(() => {
+        removeToast(thisToast.id);
+      }, toast.timeout ?? 5000); // remove the toast after x seconds
       return prev ? [...prev, thisToast] : [thisToast];
     });
   };
@@ -52,32 +72,22 @@ export const ToastContextProvider = ({
   return (
     <ToastContext.Provider value={{ addToast }}>
       {toasts && (
-        <div className="mb-2 w-full transition-all duration-300 ease-in-out">
+        <div className="animate-in mb-2 ml-2 flex items-center justify-center gap-3 transition-all duration-300 ease-in-out md:ml-0 md:justify-start">
           {toasts.map((toast, index) => (
             <Toast key={index}>
               {/* TODO: create the toasts for rest of the types */}
-              {toast.type === "info" ? (
-                <>
-                  <div className="flex items-center gap-2">
+              <>
+                <div className="flex items-center gap-2">
+                  {toast.type === "info" ? (
                     <BsFillInfoCircleFill color="#a111f5" />
-                    <p className="text-gray-700">{toast.message}</p>
-                  </div>
-                </>
-              ) : toast.type === "error" ? (
-                <>
-                  <div className="flex items-center gap-2">
+                  ) : toast.type === "error" ? (
                     <BsFillXCircleFill color="#ff0000" />
-                    <p className="text-red-600">{toast.message}</p>
-                  </div>
-                </>
-              ) : toast.type === "success" ? (
-                <>
-                  <div className="flex items-center gap-2">
+                  ) : toast.type === "success" ? (
                     <BsCheckCircleFill color="#416D19" />
-                    <p className="text-green-600">{toast.message}</p>
-                  </div>
-                </>
-              ) : null}
+                  ) : null}
+                  <p className="text-gray-700">{toast.message}</p>
+                </div>
+              </>
               {/* @ts-expect-error we know ids are provided default */}
               <Toast.Toggle onDismiss={() => removeToast(toast.id)} />
             </Toast>
