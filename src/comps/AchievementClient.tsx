@@ -44,21 +44,18 @@ export default function AchievementClient(
   function like() {
     startTransition(async () => {
       // setOptimisticLikes((prev: string[]) => [...prev, myId?.toString()]);
-      setLikes((prev) => [...prev, myId?.toString() ?? ""]);
       const data = await props.like(props._id.toString());
       if (data.error) {
         addToast({
           message: data.error,
           type: "error",
         });
-        setLikes((prev) =>
-          prev.filter((predicate) => predicate !== myId?.toString()),
-        );
-
+        return;
         // setOptimisticLikes((prev: string[]) =>
         //   prev.filter((predicate) => predicate !== myId?.toString()),
         // );
       }
+      setLikes((prev) => [...prev, myId?.toString() ?? ""]);
       addToast({
         // @ts-expect-error there will be a message if no error
         message: data.message,
@@ -68,17 +65,17 @@ export default function AchievementClient(
   }
   function unlike() {
     startTransition(async () => {
-      setLikes((prev: string[]) =>
-        prev.filter((predicate) => predicate !== myId?.toString()),
-      );
       const data = await props.unlike(props._id.toString());
       if (data.error) {
         addToast({
           message: data.error,
           type: "error",
         });
-        setLikes((prev) => [...prev, myId?.toString() ?? ""]);
+        return;
       }
+      setLikes((prev: string[]) =>
+        prev.filter((predicate) => predicate !== myId?.toString()),
+      );
       addToast({
         // @ts-expect-error there will be a message if no error
         message: data.message,

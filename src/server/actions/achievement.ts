@@ -61,8 +61,6 @@ const like = async (
   achievementId: string | ObjectId,
 ): Promise<ActionsResponse> => {
   "use server";
-  // eslint-disable-next-line @typescript-eslint/no-base-to-string
-  const url = `/achievement/${achievementId.toString()}`;
   try {
     const db = await connect();
     const session = await getServerAuthSession();
@@ -84,8 +82,6 @@ const unlike = async (
   achievementId: string | ObjectId,
 ): Promise<ActionsResponse> => {
   "use server";
-  // eslint-disable-next-line @typescript-eslint/no-base-to-string
-  const url = `/achievement/${achievementId.toString()}`;
   try {
     const db = await connect();
     const session = await getServerAuthSession();
