@@ -3,6 +3,8 @@ import { type Achievement } from "../db/Models/Achievement";
 import ProfilePic from "./ProfilePic";
 import Difficulty from "./Difficulty";
 import Link from "next/link";
+import getUserTitle from "@/utils/username";
+import UserTitle from "./UserTitle";
 
 interface AchievementCardProps extends Achievement {
   _id: string;
@@ -10,9 +12,7 @@ interface AchievementCardProps extends Achievement {
 }
 
 export default function AchievementCard(props: AchievementCardProps) {
-  const authorName = props.author
-    ? props.author.name ?? props.author.email ?? props.author.uid
-    : "[Deleted User]";
+  const authorName = getUserTitle(props.author);
   return (
     <div className="animate-in relative">
       <div className="absolute right-2 top-2 z-10 cursor-not-allowed transition-opacity hover:opacity-20">
@@ -23,19 +23,8 @@ export default function AchievementCard(props: AchievementCardProps) {
         imgSrc={props.game.picture}
         horizontal
       >
-        <span className="mt-4 flex items-center justify-start">
-          <ProfilePic
-            img={props.author ? props.author.img : null}
-            name={authorName}
-            rounded
-            color="light"
-          />
-          <Link
-            className="text-md ml-2 text-center text-gray-700 hover:text-purple-900 dark:text-gray-300 dark:hover:text-white"
-            href={`/users/${props.author ? props.author.uid : "?error=This user does not exist."}`}
-          >
-            {authorName}
-          </Link>
+        <span className="mt-4">
+          <UserTitle user={props.author} />
         </span>
         <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
           {props.name}

@@ -7,12 +7,15 @@ import React from "react";
 import { Spinner } from "flowbite-react";
 import type Response from "@/types/Response";
 import { ToastContext } from "./ToastProvider";
+import Comments from "./Comments";
 
 interface AchievementClientProps<ResponseType> {
   _id: string;
   likes: string[];
   comments: AchievementType["comments"];
   className?: string;
+  // these are not needed (i was importing them wrong before)
+  // TODO: refactor so that we can just directly import them in here
   like: (id: string) => Promise<ResponseType>;
   unlike: (id: string) => Promise<ResponseType>;
 }
@@ -36,6 +39,7 @@ export default function AchievementClient(
   //       : [...state, newLike],
   // );
   const [likes, setLikes] = React.useState(props.likes);
+  const comments = React.useState(props.comments)[0];
   const liked = likes.includes(myId?.toString() ?? "");
   // just installed useswr, and just made user.ts helper functions
   if (session.status === "loading") return <Spinner />;
@@ -85,27 +89,33 @@ export default function AchievementClient(
   }
   return (
     <div className={props.className}>
-      <div className="my-6 flex cursor-pointer items-start justify-start rounded-lg bg-slate-200 p-5">
-        {/* // @ts-expect-error there should be that payload  */}
-        <div
-          onClick={() => {
-            if (liked) {
-              unlike();
-            } else {
-              like();
-            }
-          }}
-          className="mr-1 mt-1 transition-all hover:animate-pulse  hover:text-red-500"
-        >
-          {pending ? (
-            <Spinner size="sm" />
-          ) : liked ? (
-            <BsHeartFill size={22} />
-          ) : (
-            <BsHeart size={22} />
-          )}
+      <div className="my-6 ml-[-2px] rounded-lg bg-slate-200 p-5">
+        <span className="flex cursor-pointer items-start justify-start">
+          {/* // @ts-expect-error there should be that payload  */}
+          <div
+            onClick={() => {
+              if (liked) {
+                unlike();
+              } else {
+                like();
+              }
+            }}
+            className="mr-1 mt-1 transition-all hover:animate-pulse  hover:text-red-500"
+          >
+            {pending ? (
+              <Spinner size="sm" />
+            ) : liked ? (
+              <BsHeartFill size={22} />
+            ) : (
+              <BsHeart size={22} />
+            )}
+          </div>
+          <span className="inline text-xl font-semibold">{likes.length}</span>
+          <br />
+        </span>
+        <div className="w-full">
+          <Comments achievementId={props._id} comments={comments} />
         </div>
-        <span className="inline text-xl font-semibold">{likes.length}</span>
       </div>
     </div>
   );

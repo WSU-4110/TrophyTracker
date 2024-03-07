@@ -6,8 +6,8 @@ import { type ObjectId } from "mongoose";
 import { getServerAuthSession } from "@/server/auth";
 import { isRedirectError } from "next/dist/client/components/redirect";
 import { redirect } from "next/navigation";
-import ActionsResponse from "@/types/Response";
-
+import type ActionsResponse from "@/types/Response";
+import { createComment } from "./comment";
 const create = async (formData: FormData) => {
   "use server";
 
@@ -27,13 +27,8 @@ const create = async (formData: FormData) => {
       redirect("/achievements/create/?error=Description is too short");
     }
     const db = await connect();
-    const thisUser = await User.findOne({ email: session.user.email });
-    if (!thisUser) {
-      redirect("/api/auth/signin");
-      return;
-    }
     await Achievement.create({
-      author: thisUser,
+      author: session.user.person._id,
       name,
       content,
       difficulty,
@@ -105,6 +100,7 @@ const achievement = {
   create,
   like,
   unlike,
+  createComment,
 };
 
 export default achievement;

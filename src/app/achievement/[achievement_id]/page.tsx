@@ -1,9 +1,14 @@
 import AchievementClient from "@/comps/AchievementClient";
 import Breadcrumbs from "@/comps/Breadcrumbs";
-import Achievement from "@/db/Models/Achievement";
+
+import Achievement, {
+  type Achievement as AchievementType,
+} from "@/db/Models/Achievement";
+import Comment, { type Comment as CommentType } from "@/db/Models/Comment";
 import Game from "@/db/Models/Game";
 import connect from "@/db/connect";
 import achievementActions from "@/server/actions/achievement";
+import { type Document } from "mongoose";
 
 export const revalidate = 360;
 export const dynamic = "force-static";
@@ -26,10 +31,17 @@ export default async function SpecificAchievement({
 }) {
   const db = await connect();
   await Game.init();
-  const achievement = await Achievement.findById(params.achievement_id)
-    .populate("author")
-    .populate("game");
-
+  await Comment.init();
+  const achievement = await Achievement.findById(params.achievement_id, {})
+    .populate([
+      { path: "author", model: "User", select: "name img email" },
+      { path: "game", model: "Game" },
+      {
+        path: "comments",
+        populate: { path: "author", select: "name img email" },
+      },
+    ])
+    .lean();
   await db.disconnect();
   if (!achievement) return null;
   return (
@@ -66,7 +78,11 @@ export default async function SpecificAchievement({
                 JSON.stringify(achievement.likes),
               ) as unknown as string[]
             }
-            comments={achievement.comments}
+            comments={
+              JSON.parse(
+                JSON.stringify(achievement.comments),
+              ) as unknown as CommentType[]
+            }
             like={achievementActions.like}
             unlike={achievementActions.unlike}
           />
