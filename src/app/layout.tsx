@@ -33,13 +33,11 @@ export default async function RootLayout({
         <Suspense fallback={<Spinner />}>
           <SessionProvider session={session}>
             <Nav />
-            <main>
+            <ToastContextProvider>
               <ToastComp />
-              <ToastContextProvider>
-                <span>{children}</span>
-              </ToastContextProvider>
-            </main>
-            <Footer />
+              <main>{children}</main>
+              <Footer />
+            </ToastContextProvider>
           </SessionProvider>
         </Suspense>
       </body>
