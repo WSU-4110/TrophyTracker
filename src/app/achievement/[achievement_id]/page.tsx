@@ -10,7 +10,7 @@ import connect from "@/db/connect";
 import { redirect } from "next/navigation";
 
 export const revalidate = 360;
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
 
 export async function generateStaticParams() {
   await connect();

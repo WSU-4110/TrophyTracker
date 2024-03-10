@@ -35,7 +35,12 @@ export default function AchievementClient(props: AchievementClientProps) {
   //       : [...state, newLike],
   // );
   const [likes, setLikes] = React.useState(props.likes);
-  const comments = React.useState(props.comments)[0];
+  const comments = React.useState(
+    props.comments.map((comment) => ({
+      isAuthor: session.data?.user.person._id === comment.author._id,
+      ...comment,
+    })),
+  )[0];
   const liked = likes.includes(myId?.toString() ?? "");
   // just installed useswr, and just made user.ts helper functions
   if (session.status === "loading") return <Spinner />;
@@ -99,9 +104,8 @@ export default function AchievementClient(props: AchievementClientProps) {
   }
   return (
     <div className={props.className}>
-      <div className="my-6 ml-[-2px] rounded-lg bg-slate-200 p-5">
-        <span className="flex cursor-pointer items-start justify-start">
-          {/* // @ts-expect-error there should be that payload  */}
+      <div className="my-6 ml-[-2px] rounded-lg bg-slate-300 p-5">
+        <span className="flex items-start justify-start">
           <div
             onClick={() => {
               if (liked) {
@@ -110,7 +114,7 @@ export default function AchievementClient(props: AchievementClientProps) {
                 likeHandler();
               }
             }}
-            className="mr-1 mt-1 transition-all hover:animate-pulse  hover:text-red-500"
+            className="mr-1 mt-1 cursor-pointer transition-all hover:animate-pulse hover:text-red-500"
           >
             {pending ? (
               <Spinner size="sm" />
