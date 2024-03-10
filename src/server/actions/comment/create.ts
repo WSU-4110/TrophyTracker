@@ -4,33 +4,32 @@ import { mongo } from "mongoose";
 import type ActionsResponse from "@/types/Response";
 import connect from "@/db/connect";
 import { getServerAuthSession } from "@/server/auth";
-import { redirect } from "next/navigation";
 import Comment from "@/db/Models/Comment";
 import validate from "@/utils/validate";
 import { isRedirectError } from "next/dist/client/components/redirect";
 import Achievement from "@/db/Models/Achievement";
+import { revalidatePath } from "next/cache";
 
 /**
  * Server action to create a comment for an achievement
- * @param formData FormData with the following fields:
- * - id: string
- * - content: string
+ * @param achievementId {string} The ID of the achievement to comment on
+ * @param content {string} The content of the comment
  * @returns {Promise<ActionsResponse>}
- *
  */
 export default async function create(
-  formData: FormData,
+  achievementId: string,
+  content: string,
 ): Promise<ActionsResponse> {
-  const achievementId = formData.get("id") as string | null;
-  if (!achievementId) redirect("/achievements");
-  const baseUrl = `/achievement/${achievementId.toString()}`;
+  if (!achievementId) return { error: "Achievement ID not provided" };
+  if (!content) {
+    return { error: "Comment must have content" };
+  }
   try {
     const db = await connect();
     const session = await getServerAuthSession();
     if (!session) {
-      redirect("/api/auth/signin");
+      return { error: "You must be signed in to comment" };
     }
-    const content = formData.get("content") as string;
     const commentId = new mongo.ObjectId();
     await Comment.create({
       _id: commentId,
@@ -42,19 +41,18 @@ export default async function create(
       { $addToSet: { comments: commentId } },
     );
     await db.disconnect();
+    revalidatePath(`/achievement/${achievementId}`);
+    return {
+      message: "Comment created",
+    };
   } catch (e: unknown) {
     const error = e as Error;
     if (isRedirectError(error)) throw error;
     if (error.name === "ValidationError") {
-      redirect(
-        // @ts-expect-error we know the error exists
-        `${baseUrl}?error=${Object.values(validate(error)).join(", ")}`,
-      );
+      // @ts-expect-error we know the error exists
+      return { error: Object.values(validate(error)).join(", ") };
     } else {
-      redirect(
-        baseUrl + "?error=An error occurred while commenting: " + error.message,
-      );
+      return { error: error.message };
     }
   }
-  redirect(baseUrl + "?message=Comment added");
 }

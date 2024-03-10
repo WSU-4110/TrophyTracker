@@ -4,6 +4,10 @@ export default interface ResponseMessage {
    */
   message?: string;
   /**
+   * Extra data from server if needed
+   */
+  data?: Record<string, unknown>;
+  /**
    * Error from server msg
    */
   error?: string;

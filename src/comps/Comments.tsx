@@ -1,5 +1,9 @@
 "use client";
-import { createComment, editComment } from "@/server/actions/comment";
+import {
+  createComment,
+  editComment,
+  removeComment,
+} from "@/server/actions/comment";
 import { type Comment } from "@/db/Models/Comment";
 import {
   Button,
@@ -16,6 +20,7 @@ import {
 import UserTitle from "./UserTitle";
 import { BsFillPencilFill, BsFillTrashFill } from "react-icons/bs";
 import React from "react";
+import { useRouter } from "next/navigation";
 import { ToastContext } from "./ToastProvider";
 interface CommentsProps {
   achievementId: string;
@@ -23,7 +28,7 @@ interface CommentsProps {
 }
 
 /**
- * interface to keep track of the state of a given comment
+ * interface to keep track of the state of a given comment. Looking back, I probably should have had another state keeping track of the finalized comments after edits but I decided to just combine them because this used to be a server component.
  */
 type CommentState = Record<
   string,
@@ -37,6 +42,10 @@ type CommentState = Record<
      */
     isSaved?: boolean;
     /**
+     * whether the comment has been removed
+     */
+    isRemoved?: boolean;
+    /**
      * the content of the comment
      */
     content: string;
@@ -44,6 +53,8 @@ type CommentState = Record<
 >;
 export default function Comments(props: CommentsProps) {
   const [commentState, setCommentState] = React.useState<CommentState>({});
+  const router = useRouter();
+  const createRef = React.useRef<HTMLFormElement>(null);
   const { addToast } = React.useContext(ToastContext);
   const [pending, startTransition] = React.useTransition();
   // NOTE: comment.{name,author,img} are only available due to population in original query
@@ -54,12 +65,17 @@ export default function Comments(props: CommentsProps) {
         {props?.comments?.map((comment) => {
           // @ts-expect-error we know there will be an _id provided (from population)
           const id = comment._id.toString();
+          if (commentState[id]?.isRemoved) return null;
           return (
             <TimelineItem className="mb--4" key={id}>
               <TimelinePoint />
               <TimelineContent>
                 <TimelineTime>
                   {new Date(comment.createdAt).toLocaleString()}
+                  <i>
+                    {comment.lastModified &&
+                      ` • Edited ${new Date(comment.lastModified).toLocaleString()}`}
+                  </i>
                 </TimelineTime>
                 <TimelineTitle>
                   <UserTitle user={comment.author} />
@@ -160,26 +176,82 @@ export default function Comments(props: CommentsProps) {
                       >
                         <BsFillPencilFill />
                       </button>
-                      <button>
+                      <button
+                        onClick={() => {
+                          startTransition(async () => {
+                            const data = await removeComment(id);
+                            if (data.error) {
+                              addToast({
+                                message: data.error,
+                                type: "error",
+                              });
+                              return;
+                            }
+                            addToast({
+                              // @ts-expect-error we know this msg exists if no errs
+                              message: data.message,
+                              type: "success",
+                            });
+                            setCommentState((_) => ({
+                              ..._,
+                              [id]: {
+                                isEdit: true,
+                                isRemoved: true,
+                                content: "",
+                              },
+                            }));
+                          });
+                        }}
+                      >
                         <BsFillTrashFill />
                       </button>
                     </div>
                   )}
                 </TimelineBody>
-                {/* TODO: edit and remove user's comments */}
               </TimelineContent>
             </TimelineItem>
           );
         })}
       </Timeline>
-      <form action={createComment}>
+      <form
+        ref={createRef}
+        onSubmit={(e) => {
+          e.preventDefault();
+          startTransition(async () => {
+            const data = await createComment(
+              props.achievementId,
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
+              createRef.current?.content.value,
+            );
+            if (data.error) {
+              addToast({
+                message: data.error,
+                type: "error",
+              });
+              return;
+            }
+            addToast({
+              // @ts-expect-error we know this msg exists if no errs
+              message: data.message,
+              type: "success",
+            });
+            // force them to refresh because then we would have to re-query everything...
+            window.location.href = `/achievement/${props.achievementId}?message=${data.message}`;
+          });
+        }}
+      >
         <TextInput
           name="content"
+          disabled={pending}
           required
           placeholder="Reply to the conversation"
         />
         <input type="hidden" name="id" value={props.achievementId.toString()} />
-        <Button type="submit" className="w-full">
+        <Button
+          type="submit"
+          className="w-full disabled:cursor-not-allowed disabled:bg-slate-400"
+          disabled={pending}
+        >
           Comment
         </Button>
       </form>
