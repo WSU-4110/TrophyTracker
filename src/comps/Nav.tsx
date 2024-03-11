@@ -124,6 +124,13 @@ export default function Nav() {
         </Navbar.Link>
         <Navbar.Link
           as={Link}
+          href="/games"
+          active={pathname.startsWith("/games")}
+        >
+          Games
+        </Navbar.Link>
+        <Navbar.Link
+          as={Link}
           href="/users"
           active={pathname.startsWith("/users")}
         >
