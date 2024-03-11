@@ -1,4 +1,8 @@
-import mongoose, { type ConnectOptions } from "mongoose";
+import mongoose, {
+  ConnectionStates,
+  type ConnectOptions,
+  type Connection,
+} from "mongoose";
 
 const options: ConnectOptions = {
   maxPoolSize: 1,
@@ -8,10 +12,20 @@ const options: ConnectOptions = {
   maxIdleTimeMS: 20000,
 };
 
-const connect = async () => {
+let connection: Connection; // singleton static connection
+
+const connect = async (): Promise<Connection> => {
   try {
-    console.log("Connecting to database...");
-    return mongoose.connect(process.env.MONGODB_URI!, options);
+    if (
+      (connection && connection.readyState != ConnectionStates.connected) ||
+      !connection
+      // if connection is not connected, or connection is null, then connect
+    ) {
+      console.log("Connecting to database...");
+      // @ts-expect-error connection is a Promise
+      connection = mongoose.connect(process.env.MONGODB_URI!, options);
+    }
+    return connection;
   } catch (err) {
     console.error(err);
     throw new Error("Cannot connect to database...");
