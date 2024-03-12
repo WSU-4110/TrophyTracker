@@ -124,10 +124,10 @@ export default function Nav() {
         </Navbar.Link>
         <Navbar.Link
           as={Link}
-          href="/games"
-          active={pathname.startsWith("/games")}
+          href="/library"
+          active={pathname.startsWith("/library")}
         >
-          Games
+          Library
         </Navbar.Link>
         <Navbar.Link
           as={Link}
