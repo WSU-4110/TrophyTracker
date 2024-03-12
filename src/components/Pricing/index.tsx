@@ -4,25 +4,48 @@ import { useEffect, useState } from "react";
 import SectionTitle from "../Common/SectionTitle";
 import PricingBox from "./PricingBox";
 
+// Singleton for managing product fetching
+class ProductFetcher {
+  static instance = null;
+
+  // Method to get the Singleton instance
+  static getInstance() {
+    if (!ProductFetcher.instance) {
+      ProductFetcher.instance = new ProductFetcher();
+    }
+    return ProductFetcher.instance;
+  }
+
+  async fetchProducts() {
+    try {
+      // Replace with actual API call
+      const { data } = await axios.get("/api/products");
+      return data;
+    } catch (error) {
+      console.error("Failed to fetch products:", error);
+      return [];
+    }
+  }
+}
+
 const Pricing = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
+    const fetcher = ProductFetcher.getInstance();
+    const fetchProducts = async () => {
+      const data = await fetcher.fetchProducts();
+      setProducts(data);
+    };
+
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     fetchProducts();
   }, []);
 
-  const fetchProducts = async () => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const { data } = { data: [] };
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    setProducts(data);
-  };
-
   return (
     <section
       id="pricing"
-      className="relative z-20 overflow-hidden bg-white pb-12 pt-20 dark:bg-dark lg:pb-[90px] lg:pt-[120px]"
+      className="dark:bg-dark relative z-20 overflow-hidden bg-white pb-12 pt-20 lg:pb-[90px] lg:pt-[120px]"
     >
       <div className="container">
         <div className="mb-[60px]">
@@ -36,53 +59,8 @@ const Pricing = () => {
 
         <div className="-mx-4 flex flex-wrap justify-center">
           {products.map((product, i) => (
-            <PricingBox key={1} product={product} />
+            <PricingBox key={i} product={product} />
           ))}
-          {/*
-          <PricingBox
-            popular={false}
-            packageName="Lite"
-            price="19.99"
-            subtitle="STARTING FROM"
-            btn="Purchase Now"
-            purchaseLink="/#"
-          >
-            <OfferList text="1 User" />
-            <OfferList text="All UI components" />
-            <OfferList text="Lifetime access" />
-            <OfferList text="Free updates" />
-            <OfferList text="Use on 1 (one) project" />
-            <OfferList text="3 Months support" />
-          </PricingBox>
-          <PricingBox
-            popular={true}
-            packageName="Basic"
-            price="19.99"
-            subtitle="STARTING FROM"
-            btn="Purchase Now"
-            purchaseLink="/#"
-          >
-            <OfferList text="1 User" />
-            <OfferList text="All UI components" />
-            <OfferList text="Lifetime access" />
-            <OfferList text="Free updates" />
-            <OfferList text="Use on 1 (one) project" />
-            <OfferList text="3 Months support" />
-          </PricingBox>
-          <PricingBox
-            packageName="Plus"
-            price="70.99"
-            subtitle="STARTING FROM"
-            btn="Purchase Now"
-            purchaseLink="/#"
-          >
-            <OfferList text="1 User" />
-            <OfferList text="All UI components" />
-            <OfferList text="Lifetime access" />
-            <OfferList text="Free updates" />
-            <OfferList text="Use on 1 (one) project" />
-            <OfferList text="3 Months support" />
-          </PricingBox> */}
         </div>
       </div>
     </section>
