@@ -13,6 +13,28 @@ const inter = Inter({
   variable: "--font-sans",
 });
 
+import {useTheam} from 
+
+  export default async function RootLayout({ children}) {
+  const {theam} = useTheam();
+  const session = await getserverAuthSession():
+
+  const theamclasses = theame === 'dark' ? 'bg-[#15162c] text-white' : 'bg-white text-black';
+
+  return (
+    <html lang = "en">
+      <body className={'font-sans ${theamclasses}'}>
+        <SessionProvider session = {session}>
+          <nav />
+          <main classname = {'flex min-hscreen w-full flex-col justify-start ${theameClasses}'}>
+          <span classname = "m-8 py-3">{children}
+          </span>
+          </main>
+        </SessionProvider>
+      </body>
+    </html>
+    );
+}
 // TODO: someone can change this
 export const metadata = {
   title: "Create T3 App",
