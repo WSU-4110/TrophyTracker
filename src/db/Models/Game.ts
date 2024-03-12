@@ -1,7 +1,8 @@
 import { Schema, model, type Model, models } from "mongoose";
 import { type SteamStoreGameData } from "@/types/Steam/store/Game";
 
-const gameSchema = new Schema<SteamStoreGameData>();
+export type Game = SteamStoreGameData; // we will model our games after the how the Steam store does it
 
-export default (models.Game as Model<SteamStoreGameData>) ??
-  model<SteamStoreGameData>("Game", gameSchema);
+const gameSchema = new Schema<Game>();
+
+export default (models.Game as Model<Game>) ?? model<Game>("Game", gameSchema);

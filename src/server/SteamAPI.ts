@@ -22,16 +22,16 @@ export default class SteamWebAPI {
    * @returns {Promise<SteamStoreGameData | null>} Game details
    */
   async getGameDetails(appId: string): Promise<SteamStoreGameData | null> {
-    this.storeURL.searchParams.set("appids", appId);
     this.storeURL.pathname = "/api/appdetails";
+    this.storeURL.searchParams.set("appids", appId);
+    // this.storeURL.searchParams.set("key", this.apiKey);
     try {
       const response = await fetch(this.storeURL, this.fetchOptions);
       const data = (await response.json()) as SteamStoreGame;
       if (data[appId]?.success) {
         return data[appId]?.data ?? null;
-      } else {
-        throw new Error("Failed to fetch game details");
       }
+      return null;
     } catch (error) {
       throw new Error("Failed to fetch game details");
     }
@@ -57,9 +57,8 @@ export default class SteamWebAPI {
 
   get games() {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
-    return (require("@/utils/games.json") as SteamWebGames).applist.apps.filter(
-      (game) => game.name != "",
-    );
+    const games = (require("@/utils/games.json") as SteamWebGames).applist.apps;
+    return games;
   }
 }
 
