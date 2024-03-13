@@ -24,18 +24,24 @@ export interface SteamStoreGameData {
   capsule_image: string;
   capsule_imagev5: string;
   website: string;
-  pc_requirements: {
-    minimum: string;
-    recommended: string;
-  };
-  mac_requirements: {
-    minimum: string;
-    recommended: string;
-  };
-  linux_requirements: {
-    minimum: string;
-    recommended: string;
-  };
+  pc_requirements?:
+    | {
+        minimum: string;
+        recommended: string;
+      }
+    | [];
+  mac_requirements?:
+    | {
+        minimum: string;
+        recommended: string;
+      }
+    | [];
+  linux_requirements?:
+    | {
+        minimum: string;
+        recommended: string;
+      }
+    | [];
   legal_notice: string;
   ext_user_account_notice: string;
   developers: string[];

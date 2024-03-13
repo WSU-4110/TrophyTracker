@@ -1,6 +1,6 @@
 import { type User } from "@/db/Models/User";
 import ProfilePic from "./ProfilePic";
-import getUserTitle from "@/utils/username";
+import { getUserTitle } from "@/utils";
 import Link from "next/link";
 
 export default function UserTitle({ user }: { user?: User }) {

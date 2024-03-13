@@ -7,6 +7,7 @@ import Achievement, {
 import Comment, { type Comment as CommentType } from "@/db/Models/Comment";
 import Game from "@/db/Models/Game";
 import connect from "@/db/connect";
+import { languageArrayJoin } from "@/utils";
 import { redirect } from "next/navigation";
 
 export const revalidate = 360;
@@ -36,7 +37,10 @@ export default async function SpecificAchievement({
   const db = await connect();
   await Game.init();
   await Comment.init();
-  const achievement = await Achievement.findById(params.achievement_id, {})
+  const achievement = await Achievement.findById<AchievementType>(
+    params.achievement_id,
+    {},
+  )
     .populate([
       { path: "author", model: "User", select: "name img email" },
       { path: "game", model: "Game" },
@@ -66,11 +70,11 @@ export default async function SpecificAchievement({
             width="400"
             height="400"
             className="rounded-lg object-cover object-center"
-            src={achievement.game.picture}
+            src={achievement.game.header_image}
             alt={achievement.game.name}
           />
           <p className="font-bold">{achievement.game.name}</p>
-          <p>by {achievement.game.publisher}</p>
+          <p>by {languageArrayJoin(achievement.game.publishers)}</p>
         </div>
         <div className="col-span-3 w-full">
           <h1 className="tt-heading">{achievement.name}</h1>

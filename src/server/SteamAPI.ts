@@ -29,14 +29,16 @@ export default class SteamWebAPI {
       const response = await fetch(this.storeURL, this.fetchOptions);
       const data = (await response.json()) as SteamStoreGame;
       if (data[appId]?.success) {
+        if (data[appId]?.data?.type !== "game") {
+          throw new Error("This is not a game");
+        }
         return data[appId]?.data ?? null;
       }
       return null;
     } catch (error) {
-      throw new Error("Failed to fetch game details");
+      throw error ? error : new Error("Failed to fetch game details");
     }
   }
-
   /**
    * Search for games from the Steam Web API
    * @param query {string} Search query
@@ -60,8 +62,16 @@ export default class SteamWebAPI {
     const games = (require("@/utils/games.json") as SteamWebGames).applist.apps;
     return games;
   }
-}
 
+  /**
+   * Gets a Steam store URL rom appID
+   * @param appId Steam store appid
+   * @returns {string} Steam store URL
+   */
+  public static getSteamStoreURL(appId: string | number) {
+    return `https://store.steampowered.com/app/${appId}`;
+  }
+}
 // // Usage example
 // const apiKey = "YOUR_API_KEY";
 // const steamworksApi = new SteamWebAPI(apiKey);
