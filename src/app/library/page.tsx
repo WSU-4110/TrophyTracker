@@ -16,7 +16,7 @@ export default async function page() {
   const db = await connect();
   await Game.init();
   const games = await Game.find({});
-  await db.disconnect();
+  // await db.disconnect();
   return (
     <div className="tt-page-layout">
       <h1 className="tt-heading">Games</h1>

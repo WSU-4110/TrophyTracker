@@ -50,7 +50,7 @@ export default async function SpecificAchievement({
       },
     ])
     .lean();
-  await db.disconnect();
+  // await db.disconnect();
   if (!achievement) redirect("/achievements?error=No achievement found");
   return (
     <div className="tt-page-layout mb-8">

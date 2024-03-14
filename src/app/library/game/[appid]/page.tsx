@@ -39,7 +39,7 @@ export default async function page({
     if (!game) {
       throw new Error("Game not found");
     }
-    await db.disconnect();
+    // await db.disconnect();
     return (
       <>
         <div className="tt-page-layout">
@@ -151,7 +151,7 @@ export default async function page({
     );
   } catch (error) {
     const e = error as Error;
-    console.error(e);
+    // console.error(e);
     return redirect("/library/add?error=" + e.message);
   } finally {
     await db?.disconnect();
