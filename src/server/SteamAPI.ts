@@ -30,7 +30,7 @@ export default class SteamWebAPI {
       const data = (await response.json()) as SteamStoreGame;
       if (data[appId]?.success) {
         if (data[appId]?.data?.type !== "game") {
-          throw new Error("This is not a game");
+          throw new Error(`"${data[appId]?.data.name}" is not a game`);
         }
         return data[appId]?.data ?? null;
       }

@@ -18,7 +18,7 @@ export default function GamePage() {
     setIsDebouncing(true);
     const debounce = setTimeout(() => {
       const results = [];
-      if (!games || searchTerms.length <= 2) {
+      if (!games || searchTerms.length <= 1) {
         setIsDebouncing(false);
         setSearchResults([]);
         return;
@@ -81,6 +81,7 @@ export default function GamePage() {
                 <Link
                   className="mb-2 w-full cursor-pointer font-bold hover:text-indigo-600 hover:underline"
                   href={`/library/add/${game.appid}`}
+                  target="_blank"
                   key={game.appid}
                 >
                   {game.name} <br />
