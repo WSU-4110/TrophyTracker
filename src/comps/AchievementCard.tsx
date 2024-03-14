@@ -4,7 +4,8 @@ import Difficulty from "./Difficulty";
 import Link from "next/link";
 import { getUserTitle, textOverflow } from "@/utils";
 import UserTitle from "./UserTitle";
-
+import moment from "moment";
+import { BsArrowRightShort } from "react-icons/bs";
 interface AchievementCardProps extends Achievement {
   _id: string;
   key?: string | number;
@@ -32,20 +33,21 @@ export default function AchievementCard(props: AchievementCardProps) {
         </p>
         <Link
           href={`/achievement/${props._id}`}
-          className="hover:text-purple-600 hover:underline"
+          className="flex items-center gap-2 rounded-lg border-2 border-purple-300 bg-white p-4 text-black transition-all hover:gap-5 hover:bg-purple-600 hover:text-white"
         >
-          <p className="text-xs text-gray-500 dark:text-gray-200">
-            {props.comments.length} comments • {props.likes.length} likes
-          </p>
+          View <BsArrowRightShort />
         </Link>
         <hr />
         <div className="flex items-center gap-1">
+          <p className="text-xs dark:text-gray-200">
+            {props.comments.length} comments • {props.likes.length} likes
+          </p>
           <p className="text-xs text-gray-500 dark:text-gray-200 ">
-            {props.createdAt.toDateString()}
+            • {moment(props.createdAt).fromNow()}
           </p>
           {props.lastModified && (
             <p className="text-xs italic text-gray-500 dark:text-gray-200">
-              • Edited on {props.lastModified.toLocaleString()}
+              • Edited {moment(props.lastModified).fromNow()}
             </p>
           )}
         </div>

@@ -1,5 +1,6 @@
 import AchievementClient from "@/comps/AchievementClient";
 import Breadcrumbs from "@/comps/Breadcrumbs";
+import UserTitle from "@/comps/UserTitle";
 
 import Achievement, {
   type Achievement as AchievementType,
@@ -8,6 +9,7 @@ import Comment, { type Comment as CommentType } from "@/db/Models/Comment";
 import Game from "@/db/Models/Game";
 import connect from "@/db/connect";
 import { languageArrayJoin } from "@/utils";
+import moment from "moment";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
@@ -24,6 +26,8 @@ export async function generateStaticParams() {
   }));
   return paths;
 }
+
+// TODO: use markdown for content and preserve line breaks and such
 
 export default async function SpecificAchievement({
   params,
@@ -85,6 +89,12 @@ export default async function SpecificAchievement({
         </div>
         <div className="col-span-3 w-full">
           <h1 className="tt-heading">{achievement.name}</h1>
+          <div className="flex items-center justify-center gap-2 md:justify-start">
+            <UserTitle user={achievement.author} />
+            <p className="text-sm text-gray-500">
+              {moment(achievement.createdAt).fromNow()}
+            </p>
+          </div>
           <p>{achievement.content}</p>
           <AchievementClient
             _id={String(achievement._id)}
