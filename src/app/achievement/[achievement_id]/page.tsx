@@ -8,6 +8,7 @@ import Comment, { type Comment as CommentType } from "@/db/Models/Comment";
 import Game from "@/db/Models/Game";
 import connect from "@/db/connect";
 import { languageArrayJoin } from "@/utils";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 export const revalidate = 360;
@@ -34,7 +35,7 @@ export default async function SpecificAchievement({
   // check if mongo id is valid
   if (!params.achievement_id.match(/^[0-9a-fA-F]{24}$/))
     redirect("/achievements?error=Invalid achievement");
-  const db = await connect();
+  await connect();
   await Game.init();
   await Comment.init();
   const achievement = await Achievement.findById<AchievementType>(
@@ -73,7 +74,13 @@ export default async function SpecificAchievement({
             src={achievement.game.header_image}
             alt={achievement.game.name}
           />
-          <p className="font-bold">{achievement.game.name}</p>
+          <Link
+            href={`/library/game/${achievement.game.steam_appid}`}
+            target="_blank"
+            className="text-xl font-bold text-indigo-700 hover:underline"
+          >
+            {achievement.game.name}
+          </Link>
           <p>by {languageArrayJoin(achievement.game.publishers)}</p>
         </div>
         <div className="col-span-3 w-full">

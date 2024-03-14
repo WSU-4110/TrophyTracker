@@ -2,7 +2,7 @@ import { Card } from "flowbite-react";
 import { type Achievement } from "../db/Models/Achievement";
 import Difficulty from "./Difficulty";
 import Link from "next/link";
-import { getUserTitle } from "@/utils";
+import { getUserTitle, textOverflow } from "@/utils";
 import UserTitle from "./UserTitle";
 
 interface AchievementCardProps extends Achievement {
@@ -20,7 +20,6 @@ export default function AchievementCard(props: AchievementCardProps) {
       <Card
         className="relative max-w-md bg-white shadow-xl dark:bg-gray-800 dark:text-white"
         imgSrc={props.game.header_image}
-        horizontal
       >
         <span className="mt-4">
           <UserTitle user={props.author} />
@@ -29,7 +28,7 @@ export default function AchievementCard(props: AchievementCardProps) {
           {props.name}
         </h5>
         <p className="font-normal text-gray-700 dark:text-gray-400">
-          {props.content}
+          {textOverflow(props.content, 200)}
         </p>
         <Link
           href={`/achievement/${props._id}`}
