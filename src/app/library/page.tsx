@@ -2,17 +2,21 @@ import Breadcrumbs from "@/comps/Breadcrumbs";
 import GameCard from "@/comps/GameCard";
 import Game from "@/db/Models/Game";
 import connect from "@/db/connect";
-import SteamWebAPI from "@/server/SteamAPI";
-import { Button } from "flowbite-react";
 import Link from "next/link";
 import { BsPlusSquareFill } from "react-icons/bs";
+
+export const revalidate = 360;
+export const dynamic = "force-dynamic";
+
+export const metadata = {
+  title: "Library", // TODO: properly name all these pages
+};
 
 export default async function page() {
   const db = await connect();
   await Game.init();
   const games = await Game.find({});
   await db.disconnect();
-
   return (
     <div className="tt-page-layout">
       <h1 className="tt-heading">Games</h1>
@@ -27,7 +31,7 @@ export default async function page() {
             name={game.name}
             description={game.short_description}
             img={game.header_image}
-            url={SteamWebAPI.getSteamStoreURL(game.steam_appid)}
+            appid={game.steam_appid}
           />
         ))}
       </div>

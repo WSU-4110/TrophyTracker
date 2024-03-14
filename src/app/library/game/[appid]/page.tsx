@@ -1,4 +1,5 @@
 import Breadcrumbs from "@/comps/Breadcrumbs";
+import Share from "@/comps/Share";
 import Game from "@/db/Models/Game";
 import connect from "@/db/connect";
 import SteamWebAPI from "@/server/SteamAPI";
@@ -10,14 +11,18 @@ import { redirect } from "next/navigation";
 import { BsBookmarkCheckFill, BsBookmarkPlusFill } from "react-icons/bs";
 import { FaSteam } from "react-icons/fa";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 360;
+
 export default async function page({
   params: { appid },
 }: {
   params: { appid: string };
 }) {
+  let db;
   try {
     let existsOnDB = true;
-    const db = await connect();
+    db = await connect();
     await Game.init();
     // first check if the game is already in the library (under games collection
     // if it is, then return it,
@@ -38,7 +43,7 @@ export default async function page({
     return (
       <>
         <div className="tt-page-layout">
-          <h1 className="tt-heading">Add {game.name}</h1>
+          <h1 className="tt-heading">{game.name}</h1>
           <Breadcrumbs
             className="mb-5"
             crumbs={[
@@ -46,7 +51,7 @@ export default async function page({
               { name: "Add to Library", href: "/library/add" },
               {
                 name: game.name,
-                href: `/library/add/${appid}`,
+                href: `/library/game/${appid}`,
               },
             ]}
           />
@@ -57,22 +62,47 @@ export default async function page({
                 src={game.header_image}
                 alt={game.name}
               />
-              <h2 className="text-xl font-bold">{game.name}</h2>
+              <h2 className="text-2xl font-bold">{game.name}</h2>
               <p dangerouslySetInnerHTML={{ __html: game.short_description }} />
               <p>
                 <strong>Published</strong> by{" "}
-                {languageArrayJoin(game.publishers)}
+                {game.publishers.length > 1 ? (
+                  languageArrayJoin(game.publishers)
+                ) : (
+                  <Link
+                    target="_blank"
+                    className="text-indigo-600 hover:underline"
+                    href={`https://store.steampowered.com/publisher/${game.publishers[0]}`}
+                  >
+                    {game.publishers}
+                  </Link>
+                )}
               </p>
               <p>
                 <strong>Developed</strong> by{" "}
-                {languageArrayJoin(game.developers)}
+                {game.developers.length > 1 ? (
+                  languageArrayJoin(game.developers)
+                ) : (
+                  <Link
+                    target="_blank"
+                    className="text-indigo-600 hover:underline"
+                    href={`https://store.steampowered.com/search/?developer=${game.developers[0]}`}
+                  >
+                    {game.developers}
+                  </Link>
+                )}
               </p>
               <Link
                 target="_blank"
                 href={SteamWebAPI.getSteamStoreURL(game.steam_appid)}
               >
                 <div className="rounded-n-lg flex items-center justify-center gap-2 rounded-lg bg-indigo-600 p-4 text-center font-semibold text-white transition-all hover:bg-indigo-800">
-                  {game?.is_free ? "Free" : "Buy now"} on <FaSteam size={20} />
+                  {game?.is_free
+                    ? "Free"
+                    : game?.price_overview
+                      ? game.price_overview.final_formatted
+                      : "Purchase"}{" "}
+                  on <FaSteam size={20} />
                 </div>
               </Link>
               <div className="mt-1 w-full">
@@ -95,9 +125,13 @@ export default async function page({
                   </button>
                 </form>
               </div>
+              <div className="mt-1 w-full">
+                <Share />
+              </div>
             </div>
             <div className="col-span-3 w-full">
-              {game.movies.length > 0 ? (
+              {game?.movies ? (
+                // TODO: add a gallery of photos and videos like steam does it
                 <video
                   controls
                   className="w-full rounded-lg lg:w-[80%]"
@@ -117,6 +151,9 @@ export default async function page({
     );
   } catch (error) {
     const e = error as Error;
+    console.error(e);
     return redirect("/library/add?error=" + e.message);
+  } finally {
+    await db?.disconnect();
   }
 }

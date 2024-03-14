@@ -1,10 +1,12 @@
-import { Card } from "flowbite-react";
+import { Button, Card } from "flowbite-react";
+import Link from "next/link";
+import { BsArrowRightShort } from "react-icons/bs";
 
 interface GameCardProps {
   name: string;
   description: string;
   img: string;
-  url: string | URL;
+  appid: string | number;
 }
 
 export default function GameCard(props: GameCardProps) {
@@ -21,6 +23,11 @@ export default function GameCard(props: GameCardProps) {
       <p className="font-normal text-gray-700 dark:text-gray-400">
         {props.description}
       </p>
+      <Link target="_blank" href={`/library/game/${props.appid}`}>
+        <Button>
+          View <BsArrowRightShort />
+        </Button>
+      </Link>
     </Card>
   );
 }

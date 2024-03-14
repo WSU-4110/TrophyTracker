@@ -46,6 +46,14 @@ export interface SteamStoreGameData {
   ext_user_account_notice: string;
   developers: string[];
   publishers: string[];
+  price_overview?: {
+    currency: string;
+    initial: number;
+    final: number;
+    discount_percent: number;
+    initial_formatted: string;
+    final_formatted: string;
+  };
   packages: number[];
   package_groups: {
     name: string;
@@ -88,7 +96,7 @@ export interface SteamStoreGameData {
     path_thumbnail: string;
     path_full: string;
   }[];
-  movies: {
+  movies?: {
     id: number;
     name: string;
     thumbnail: string;

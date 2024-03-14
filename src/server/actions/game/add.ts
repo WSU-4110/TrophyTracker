@@ -32,6 +32,7 @@ export async function add(formData: FormData) {
       redirect(`/library/add?error=${game.name} already exists in the library`);
     }
     revalidatePath("/library");
+    revalidatePath(`/library/game/${appid}`);
   } catch (e: unknown) {
     const error = e as Error;
     if (isRedirectError(error)) throw error;

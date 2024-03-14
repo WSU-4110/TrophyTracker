@@ -28,6 +28,7 @@ export default class SteamWebAPI {
     try {
       const response = await fetch(this.storeURL, this.fetchOptions);
       const data = (await response.json()) as SteamStoreGame;
+      if (!data) throw null;
       if (data[appId]?.success) {
         if (data[appId]?.data?.type !== "game") {
           throw new Error(`"${data[appId]?.data.name}" is not a game`);

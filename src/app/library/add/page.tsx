@@ -3,13 +3,20 @@ import Breadcrumbs from "@/comps/Breadcrumbs";
 import all from "@/server/actions/game/all";
 import { type SteamWebGame } from "@/types/Steam/web/Games";
 import { Spinner, TextInput } from "flowbite-react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
 import useSWR from "swr";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default function GamePage() {
   const [searchTerms, setSearchTerms] = React.useState("");
   const [isDebouncing, setIsDebouncing] = React.useState(false);
+  useSession({
+    required: true,
+  }); // only logged in users can access this page
   const [searchResults, setSearchResults] = React.useState<SteamWebGame[]>([]);
   const { data: games, isLoading } = useSWR("games", async () => {
     return all();
@@ -59,9 +66,8 @@ export default function GamePage() {
             </Link>
             . Results may be inconsistent.
           </p>
-          {/* <p>{JSON.stringify(games)}</p> */}
           <br />
-          <form className="mt--8 w-full flex-wrap">
+          <div className="mt--8 w-full flex-wrap">
             <label htmlFor="search">Search on Steam:</label>
             <TextInput
               onChange={(e) => setSearchTerms(e.target.value)}
@@ -71,7 +77,7 @@ export default function GamePage() {
               type="text"
               name="name"
             />
-          </form>
+          </div>
           <div>
             {isDebouncing ? (
               <Spinner size="sm" />
@@ -80,11 +86,13 @@ export default function GamePage() {
               searchResults.map((game) => (
                 <Link
                   className="mb-2 w-full cursor-pointer font-bold hover:text-indigo-600 hover:underline"
-                  href={`/library/add/${game.appid}`}
+                  href={`/library/game/${game.appid}`}
                   target="_blank"
                   key={game.appid}
                 >
-                  {game.name} <br />
+                  {game.name}{" "}
+                  <p className="text-gray-400">(ID: {game.appid})</p>
+                  <br />
                 </Link>
               ))
             )}

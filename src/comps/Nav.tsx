@@ -110,17 +110,17 @@ export default function Nav() {
         </Navbar.Link>
         <Navbar.Link
           as={Link}
+          href="/about"
+          active={pathname.startsWith("/about")}
+        >
+          About
+        </Navbar.Link>
+        <Navbar.Link
+          as={Link}
           href="/achievements"
           active={pathname.startsWith("/achievement")}
         >
           Achievements
-        </Navbar.Link>
-        <Navbar.Link
-          as={Link}
-          href="/about"
-          active={pathname.startsWith("/about")}
-        >
-          About Us
         </Navbar.Link>
         <Navbar.Link
           as={Link}

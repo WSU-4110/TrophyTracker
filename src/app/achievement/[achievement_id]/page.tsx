@@ -11,7 +11,7 @@ import { languageArrayJoin } from "@/utils";
 import { redirect } from "next/navigation";
 
 export const revalidate = 360;
-export const dynamic = "force-dynamic";
+export const dynamic = "force-dynamic"; // TODO fix the client caching issue
 
 export async function generateStaticParams() {
   await connect();

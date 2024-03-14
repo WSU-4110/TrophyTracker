@@ -12,7 +12,7 @@ interface ShareProps {
 export default function Share(props: ShareProps) {
   return (
     <Button
-      className="w-full bg-teal-400 font-bold transition-all hover:bg-teal-500"
+      className="w-full bg-pink-500 p-2 font-bold text-white transition-all hover:bg-teal-600 hover:text-black"
       color="teal"
       onClick={async () => {
         if (navigator.share) {
