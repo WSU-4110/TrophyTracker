@@ -1,5 +1,5 @@
 "use client";
-import { BsHeart, BsHeartFill } from "react-icons/bs";
+import { BsFillTrashFill, BsHeart, BsHeartFill } from "react-icons/bs";
 import { type Achievement as AchievementType } from "@/db/Models/Achievement";
 import { useSession } from "next-auth/react";
 import React from "react";
@@ -10,8 +10,10 @@ import like from "@/server/actions/achievement/like";
 import unlike from "@/server/actions/achievement/unlike";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { remove } from "@/server/actions/achievement";
 interface AchievementClientProps {
   _id: string;
+  authorID: AchievementType["author"]["_id"];
   likes: string[];
   comments: AchievementType["comments"];
   className?: string;
@@ -102,6 +104,19 @@ export default function AchievementClient(props: AchievementClientProps) {
       });
     });
   }
+
+  function deleteHandler() {
+    startTransition(async () => {
+      const removeWithConfirmation = confirm(
+        "Are you sure you want to delete this achievement?",
+      );
+      if (!removeWithConfirmation) return;
+      const formData = new FormData();
+      formData.append("id", props._id);
+      await remove(formData);
+    });
+  }
+
   return (
     <div className={props.className}>
       <div className="my-6 ml-[-2px] rounded-lg bg-slate-300 p-5">
@@ -114,7 +129,7 @@ export default function AchievementClient(props: AchievementClientProps) {
                 likeHandler();
               }
             }}
-            className="mr-1 mt-1 cursor-pointer transition-all hover:animate-pulse hover:text-red-500"
+            className="mb-2 mr-1 mt-1 cursor-pointer transition-all hover:animate-pulse hover:text-red-500"
           >
             {pending ? (
               <Spinner size="sm" />
@@ -126,6 +141,14 @@ export default function AchievementClient(props: AchievementClientProps) {
           </div>
           <span className="inline text-xl font-semibold">{likes.length}</span>
           <br />
+          {session.data?.user.person._id == props.authorID && (
+            <div
+              onClick={deleteHandler}
+              className="ml-2 mt-[2px] cursor-pointer transition-all hover:text-red-800"
+            >
+              <BsFillTrashFill size={22} />
+            </div>
+          )}
         </span>
         <div className="w-full">
           <Comments achievementId={props._id} comments={comments} />

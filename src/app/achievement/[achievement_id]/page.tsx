@@ -1,5 +1,6 @@
 import AchievementClient from "@/comps/AchievementClient";
 import Breadcrumbs from "@/comps/Breadcrumbs";
+import Share from "@/comps/Share";
 import UserTitle from "@/comps/UserTitle";
 
 import Achievement, {
@@ -86,6 +87,15 @@ export default async function SpecificAchievement({
             {achievement.game.name}
           </Link>
           <p>by {languageArrayJoin(achievement.game.publishers)}</p>
+          <Link
+            href={`/library/game/${achievement.game.steam_appid}`}
+            className="rounded-n-lg flex items-center justify-center gap-2 rounded-lg bg-indigo-600 p-4 text-center font-semibold text-white transition-all hover:bg-indigo-800"
+          >
+            View Game
+          </Link>
+          <div className="mt-1 ">
+            <Share />
+          </div>
         </div>
         <div className="col-span-3 w-full">
           <h1 className="tt-heading">{achievement.name}</h1>
@@ -103,6 +113,7 @@ export default async function SpecificAchievement({
                 JSON.stringify(achievement.likes),
               ) as unknown as string[]
             }
+            authorID={achievement.author._id}
             comments={
               JSON.parse(
                 JSON.stringify(achievement.comments),

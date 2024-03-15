@@ -2,5 +2,6 @@
 export { default as like } from "./like";
 export { default as unlike } from "./unlike";
 export { default as create } from "./create";
+export { default as remove } from "./remove";
 
 export * from "./";
