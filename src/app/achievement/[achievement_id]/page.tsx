@@ -113,7 +113,8 @@ export default async function SpecificAchievement({
                 JSON.stringify(achievement.likes),
               ) as unknown as string[]
             }
-            authorID={achievement?.author?._id}
+            // eslint-disable-next-line @typescript-eslint/no-base-to-string
+            authorID={(achievement.author?._id ?? "").toString()}
             comments={
               JSON.parse(
                 JSON.stringify(achievement.comments),

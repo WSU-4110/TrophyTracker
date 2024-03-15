@@ -13,7 +13,7 @@ import { usePathname } from "next/navigation";
 import { remove } from "@/server/actions/achievement";
 interface AchievementClientProps {
   _id: string;
-  authorID: AchievementType["author"]["_id"];
+  authorID: string;
   likes: string[];
   comments: AchievementType["comments"];
   className?: string;
@@ -141,13 +141,18 @@ export default function AchievementClient(props: AchievementClientProps) {
           </div>
           <span className="inline text-xl font-semibold">{likes.length}</span>
           <br />
-          {session.data?.user.person._id == props.authorID && (
-            <div
-              onClick={deleteHandler}
-              className="ml-2 mt-[2px] cursor-pointer transition-all hover:text-red-800"
-            >
-              <BsFillTrashFill size={22} />
-            </div>
+          {myId ? (
+            // eslint-disable-next-line @typescript-eslint/no-base-to-string
+            myId.toString() === props.authorID && (
+              <div
+                onClick={deleteHandler}
+                className="ml-2 mt-[2px] cursor-pointer transition-all hover:text-red-800"
+              >
+                <BsFillTrashFill size={22} />
+              </div>
+            )
+          ) : (
+            <></>
           )}
         </span>
         <div className="w-full">
