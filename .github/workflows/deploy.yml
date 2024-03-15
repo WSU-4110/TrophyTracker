@@ -9,6 +9,7 @@ env:
   GITHUB_SECRET: ${{ secrets.GH_SECRET }}
   GITHUB_ID: ${{ secrets.GH_ID }}
   MONGODB_URI: ${{ secrets.MONGODB_URI }}
+  STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
 
 on:
   push:
