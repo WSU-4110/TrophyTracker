@@ -22,6 +22,7 @@ import { BsFillPencilFill, BsFillTrashFill } from "react-icons/bs";
 import React from "react";
 import { useRouter } from "next/navigation";
 import { ToastContext } from "./ToastProvider";
+import moment from "moment";
 interface CommentsProps {
   achievementId: string;
   comments: Array<Comment & { isAuthor: boolean }>;
@@ -70,13 +71,6 @@ export default function Comments(props: CommentsProps) {
             <TimelineItem className="mb--4" key={id}>
               <TimelinePoint />
               <TimelineContent>
-                <TimelineTime>
-                  {new Date(comment.createdAt).toLocaleString()}
-                  <i>
-                    {comment.lastModified &&
-                      ` • Edited ${new Date(comment.lastModified).toLocaleString()}`}
-                  </i>
-                </TimelineTime>
                 <TimelineTitle>
                   <UserTitle user={comment.author} />
                 </TimelineTitle>
@@ -160,6 +154,13 @@ export default function Comments(props: CommentsProps) {
                       </i>
                     </p>
                   )}
+                  <TimelineTime>
+                    {moment(comment.createdAt).fromNow()}
+                    <i>
+                      {comment.lastModified &&
+                        ` • Edited ${moment(comment.lastModified).fromNow()}`}
+                    </i>
+                  </TimelineTime>
                   {comment.isAuthor && (
                     <div className="flex gap-2 text-gray-500">
                       <button
@@ -179,6 +180,10 @@ export default function Comments(props: CommentsProps) {
                       <button
                         onClick={() => {
                           startTransition(async () => {
+                            const confirmDelete = confirm(
+                              "Are you sure you want to delete this comment?",
+                            );
+                            if (!confirmDelete) return;
                             const data = await removeComment(id);
                             if (data.error) {
                               addToast({

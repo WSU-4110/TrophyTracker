@@ -53,7 +53,7 @@ export default function AchievementClient(props: AchievementClientProps) {
         <p className="text-semibold text-xl">
           You must be{" "}
           <Link
-            className="text-indigo-500"
+            className="text-indigo-500 hover:underline"
             href={`/api/auth/signin?callbackUrl=${path}`}
           >
             signed in

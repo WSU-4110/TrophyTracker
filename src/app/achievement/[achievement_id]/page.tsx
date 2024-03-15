@@ -113,7 +113,7 @@ export default async function SpecificAchievement({
                 JSON.stringify(achievement.likes),
               ) as unknown as string[]
             }
-            authorID={achievement.author._id}
+            authorID={achievement?.author?._id}
             comments={
               JSON.parse(
                 JSON.stringify(achievement.comments),
