@@ -8,7 +8,7 @@ await import("./src/env.cjs");
 const config = {
     experimental: {
         serverComponentsExternalPackages: ["mongoose"]
-    }
+    }, optimizeFonts: false
 };
 
 export default config;
