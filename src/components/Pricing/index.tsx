@@ -14,7 +14,7 @@ const Pricing = () => {
 
   const fetchProducts = async () => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const { data } = await axios.get("/api/getproducts");
+    const { data } = { data: [] };
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     setProducts(data);
   };
@@ -22,7 +22,7 @@ const Pricing = () => {
   return (
     <section
       id="pricing"
-      className="dark:bg-dark relative z-20 overflow-hidden bg-white pb-12 pt-20 lg:pb-[90px] lg:pt-[120px]"
+      className="relative z-20 overflow-hidden bg-white pb-12 pt-20 dark:bg-dark lg:pb-[90px] lg:pt-[120px]"
     >
       <div className="container">
         <div className="mb-[60px]">
