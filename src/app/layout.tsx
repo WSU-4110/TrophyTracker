@@ -7,6 +7,7 @@ import { Suspense } from "react";
 import { Spinner } from "flowbite-react";
 import ToastComp from "@/comps/Toast";
 import Footer from "@/components/Footer";
+import { ToastContextProvider } from "@/comps/ToastProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -32,11 +33,11 @@ export default async function RootLayout({
         <Suspense fallback={<Spinner />}>
           <SessionProvider session={session}>
             <Nav />
-            <main>
+            <ToastContextProvider>
               <ToastComp />
-              <span>{children}</span>
-            </main>
-            <Footer />
+              <main>{children}</main>
+              <Footer />
+            </ToastContextProvider>
           </SessionProvider>
         </Suspense>
       </body>

@@ -1,11 +1,13 @@
-import { Schema, model, type Model, models } from 'mongoose'
+import { Schema, model, type Model, models, type ObjectId } from "mongoose";
 
 export interface User {
-  uid: string
-  name?: string
-  img?: string
-  email?: string
-  lastLogin: Date
+  _id?: ObjectId;
+  uid: string;
+  name?: string;
+  img?: string;
+  email?: string;
+  customized?: boolean;
+  lastLogin: Date;
 }
 
 const userSchema = new Schema<User>({
@@ -13,7 +15,8 @@ const userSchema = new Schema<User>({
   name: { type: String, required: false },
   img: { type: String, required: false },
   email: { type: String, required: false },
-  lastLogin: { type: Date, required: true }
-})
+  customized: { type: Boolean, required: false, default: false },
+  lastLogin: { type: Date, required: true },
+});
 
-export default (models.User as Model<User>) ?? model('User', userSchema)
+export default (models.User as Model<User>) ?? model("User", userSchema);

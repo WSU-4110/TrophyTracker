@@ -1,3 +1,4 @@
+import Breadcrumbs from "@/comps/Breadcrumbs";
 import ProfilePic from "@/comps/ProfilePic";
 import User from "@/db/Models/User";
 import connect from "@/db/connect";
@@ -22,6 +23,10 @@ export default async function Users() {
   return (
     <div className="tt-page-layout">
       <h1 className="tt-heading mb-2">Users</h1>
+      <Breadcrumbs
+        className="mb-6"
+        crumbs={[{ name: "Users", href: "/users" }]}
+      />
       <div className="tt-layout">
         {users.map((user) => (
           <Link

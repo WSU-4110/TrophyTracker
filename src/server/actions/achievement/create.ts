@@ -1,22 +1,22 @@
+"use server";
 import Achievement from "@/db/Models/Achievement";
-import User from "@/db/Models/User";
 import connect from "@/db/connect";
 import validate from "@/utils/validate";
-import { getServerSession } from "next-auth/next";
-import { redirect } from "next/navigation";
+import { getServerAuthSession } from "@/server/auth";
 import { isRedirectError } from "next/dist/client/components/redirect";
+import { redirect } from "next/navigation";
 
-const achievement = {
-  create,
-};
-
-export default achievement;
-
-async function create(formData: FormData) {
-  "use server";
-
+/**
+ * Server action to create a new achievement
+ * @param formData FormData with the following fields:
+ * - name: string
+ * - content: string
+ * - difficulty: number
+ * - game: string
+ */
+export default async function create(formData: FormData) {
   try {
-    const session = await getServerSession();
+    const session = await getServerAuthSession();
     if (!session) {
       redirect("/api/auth/signin");
     }
@@ -30,18 +30,15 @@ async function create(formData: FormData) {
     if (content.length < 12) {
       redirect("/achievements/create/?error=Description is too short");
     }
-    await connect();
-    const thisUser = await User.findOne({ email: session.user.email });
-    if (!thisUser) {
-      return redirect("/api/auth/signin");
-    }
+    const db = await connect();
     await Achievement.create({
-      author: thisUser,
+      author: session.user.person._id,
       name,
       content,
       difficulty,
       game,
     });
+    await db.disconnect();
   } catch (e: unknown) {
     const error = e as Error;
     if (isRedirectError(error)) throw error;
