@@ -23,7 +23,7 @@ export default function ToastComp() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error, message]);
   return (
-    <span className="mb-1 w-full">
+    <span className="animate-in mb-2 ml-2 flex items-center justify-center gap-3 transition-all duration-300 ease-in-out md:ml-0 md:justify-start">
       {showToast.error && (
         <Toast className="mb-2">
           <div className="flex items-center gap-2">

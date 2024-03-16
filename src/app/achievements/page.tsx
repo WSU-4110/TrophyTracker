@@ -6,7 +6,7 @@ import User from "@/db/Models/User";
 import connect from "@/db/connect";
 import { Button } from "flowbite-react";
 import { BsPlusSquareFill } from "react-icons/bs";
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
 export const revalidate = 360;
 
 export default async function Achievements() {
