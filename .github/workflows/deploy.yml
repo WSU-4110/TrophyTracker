@@ -9,6 +9,7 @@ env:
   GITHUB_SECRET: ${{ secrets.GH_SECRET }}
   GITHUB_ID: ${{ secrets.GH_ID }}
   MONGODB_URI: ${{ secrets.MONGODB_URI }}
+  STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
 
 on:
   push:
@@ -74,8 +75,8 @@ jobs:
             [Visit Preview](https://trophy-tracker-wsu-preview.vercel.app) :warning:
             [Visit Production](https://trophy-tracker-wsu.vercel.app) :white_check_mark:
 
-            > ![NOTE]
-
+            > [!NOTE]
+            >
             > After merging, the prod deployment will be begin.
 
         env:
