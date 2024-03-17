@@ -1,7 +1,7 @@
 import Game from "@/db/Models/Game";
 import connect from "@/db/connect";
 import { Button, Label, RangeSlider, Select, TextInput } from "flowbite-react";
-import achievementActions from "@/server/actions/achievement";
+import create from "@/server/actions/achievement/create";
 import { BsFillSendFill } from "react-icons/bs";
 
 export default async function page() {
@@ -17,10 +17,7 @@ export default async function page() {
     <div className="tt-page-layout">
       <h1 className="tt-heading">Create an achievement</h1>
       <div className="tt-layout text-black">
-        <form
-          className="flex w-full flex-col gap-4"
-          action={achievementActions.create}
-        >
+        <form className="flex w-full flex-col gap-4" action={create}>
           <div className="mt-2 block ">
             <Label
               htmlFor="name"

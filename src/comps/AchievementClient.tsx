@@ -1,29 +1,30 @@
-// bs BsHeart
 "use client";
-import { BsHeart, BsHeartFill } from "react-icons/bs";
+import { BsFillTrashFill, BsHeart, BsHeartFill } from "react-icons/bs";
 import { type Achievement as AchievementType } from "@/db/Models/Achievement";
 import { useSession } from "next-auth/react";
 import React from "react";
 import { Spinner } from "flowbite-react";
-import type Response from "@/types/Response";
 import { ToastContext } from "./ToastProvider";
-
-interface AchievementClientProps<ResponseType> {
+import Comments from "./Comments";
+import like from "@/server/actions/achievement/like";
+import unlike from "@/server/actions/achievement/unlike";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { remove } from "@/server/actions/achievement";
+interface AchievementClientProps {
   _id: string;
+  authorID: string;
   likes: string[];
   comments: AchievementType["comments"];
   className?: string;
-  like: (id: string) => Promise<ResponseType>;
-  unlike: (id: string) => Promise<ResponseType>;
 }
 
-export default function AchievementClient(
-  props: AchievementClientProps<Response>,
-) {
+export default function AchievementClient(props: AchievementClientProps) {
   const session = useSession();
   const { addToast } = React.useContext(ToastContext);
   const [pending, startTransition] = React.useTransition();
   const myId = session?.data?.user?.person?._id;
+  const path = usePathname();
   // OPTIMISTIC LIKES (if needed later)
   // const [optimisticLikes, setOptimisticLikes] = React.useOptimistic<
   //   typeof props.likes
@@ -36,29 +37,46 @@ export default function AchievementClient(
   //       : [...state, newLike],
   // );
   const [likes, setLikes] = React.useState(props.likes);
+  const comments = React.useState(
+    props.comments.map((comment) => ({
+      isAuthor: session.data?.user.person._id === comment.author._id,
+      ...comment,
+    })),
+  )[0];
   const liked = likes.includes(myId?.toString() ?? "");
   // just installed useswr, and just made user.ts helper functions
   if (session.status === "loading") return <Spinner />;
   // TODO: these functions should be combined and in a hook
-  if (session.status === "unauthenticated") return null;
-  function like() {
+  if (session.status === "unauthenticated")
+    return (
+      <div className=" rounded-lg bg-slate-200 p-5">
+        <p className="text-semibold text-xl">
+          You must be{" "}
+          <Link
+            className="text-indigo-500 hover:underline"
+            href={`/api/auth/signin?callbackUrl=${path}`}
+          >
+            signed in
+          </Link>{" "}
+          to comment and like.
+        </p>
+      </div>
+    );
+  function likeHandler() {
     startTransition(async () => {
       // setOptimisticLikes((prev: string[]) => [...prev, myId?.toString()]);
-      setLikes((prev) => [...prev, myId?.toString() ?? ""]);
-      const data = await props.like(props._id.toString());
+      const data = await like(props._id.toString());
       if (data.error) {
         addToast({
           message: data.error,
           type: "error",
         });
-        setLikes((prev) =>
-          prev.filter((predicate) => predicate !== myId?.toString()),
-        );
-
+        return;
         // setOptimisticLikes((prev: string[]) =>
         //   prev.filter((predicate) => predicate !== myId?.toString()),
         // );
       }
+      setLikes((prev) => [...prev, myId?.toString() ?? ""]);
       addToast({
         // @ts-expect-error there will be a message if no error
         message: data.message,
@@ -66,19 +84,19 @@ export default function AchievementClient(
       });
     });
   }
-  function unlike() {
+  function unlikeHandler() {
     startTransition(async () => {
-      setLikes((prev: string[]) =>
-        prev.filter((predicate) => predicate !== myId?.toString()),
-      );
-      const data = await props.unlike(props._id.toString());
+      const data = await unlike(props._id.toString());
       if (data.error) {
         addToast({
           message: data.error,
           type: "error",
         });
-        setLikes((prev) => [...prev, myId?.toString() ?? ""]);
+        return;
       }
+      setLikes((prev: string[]) =>
+        prev.filter((predicate) => predicate !== myId?.toString()),
+      );
       addToast({
         // @ts-expect-error there will be a message if no error
         message: data.message,
@@ -86,29 +104,60 @@ export default function AchievementClient(
       });
     });
   }
+
+  function deleteHandler() {
+    startTransition(async () => {
+      const removeWithConfirmation = confirm(
+        "Are you sure you want to delete this achievement?",
+      );
+      if (!removeWithConfirmation) return;
+      const formData = new FormData();
+      formData.append("id", props._id);
+      await remove(formData);
+    });
+  }
+
   return (
     <div className={props.className}>
-      <div className="my-6 flex cursor-pointer items-start justify-start rounded-lg bg-slate-200 p-5">
-        {/* // @ts-expect-error there should be that payload  */}
-        <div
-          onClick={() => {
-            if (liked) {
-              unlike();
-            } else {
-              like();
-            }
-          }}
-          className="mr-1 mt-1 transition-all hover:animate-pulse  hover:text-red-500"
-        >
-          {pending ? (
-            <Spinner size="sm" />
-          ) : liked ? (
-            <BsHeartFill size={22} />
+      <div className="my-6 ml-[-2px] rounded-lg bg-slate-300 p-5">
+        <span className="flex items-start justify-start">
+          <div
+            onClick={() => {
+              if (liked) {
+                unlikeHandler();
+              } else {
+                likeHandler();
+              }
+            }}
+            className="mb-2 mr-1 mt-1 cursor-pointer transition-all hover:animate-pulse hover:text-red-500"
+          >
+            {pending ? (
+              <Spinner size="sm" />
+            ) : liked ? (
+              <BsHeartFill size={22} />
+            ) : (
+              <BsHeart size={22} />
+            )}
+          </div>
+          <span className="inline text-xl font-semibold">{likes.length}</span>
+          <br />
+          {myId ? (
+            // eslint-disable-next-line @typescript-eslint/no-base-to-string
+            myId.toString() === props.authorID && (
+              <div
+                onClick={deleteHandler}
+                className="ml-2 mt-[2px] cursor-pointer transition-all hover:text-red-800"
+              >
+                <BsFillTrashFill size={22} />
+              </div>
+            )
           ) : (
-            <BsHeart size={22} />
+            <></>
           )}
+        </span>
+        <div className="w-full">
+          <Comments achievementId={props._id} comments={comments} />
         </div>
-        <span className="inline text-xl font-semibold">{likes.length}</span>
       </div>
     </div>
   );
