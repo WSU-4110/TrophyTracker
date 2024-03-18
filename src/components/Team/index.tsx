@@ -14,7 +14,7 @@ const teamData: TeamType[] = [
   },
   {
     id: 2,
-    name: 'Sukrut Nadigotti',
+    name: 'Venkat Yenduri',
     designation: 'Software Developer',
     image: '/images/team/team-02.png',
     facebookLink: '/#',
@@ -23,7 +23,7 @@ const teamData: TeamType[] = [
   },
   {
     id: 3,
-    name: 'Sukrut Nadigotti',
+    name: 'Zavaar Shah',
     designation: 'Software Developer',
     image: '/images/team/team-03.png',
     facebookLink: '/#',
@@ -32,9 +32,27 @@ const teamData: TeamType[] = [
   },
   {
     id: 4,
-    name: 'Sukrut Nadigotti',
+    name: 'Pierre Tawfik',
     designation: 'Software Developer',
     image: '/images/team/team-04.png',
+    facebookLink: '/#',
+    twitterLink: '/#',
+    instagramLink: '/#'
+  }
+  {
+    id: 5,
+    name: 'Yusef Turfe',
+    designation: 'Software Developer',
+    image: '/images/team/team-05.png',
+    facebookLink: '/#',
+    twitterLink: '/#',
+    instagramLink: '/#'
+  }
+{
+    id: 6,
+    name: 'Alberto Cervantes',
+    designation: 'Software Developer',
+    image: '/images/team/team-06.png',
     facebookLink: '/#',
     twitterLink: '/#',
     instagramLink: '/#'
