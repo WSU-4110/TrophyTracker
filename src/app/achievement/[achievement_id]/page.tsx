@@ -71,7 +71,7 @@ export default async function SpecificAchievement({
         ]}
       />
       <div className="grid w-full grid-cols-1 justify-items-center gap-4 md:grid-cols-4 md:justify-items-start">
-        <div className="col-span-1">
+        <div className="col-span-1 justify-start md:justify-center">
           <img
             width="400"
             height="400"

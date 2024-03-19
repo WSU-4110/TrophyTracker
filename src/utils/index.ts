@@ -38,7 +38,7 @@ export const parseHTML = (html: string): string => {
     h4: { class: "text-xl font-semibold" },
     h5: { class: "text-lg font-semibold" },
     h6: { class: "text-normal font-semibold" },
-    a: { class: "text-indigo-600  hover:underline" },
+    a: { class: "tt-link" },
     // Add more mappings as needed for other elements
   };
 

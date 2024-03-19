@@ -56,7 +56,7 @@ export default async function page({
             ]}
           />
           <div className="mb-2 grid w-full grid-cols-1 justify-items-center gap-3 md:grid-cols-4 md:justify-items-start">
-            <div className="col-span-1">
+            <div className="col-span-1 justify-start md:justify-center">
               <img
                 className="rounded-lg object-cover object-center"
                 src={game.header_image}
@@ -71,7 +71,7 @@ export default async function page({
                 ) : (
                   <Link
                     target="_blank"
-                    className="text-indigo-600 hover:underline"
+                    className="tt-link"
                     href={`https://store.steampowered.com/publisher/${game.publishers[0]}`}
                   >
                     {game.publishers}
@@ -85,7 +85,7 @@ export default async function page({
                 ) : (
                   <Link
                     target="_blank"
-                    className="text-indigo-600 hover:underline"
+                    className="tt-link"
                     href={`https://store.steampowered.com/search/?developer=${game.developers[0]}`}
                   >
                     {game.developers}
