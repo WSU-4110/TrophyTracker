@@ -8,6 +8,7 @@ import Achievement, {
 } from "@/db/Models/Achievement";
 import Comment, { type Comment as CommentType } from "@/db/Models/Comment";
 import Game from "@/db/Models/Game";
+import User from "@/db/Models/User";
 import connect from "@/db/connect";
 import { languageArrayJoin, parseHTML } from "@/utils";
 import moment from "moment";
@@ -19,10 +20,11 @@ export const dynamic = "force-dynamic"; // TODO fix the client caching issue
 
 export async function generateStaticParams() {
   await connect();
+  await Achievement.init();
   const achievements = await Achievement.find({}).select("_id");
   const paths = achievements.map((achievement) => ({
     params: {
-      achievement_id: achievement._id,
+      achievement_id: achievement._id.toString(),
     },
   }));
   return paths;
@@ -42,6 +44,7 @@ export default async function SpecificAchievement({
     redirect("/achievements?error=Invalid achievement");
   await connect();
   await Game.init();
+  await User.init();
   await Comment.init();
   const achievement = await Achievement.findById<AchievementType>(
     params.achievement_id,

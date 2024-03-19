@@ -27,6 +27,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // without this, the session somehow becomes available to the client initially, but later
   const session = await getServerAuthSession();
   return (
     <html lang="en">
