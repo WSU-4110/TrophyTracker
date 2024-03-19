@@ -4,6 +4,7 @@ import connect from "@/db/connect";
 import { type ObjectId } from "mongoose";
 import { getServerAuthSession } from "@/server/auth";
 import type ActionsResponse from "@/types/Response";
+import { revalidatePath } from "next/cache";
 
 // TODO: like and unlike should be combined into one function
 
@@ -26,6 +27,7 @@ export default async function unlike(
       { $pull: { likes: session.user.person._id } },
     );
     await db.disconnect();
+    revalidatePath(`/achievement/${String(achievementId)}`);
   } catch (e: unknown) {
     return {
       error: "An error occurred while unliking: " + (e as Error).message,

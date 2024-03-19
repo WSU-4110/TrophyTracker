@@ -2,7 +2,7 @@ import { Card } from "flowbite-react";
 import { type Achievement } from "../db/Models/Achievement";
 import Difficulty from "./Difficulty";
 import Link from "next/link";
-import { getUserTitle, textOverflow } from "@/utils";
+import { parseHTML } from "@/utils";
 import UserTitle from "./UserTitle";
 import moment from "moment";
 import { BsArrowRightShort } from "react-icons/bs";
@@ -12,7 +12,6 @@ interface AchievementCardProps extends Achievement {
 }
 
 export default function AchievementCard(props: AchievementCardProps) {
-  const authorName = getUserTitle(props.author);
   return (
     <div className="animate-in relative">
       <div className="absolute right-2 top-2 z-10 cursor-not-allowed transition-opacity hover:opacity-20">
@@ -28,14 +27,22 @@ export default function AchievementCard(props: AchievementCardProps) {
         <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
           {props.name}
         </h5>
-        <p className="font-normal text-gray-700 dark:text-gray-400">
-          {textOverflow(props.content, 200)}
-        </p>
+        <div
+          style={{
+            textOverflow: "ellipsis",
+            wordBreak: "break-word",
+          }}
+          className="max-h-[150px] cursor-s-resize overflow-y-hidden rounded-md border border-dashed p-2 font-normal text-gray-700 shadow-1 transition-all hover:max-h-[300px] hover:overflow-y-scroll dark:text-gray-400"
+          dangerouslySetInnerHTML={{
+            // TODO: don't the entire thing back - find a way to shorten this
+            __html: parseHTML(props.content),
+          }}
+        />
         <Link
           href={`/achievement/${props._id}`}
           className="flex items-center gap-2 rounded-lg border-2 border-purple-300 bg-white p-4 text-black transition-all hover:gap-5 hover:bg-purple-600 hover:text-white"
         >
-          View <BsArrowRightShort />
+          Expand <BsArrowRightShort />
         </Link>
         <hr />
         <div className="flex items-center gap-1">

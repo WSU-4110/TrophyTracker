@@ -12,7 +12,7 @@ export const revalidate = 360;
 export default async function Achievements() {
   const db = await connect();
   await Game.init(); // for expansions
-  // await User.init();
+  await User.init();
   const achievements = await Achievement.find({})
     .populate("author")
     .populate("game");
