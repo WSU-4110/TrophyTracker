@@ -36,6 +36,6 @@
   }
 
   .tt-link {
-    @apply tt-link;
+    @apply text-indigo-600 hover:underline;
   }
 }

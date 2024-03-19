@@ -29,12 +29,12 @@ export default function AchievementCard(props: AchievementCardProps) {
         </h5>
         <div
           style={{
-            maxHeight: "150px",
-            overflowY: "hidden",
             textOverflow: "ellipsis",
+            wordBreak: "break-word",
           }}
-          className="rounded-md border border-dashed p-2 font-normal text-gray-700 shadow-1 dark:text-gray-400"
+          className="max-h-[150px] cursor-s-resize overflow-y-hidden rounded-md border border-dashed p-2 font-normal text-gray-700 shadow-1 transition-all hover:max-h-[300px] hover:overflow-y-scroll dark:text-gray-400"
           dangerouslySetInnerHTML={{
+            // TODO: don't the entire thing back - find a way to shorten this
             __html: parseHTML(props.content),
           }}
         />
