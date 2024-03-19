@@ -1,5 +1,6 @@
 import Nav from "@/comps/Nav";
 import "@/styles/globals.css";
+import "react-quill/dist/quill.snow.css";
 import { Inter } from "next/font/google";
 import SessionProvider from "@/comps/SessionProvider";
 import { getServerAuthSession } from "@/server/auth";

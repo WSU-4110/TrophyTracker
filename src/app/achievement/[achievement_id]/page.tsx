@@ -9,7 +9,7 @@ import Achievement, {
 import Comment, { type Comment as CommentType } from "@/db/Models/Comment";
 import Game from "@/db/Models/Game";
 import connect from "@/db/connect";
-import { languageArrayJoin } from "@/utils";
+import { languageArrayJoin, parseHTML } from "@/utils";
 import moment from "moment";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -105,7 +105,9 @@ export default async function SpecificAchievement({
               {moment(achievement.createdAt).fromNow()}
             </p>
           </div>
-          <p>{achievement.content}</p>
+          <div
+            dangerouslySetInnerHTML={{ __html: parseHTML(achievement.content) }}
+          />
           <AchievementClient
             _id={String(achievement._id)}
             likes={
