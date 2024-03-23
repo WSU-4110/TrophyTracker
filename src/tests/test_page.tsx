@@ -16,8 +16,6 @@ describe("About Page", () => {
     );
   });
 });
-// Remove the unused import statement for 'render'
-// import { render } from "@testing-library/react";
 import SpecificAchievement from "../app/about/page";
 
 import { render, screen } from "@testing-library/react";
