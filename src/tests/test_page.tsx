@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { metadata } from "../app/about/page";
 import { expect } from "chai"; // Add import statement for 'expect'
 
