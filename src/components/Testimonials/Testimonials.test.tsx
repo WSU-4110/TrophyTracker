@@ -1,12 +1,15 @@
+/* eslint-disable @typescript-eslint/consistent-type-imports */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import Testimonials from "./SingleTestimonial"; // Adjust the import path as necessary
 import "@testing-library/jest-dom";
+import { Testimonial } from "@/types/testimonial";
 
 describe("Testimonials Component", () => {
   // Test 1: Component renders without crashing
   test("renders without crashing", () => {
-    render(<Testimonials testimonial={undefined as Testimonial} />);
+    render(<Testimonials testimonial={undefined as unknown as Testimonial} />);
     expect(screen.getByText(/What our Client Say/i)).toBeInTheDocument();
   });
 
@@ -19,6 +22,8 @@ describe("Testimonials Component", () => {
           name: "John Doe",
           designation: "CEO",
           content: "Lorem Ipsum",
+          image: "path/to/image",
+          star: 5,
         }}
       />,
     );
@@ -40,6 +45,8 @@ describe("Testimonials Component", () => {
           name: "John Doe",
           designation: "CEO",
           content: "Lorem Ipsum",
+          image: "path/to/image", // Add the 'image' property
+          star: 5, // Add the 'star' property
         }}
       />,
     );
@@ -49,7 +56,7 @@ describe("Testimonials Component", () => {
 
   // Test 4: SingleTestimonial components are rendered with correct data
   test("SingleTestimonial components render with correct data", () => {
-    render(<Testimonials testimonial={undefined as Testimonial} />);
+    render(<Testimonials testimonial={undefined as unknown as Testimonial} />);
     // Example test for the first testimonial's content
     expect(
       screen.getByText(

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-undef */
 import { Button, Card } from "flowbite-react";
 import Link from "next/link";
 import { BsArrowRightShort } from "react-icons/bs";
@@ -11,9 +12,11 @@ interface GameCardProps {
 
 export default function GameCard(props: GameCardProps) {
   return (
+    //  import Image from "next/image";
     <Card
       className="max-w-sm"
       renderImage={() => (
+        // eslint-disable-next-line @next/next/no-img-element
         <img width={500} height={500} src={props.img} alt={props.name} />
       )}
     >
