@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import Breadcrumbs from "@/comps/Breadcrumbs";
 import GameCard from "@/comps/GameCard";
 import Game from "@/db/Models/Game";
