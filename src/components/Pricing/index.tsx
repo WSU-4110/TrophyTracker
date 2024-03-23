@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import axios from "axios";
 import { useEffect, useState } from "react";
