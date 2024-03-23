@@ -23,7 +23,8 @@ export const env = createEnv({
     ),
     GITHUB_ID: z.string(),
     GITHUB_SECRET: z.string(),
-    MONGODB_URI: z.string().url()
+    MONGODB_URI: z.string().url(),
+    STEAM_API_KEY: z.string()
   },
 
   /**
@@ -45,7 +46,8 @@ export const env = createEnv({
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     MONGODB_URI: process.env.MONGODB_URI,
     GITHUB_ID: process.env.GITHUB_ID,
-    GITHUB_SECRET: process.env.GITHUB_SECRET
+    GITHUB_SECRET: process.env.GITHUB_SECRET,
+    STEAM_API_KEY: process.env.STEAM_API_KEY
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**
