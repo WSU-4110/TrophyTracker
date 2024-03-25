@@ -9,7 +9,7 @@ const Features = () => {
         <SectionTitle
           subtitle="Features"
           title="TrophyTracker"
-          paragraph="There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form."
+          paragraph="Discover the amazing features that TrophyTracker has to offer! Manage your games, trophies, and achievements with ease! Join the community and share your progress with others!"
         />
 
         <div className="-mx-4 mt-12 flex flex-wrap lg:mt-20">
