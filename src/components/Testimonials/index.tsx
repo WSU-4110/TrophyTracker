@@ -5,32 +5,33 @@ import SingleTestimonial from './SingleTestimonial'
 const testimonialData: Testimonial[] = [
   {
     id: 1,
-    name: 'Sukrut Nadigotti',
-    designation: 'Software Developer',
+    name: 'Alex Johnson',
+    designation: 'Gaming Enthusiast',
     content:
-      "Our members are so impressed. It's intuitive. It's clean. It's distraction free. If you're building a community.",
+      "TrophyTracker has completely changed the way I approach gaming achievements. The interface is user-friendly, and the ability to track progress across multiple platforms is unmatched. Highly recommended for any serious gamer!",
     image: '/images/testimonials/author-01.png',
     star: 5
   },
   {
     id: 2,
-    name: 'Sukrut Nadigotti',
-    designation: 'Software Developer',
+    name: 'Alberto Gomez',
+    designation: 'Professional Gamer',
     content:
-      "Our members are so impressed. It's intuitive. It's clean. It's distraction free. If you're building a community.",
+      "With TrophyTracker, I've found a community that shares my passion for gaming. The leaderboards are a fantastic way to fuel my competitive spirit, and the forums are great for tips and tricks. An absolute must-have for the gaming community.",
     image: '/images/testimonials/author-02.png',
     star: 5
   },
   {
     id: 3,
-    name: 'Sukrut Nadigotti',
-    designation: 'Software Developer',
+    name: 'Chris Dupont',
+    designation: 'Game Developer',
     content:
-      "Our members are so impressed. It's intuitive. It's clean. It's distraction free. If you're building a community.",
+      "As a developer, seeing how engaged users are with TrophyTracker is fantastic. It's a platform that not only enhances the gaming experience for players but also offers valuable insights for developers looking to improve their games.",
     image: '/images/testimonials/author-03.png',
     star: 5
   }
 ]
+
 
 const Testimonials = () => {
   return (
@@ -39,7 +40,7 @@ const Testimonials = () => {
         <SectionTitle
           subtitle="Testimonials"
           title="What our Client Say"
-          paragraph="There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form."
+          paragraph="Hear from our users and find out why TrophyTracker is the best platform for tracking your gaming achievements."
           width="640px"
           center
         />
