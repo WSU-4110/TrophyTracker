@@ -29,8 +29,8 @@ const Pricing = () => {
         <div className="mb-[60px]">
           <SectionTitle
             subtitle="Pricing Table"
-            title="Our Pricing Plan"
-            paragraph="There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form."
+            title="Completely Free to Use!"
+            paragraph="Trophytracker will be free for everyone to use permanently. We will never charge you for using our platform!"
             center
           />
         </div>
