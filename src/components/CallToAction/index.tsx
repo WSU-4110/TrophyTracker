@@ -18,7 +18,9 @@ const CallToAction = () => {
                 </h2>
                 {/* Description */}
                 <p className="mx-auto mb-6 max-w-[515px] text-base leading-[1.5] text-white">
-                  Don&apos;t miss out on the fun! Millions of gamers are already using TrophyTracker to manage their games and achievements. Join the community and start tracking your progress today!
+                  Don&apos;t miss out on the fun! Millions of gamers are already
+                  using TrophyTracker to manage their games and achievements.
+                  Join the community and start tracking your progress today!
                 </p>
                 {/* Link */}
                 <Link
@@ -103,6 +105,41 @@ const CallToAction = () => {
             />
           </svg>
         </span>
+      </div>
+      {/* Key Features */}
+      <div className="container mx-auto mt-16">
+        <h3 className="mb-8 text-center text-2xl font-bold text-white">
+          Key Features
+        </h3>
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {/* Feature 1 */}
+          <div className="rounded-lg bg-white p-6">
+            <h4 className="mb-2 text-lg font-bold">Achievement Tracking</h4>
+            <p className="text-gray-600">
+              Easily track your achievements across multiple games and
+              platforms. Keep a record of your progress and share your
+              accomplishments with friends.
+            </p>
+          </div>
+          {/* Feature 2 */}
+          <div className="rounded-lg bg-white p-6">
+            <h4 className="mb-2 text-lg font-bold">Community</h4>
+            <p className="text-gray-600">
+              Join a vibrant community of gamers who share your passion. Connect
+              with like-minded individuals, discuss games, and discover new
+              challenges.
+            </p>
+          </div>
+          {/* Feature 3 */}
+          <div className="rounded-lg bg-white p-6">
+            <h4 className="mb-2 text-lg font-bold">Game Library</h4>
+            <p className="text-gray-600">
+              Access a vast library of games and keep track of your collection.
+              Get recommendations based on your preferences and explore new
+              titles.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );
