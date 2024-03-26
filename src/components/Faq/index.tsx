@@ -3,7 +3,7 @@ import SingleFaq from './SingleFaq'
 
 const Faq = () => {
   return (
-    <section className="dark:bg-dark relative z-20 overflow-hidden bg-white pb-8 pt-20 lg:pb-[50px] lg:pt-[120px]">
+    <a id="faq-section" className="dark:bg-dark relative z-20 overflow-hidden bg-white pb-8 pt-20 lg:pb-[50px] lg:pt-[120px]">
       <div className="container">
       <SectionTitle
         subtitle="FAQ"
@@ -628,7 +628,7 @@ const Faq = () => {
           </svg>
         </span>
       </div>
-    </section>
+    </a>
   )
 }
 
