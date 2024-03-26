@@ -142,7 +142,7 @@ const Footer = () => {
               <ul>
                 <li>
                   <a
-                    href="/#"
+                    href="/HowItWorks"
                     className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
                   >
                     How it works
@@ -150,7 +150,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <a
-                    href="/#"
+                    href="/PrivacyPolicy"
                     className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
                   >
                     Privacy policy
@@ -158,7 +158,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <a
-                    href="/#"
+                    href="/TermsOfService"
                     className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
                   >
                     Terms of Service
