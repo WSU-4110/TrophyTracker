@@ -1,45 +1,45 @@
-import { type Testimonial } from '@/types/testimonial'
-import SectionTitle from '../Common/SectionTitle'
-import SingleTestimonial from './SingleTestimonial'
+import { type Testimonial } from "@/types/testimonial";
+import SectionTitle from "../Common/SectionTitle";
+import SingleTestimonial from "./SingleTestimonial";
 
 const testimonialData: Testimonial[] = [
   {
     id: 1,
-    name: 'Sukrut Nadigotti',
-    designation: 'Software Developer',
+    name: "Alex Johnson",
+    designation: "Gaming Enthusiast",
     content:
-      "Our members are so impressed. It's intuitive. It's clean. It's distraction free. If you're building a community.",
-    image: '/images/testimonials/author-01.png',
-    star: 5
+      "TrophyTracker has completely changed the way I approach gaming achievements. The interface is user-friendly, and the ability to track progress across multiple platforms is unmatched. Highly recommended for any serious gamer!",
+    image: "/images/testimonials/author-01.png",
+    star: 5,
   },
   {
     id: 2,
-    name: 'Sukrut Nadigotti',
-    designation: 'Software Developer',
+    name: "Alberto Gomez",
+    designation: "Professional Gamer",
     content:
-      "Our members are so impressed. It's intuitive. It's clean. It's distraction free. If you're building a community.",
-    image: '/images/testimonials/author-02.png',
-    star: 5
+      "With TrophyTracker, I've found a community that shares my passion for gaming. The leaderboards are a fantastic way to fuel my competitive spirit, and the forums are great for tips and tricks. An absolute must-have for the gaming community.",
+    image: "/images/testimonials/author-02.png",
+    star: 5,
   },
   {
     id: 3,
-    name: 'Sukrut Nadigotti',
-    designation: 'Software Developer',
+    name: "Chris Dupont",
+    designation: "Game Developer",
     content:
-      "Our members are so impressed. It's intuitive. It's clean. It's distraction free. If you're building a community.",
-    image: '/images/testimonials/author-03.png',
-    star: 5
-  }
-]
+      "As a developer, seeing how engaged users are with TrophyTracker is fantastic. It's a platform that not only enhances the gaming experience for players but also offers valuable insights for developers looking to improve their games.",
+    image: "/images/testimonials/author-03.png",
+    star: 5,
+  },
+];
 
 const Testimonials = () => {
   return (
-    <section className="bg-gray-1 dark:bg-dark-2 py-20 md:py-[120px]">
+    <section className="bg-gray-1 py-20 dark:bg-dark-2 md:py-[120px]">
       <div className="container px-4">
         <SectionTitle
           subtitle="Testimonials"
-          title="What our Client Say"
-          paragraph="There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form."
+          title="What our Users Say"
+          paragraph="Hear from our users and find out why TrophyTracker is the best platform for tracking your gaming achievements."
           width="640px"
           center
         />
@@ -51,7 +51,7 @@ const Testimonials = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Testimonials
+export default Testimonials;

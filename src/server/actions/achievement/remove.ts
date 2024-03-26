@@ -3,6 +3,7 @@ import Achievement from "@/db/Models/Achievement";
 import Comment from "@/db/Models/Comment";
 import connect from "@/db/connect";
 import { getServerAuthSession } from "@/server/auth";
+import { revalidatePath } from "next/cache";
 import { isRedirectError } from "next/dist/client/components/redirect";
 import { redirect } from "next/navigation";
 
@@ -42,5 +43,6 @@ export default async function remove(formData: FormData) {
     console.error(error);
     redirect("/achievements/?error=An error occurred: " + error.message);
   }
+  revalidatePath("/achievements");
   redirect("/achievements/?message=Deleted Achievement!");
 }

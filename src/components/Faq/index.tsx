@@ -3,48 +3,48 @@ import SingleFaq from './SingleFaq'
 
 const Faq = () => {
   return (
-    <section className="dark:bg-dark relative z-20 overflow-hidden bg-white pb-8 pt-20 lg:pb-[50px] lg:pt-[120px]">
+    <a id="faq-section" className="dark:bg-dark relative z-20 overflow-hidden bg-white pb-8 pt-20 lg:pb-[50px] lg:pt-[120px]">
       <div className="container">
-        <SectionTitle
-          subtitle="FAQ"
-          title="Any Questions? Answered"
-          paragraph="There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form."
-          width="640px"
-          center
-        />
+      <SectionTitle
+        subtitle="FAQ"
+        title="Any Questions? Answered"
+        paragraph="If you can't find the answer you're looking for, feel free to contact us below. We're here to help."
+        width="640px"
+        center
+      />
 
-        <div className="-mx-4 mt-[60px] flex flex-wrap lg:mt-20">
-          <div className="w-full px-4 lg:w-1/2">
-            <SingleFaq
-              question="TrophyTracker?"
-              answer="directive is used to inline any existing utility classes into your own custom CSS. This is useful when you need to write custom CSS (like to override the styles in a third-party library) but still want to work with your design tokens ."
-            />
-            <SingleFaq
-              question="TrophyTracker?"
-              answer="directive is used to inline any existing utility classes into your own custom CSS. This is useful when you need to write custom CSS (like to override the styles in a third-party library) but still want to work with your design tokens ."
-            />
-            <SingleFaq
-              question="TrophyTracker?"
-              answer="directive is used to inline any existing utility classes into your own custom CSS. This is useful when you need to write custom CSS (like to override the styles in a third-party library) but still want to work with your design tokens ."
-            />
-          </div>
+      <div className="-mx-4 mt-[60px] flex flex-wrap lg:mt-20">
+        <div className="w-full px-4 lg:w-1/2">
+          <SingleFaq
+            question="What is TrophyTracker?"
+            answer="TrophyTracker is a unified tool for tracking and sharing gaming achievements across multiple gaming platforms, enhancing the social dimension of gaming."
+          />
+          <SingleFaq
+            question="Which platforms does TrophyTracker support?"
+            answer="TrophyTracker supports Windows, Mac, Android, iOS, and Linux platforms, as it is a Web-based platform."
+          />
+          <SingleFaq
+            question="How does TrophyTracker enhance the gaming experience?"
+            answer="By integrating multiple gaming platforms achievements into one system, it enables gamers to easily monitor and showcase achievements"
+          />
+        </div>
 
-          <div className="w-full px-4 lg:w-1/2">
-            <SingleFaq
-              question="TrophyTracker?"
-              answer="directive is used to inline any existing utility classes into your own custom CSS. This is useful when you need to write custom CSS (like to override the styles in a third-party library) but still want to work with your design tokens ."
-            />
-            <SingleFaq
-              question="TrophyTracker?"
-              answer="directive is used to inline any existing utility classes into your own custom CSS. This is useful when you need to write custom CSS (like to override the styles in a third-party library) but still want to work with your design tokens ."
-            />
-            <SingleFaq
-              question="TrophyTracker?"
-              answer="directive is used to inline any existing utility classes into your own custom CSS. This is useful when you need to write custom CSS (like to override the styles in a third-party library) but still want to work with your design tokens ."
-            />
-          </div>
+        <div className="w-full px-4 lg:w-1/2">
+          <SingleFaq
+            question="How do I get started with TrophyTracker?"
+            answer="Getting started is simple. Sign up for an account, and you can immediately start tracking your achievements!"
+          />
+          <SingleFaq
+            question="Is there an authentication system in TrophyTracker?"
+            answer="Yes, TrophyTracker uses an authentication framework to ensure secure login/signup and protect user data."
+          />
+          <SingleFaq
+            question="How can I interact with other gamers on TrophyTracker?"
+            answer="Our Community Forums are the perfect place to discuss your favorite games, share achievements, and connect with like-minded gamers. Join forums that interest you and start engaging!"
+          />
         </div>
       </div>
+    </div>
 
       <div>
         <span className="absolute left-4 top-4 -z-[1]">
@@ -628,7 +628,7 @@ const Faq = () => {
           </svg>
         </span>
       </div>
-    </section>
+    </a>
   )
 }
 

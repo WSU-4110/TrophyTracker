@@ -3,7 +3,7 @@ export interface TeamType {
   name: string
   designation: string
   image: string
-  facebookLink: string
-  twitterLink: string
+  githubLink: string
+  LinkedInLink: string
   instagramLink: string
 }

@@ -22,7 +22,7 @@ const achievementSchema = new Schema<Achievement>({
   author: { type: Schema.Types.ObjectId, ref: "User", required: true },
   createdAt: { type: Date, default: Date.now },
   lastModified: { type: Date, default: null },
-  name: { type: String, required: true, maxLength: 80 },
+  name: { type: String, required: true, maxLength: 80, minLength: 6 },
   content: { type: String, required: true, minlength: 11 },
   game: { type: Schema.Types.ObjectId, ref: "Game", required: true },
   comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],

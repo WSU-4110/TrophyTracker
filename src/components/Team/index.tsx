@@ -5,38 +5,38 @@ import SingleTeam from './SingleTeam'
 const teamData: TeamType[] = [
   {
     id: 1,
-    name: 'Sukrut Nadigotti',
-    designation: 'Software Developer',
+    name: 'Zavaar Shah',
+    designation: 'Fullstack Developer',
     image: '/images/team/team-01.png',
-    facebookLink: '/#',
-    twitterLink: '/#',
+    githubLink: 'https://github.com/ThatZiv',
+    LinkedInLink: 'https://www.linkedin.com/in/zavaar-shah/',
     instagramLink: '/#'
   },
   {
     id: 2,
-    name: 'Sukrut Nadigotti',
-    designation: 'Software Developer',
+    name: 'Venkat Yenduri',
+    designation: 'Fullstack Developer',
     image: '/images/team/team-02.png',
-    facebookLink: '/#',
-    twitterLink: '/#',
+    githubLink: 'https://github.com/XLRA',
+    LinkedInLink: 'https://www.linkedin.com/in/venkatyenduri/',
     instagramLink: '/#'
   },
   {
     id: 3,
     name: 'Sukrut Nadigotti',
-    designation: 'Software Developer',
+    designation: 'Fullstack Developer',
     image: '/images/team/team-03.png',
-    facebookLink: '/#',
-    twitterLink: '/#',
+    githubLink: 'https://github.com/SukrutN',
+    LinkedInLink: 'https://www.linkedin.com/in/sukrutn/',
     instagramLink: '/#'
   },
   {
     id: 4,
-    name: 'Sukrut Nadigotti',
-    designation: 'Software Developer',
+    name: 'Pierre Tawfik',
+    designation: 'Fullstack Developer',
     image: '/images/team/team-04.png',
-    facebookLink: '/#',
-    twitterLink: '/#',
+    githubLink: 'https://github.com/PierreT20',
+    LinkedInLink: 'https://www.linkedin.com/in/pierretawfik/',
     instagramLink: '/#'
   }
 ]
