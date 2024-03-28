@@ -13,7 +13,7 @@ const Footer = () => {
             <div className="mb-10 w-full">
               <Link href="/" className="mb-6 inline-block max-w-[160px]">
                 <Image
-                  src="/images/logo/logo-white.svg"
+                  src="/images/logo/logo-white.png"
                   alt="logo"
                   width={140}
                   height={30}
@@ -109,7 +109,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <a
-                    href="/#"
+                    href="#features-section"
                     className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
                   >
                     Features
@@ -117,7 +117,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <a
-                    href="/#"
+                    href="/about"
                     className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
                   >
                     About
@@ -125,7 +125,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <a
-                    href="/#"
+                    href="#testimonials-section"
                     className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
                   >
                     Testimonial
@@ -142,7 +142,7 @@ const Footer = () => {
               <ul>
                 <li>
                   <a
-                    href="/#"
+                    href="/HowItWorks"
                     className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
                   >
                     How it works
@@ -150,7 +150,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <a
-                    href="/#"
+                    href="/PrivacyPolicy"
                     className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
                   >
                     Privacy policy
@@ -158,64 +158,19 @@ const Footer = () => {
                 </li>
                 <li>
                   <a
-                    href="/#"
+                    href="/TermsOfService"
                     className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
                   >
                     Terms of Service
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="/#"
-                    className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
-                  >
-                    Refund policy
-                  </a>
+                  
                 </li>
               </ul>
             </div>
           </div>
-          <div className="w-full px-4 sm:w-1/2 md:w-1/2 lg:w-3/12 xl:w-2/12">
-            <div className="mb-10 w-full">
-              <h4 className="mb-9 text-lg font-semibold text-white">
-                Our Products
-              </h4>
-              <ul>
-                <li>
-                  <a
-                    href="/#"
-                    className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
-                  >
-                    LineIcons
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/#"
-                    className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
-                  >
-                    Next.js Templates
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/#"
-                    className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
-                  >
-                    TailAdmin
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/#"
-                    className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
-                  >
-                    PlainAdmin
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
+          
           <div className="w-full px-4 md:w-2/3 lg:w-6/12 xl:w-3/12">
             <div className="mb-10 w-full">
               <h4 className="mb-9 text-lg font-semibold text-white">
@@ -224,7 +179,7 @@ const Footer = () => {
               <ul>
                 <li>
                   <a
-                    href="/#"
+                    href="#faq-section"
                     className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
                   >
                     FAQ
@@ -240,20 +195,13 @@ const Footer = () => {
                 </li>
                 <li>
                   <a
-                    href="/#"
+                    href="#contact"
                     className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
                   >
-                    Support
+                    Contact-Us
                   </a>
                 </li>
-                <li>
-                  <a
-                    href="/#"
-                    className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
-                  >
-                    About
-                  </a>
-                </li>
+                
               </ul>
             </div>
           </div>

@@ -1,5 +1,7 @@
 # Installation
 
+Built By The Trophy Tracker Team
+
 1. Clone the repository
 
 ```bash
