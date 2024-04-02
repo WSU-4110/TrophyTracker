@@ -5,20 +5,38 @@ import Achievement from "@/db/Models/Achievement"; // type Achievement as Achive
 import Game from "@/db/Models/Game";
 import User from "@/db/Models/User";
 import connect from "@/db/connect";
-import { Button, Select, Label } from "flowbite-react";
+import { type Filter } from "@/types/Filter";
+import { Button } from "flowbite-react";
 import { BsPlusSquareFill } from "react-icons/bs";
 export const dynamic = "force-dynamic";
 export const revalidate = 360;
 
-export default async function Achievements() {
+interface AchievementsPage {
+  searchParams?: Record<string, string | undefined>;
+}
+
+export default async function Achievements({ searchParams }: AchievementsPage) {
   const db = await connect();
   await Game.init(); // for expansions
   await User.init();
-  const achievements = await Achievement.find({})
+  // filter based on query params
+  const filter: Partial<Filter> = {};
+  if (searchParams) {
+    if (searchParams.game) {
+      filter.game = searchParams.game;
+    }
+    if (searchParams.difficulty) {
+      filter.difficulty = searchParams.difficulty;
+    }
+    if (searchParams.author) {
+      filter.author = searchParams.author;
+    }
+  }
+  const achievements = await Achievement.find(filter)
     .populate("author")
     .populate("game");
 
-  const gamesQuery = await Game.find({}).select("name steam_appid").lean();
+  const gamesQuery = await Game.find({}).select("name").lean();
   const games = gamesQuery.map((game) => ({
     ...game,
     _id: String(game._id),
@@ -28,6 +46,7 @@ export default async function Achievements() {
     ...user,
     _id: String(user._id),
   }));
+
   // await db.disconnect();
   // FIXME: MongoExpiredSessionError: Cannot use a session that has ended
   return (

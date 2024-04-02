@@ -4,6 +4,7 @@ import { type Game } from "@/db/Models/Game";
 import { type User } from "@/db/Models/User";
 import { Label, Select } from "flowbite-react";
 import * as React from "react";
+import SubHeader from "./SubHeader";
 
 interface AchievementFilterProps {
   games: Array<Partial<Game> & { _id: string }>;
@@ -14,7 +15,7 @@ const classes = {
   option: "text-gray-900 bg-gray-200",
 };
 const difficultyOptions = [
-  { value: 0, label: "All Difficulties" },
+  { value: "", label: "All Difficulties" },
   { value: 1, label: "Very Easy" },
   { value: 2, label: "Easy" },
   { value: 3, label: "Medium" },
@@ -76,67 +77,61 @@ export default function AchievementFilter({
     }
   }, []);
   return (
-    <div className="mb-4 flex items-center justify-between gap-2 md:items-start">
-      <div className="w-full">
-        <Label htmlFor="filter-games" className="mb-2">
-          Filter by Game
-        </Label>
-        <Select
-          disabled={loading}
-          ref={gamesRef}
-          id="filter-games"
-          className="mb-4"
-        >
-          <option value="">All Games</option>
-          {games.map(({ steam_appid, name }) => (
-            <option
-              className={classes.option}
-              key={String(steam_appid)}
-              value={String(steam_appid)}
-            >
-              {name}
-            </option>
-          ))}
-        </Select>
-      </div>
-      <div className="w-full">
-        <Label htmlFor="filter-difficulty" className="mb-2">
-          Filter by Difficulty
-        </Label>
-        <Select
-          disabled={loading}
-          ref={difficultyRef}
-          id="filter-difficulty"
-          className="mb-4"
-        >
-          {difficultyOptions.map(({ value, label }) => (
-            <option className={classes.option} key={value} value={value}>
-              {label}
-            </option>
-          ))}
-        </Select>
-      </div>
-      <div className="w-full">
-        <Label htmlFor="filter-author" className="mb-2">
-          Filter by Author
-        </Label>
-        <Select
-          disabled={loading}
-          ref={authorRef}
-          id="filter-author"
-          className="mb-4"
-        >
-          <option value="">All Authors</option>
-          {users.map(({ _id, email, uid, name }) => (
-            <option
-              className={classes.option}
-              key={String(_id)}
-              value={String(_id)}
-            >
-              {name ?? email ?? uid}
-            </option>
-          ))}
-        </Select>
+    <div>
+      <SubHeader title="Filter Achievements" />
+      <div className="mb-4 flex items-center justify-between gap-2 md:items-start">
+        <div className="w-full">
+          <Select
+            disabled={loading}
+            ref={gamesRef}
+            id="filter-games"
+            className="mb-4"
+          >
+            <option value="">All Games</option>
+            {games.map(({ _id, name }) => (
+              <option
+                className={classes.option}
+                key={String(_id)}
+                value={String(_id)}
+              >
+                {name}
+              </option>
+            ))}
+          </Select>
+        </div>
+        <div className="w-full">
+          <Select
+            disabled={loading}
+            ref={difficultyRef}
+            id="filter-difficulty"
+            className="mb-4"
+          >
+            {difficultyOptions.map(({ value, label }) => (
+              <option className={classes.option} key={value} value={value}>
+                {label}
+              </option>
+            ))}
+          </Select>
+        </div>
+        <div className="w-full">
+          <Select
+            disabled={loading}
+            ref={authorRef}
+            id="filter-author"
+            className="mb-4"
+          >
+            <option value="">All Authors</option>
+            {users.map(({ _id, email, uid, name }) => (
+              <option
+                className={classes.option}
+                key={String(_id)}
+                value={String(_id)}
+              >
+                {name ?? email ?? uid}
+              </option>
+            ))}
+          </Select>
+        </div>
       </div>
     </div>
   );
