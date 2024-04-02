@@ -1,10 +1,11 @@
 import AchievementCard from "@/comps/AchievementCard";
+import AchievementFilter from "@/comps/AchievementFilter";
 import Breadcrumbs from "@/comps/Breadcrumbs";
 import Achievement from "@/db/Models/Achievement"; // type Achievement as AchivementType,
 import Game from "@/db/Models/Game";
 import User from "@/db/Models/User";
 import connect from "@/db/connect";
-import { Button } from "flowbite-react";
+import { Button, Select, Label } from "flowbite-react";
 import { BsPlusSquareFill } from "react-icons/bs";
 export const dynamic = "force-dynamic";
 export const revalidate = 360;
@@ -16,6 +17,17 @@ export default async function Achievements() {
   const achievements = await Achievement.find({})
     .populate("author")
     .populate("game");
+
+  const gamesQuery = await Game.find({}).select("name steam_appid").lean();
+  const games = gamesQuery.map((game) => ({
+    ...game,
+    _id: String(game._id),
+  }));
+  const usersQuery = await User.find({}).select("name email uid").lean();
+  const users = usersQuery.map((user) => ({
+    ...user,
+    _id: String(user._id),
+  }));
   // await db.disconnect();
   // FIXME: MongoExpiredSessionError: Cannot use a session that has ended
   return (
@@ -25,6 +37,8 @@ export default async function Achievements() {
         className="my-6"
         crumbs={[{ name: "Achievements", href: "/achievements" }]}
       />
+      {/* @ts-expect-error less exhaustive query */}
+      <AchievementFilter {...{ games, users }} />
       <div className="tt-layout">
         {achievements.map(
           ({
