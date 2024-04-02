@@ -5,7 +5,7 @@ import Achievement from "@/db/Models/Achievement"; // type Achievement as Achive
 import Game from "@/db/Models/Game";
 import User from "@/db/Models/User";
 import connect from "@/db/connect";
-import { type Filter } from "@/types/Filter";
+import { type Sort, type Filter } from "@/types/Filter";
 import { Button } from "flowbite-react";
 import { BsPlusSquareFill } from "react-icons/bs";
 export const dynamic = "force-dynamic";
@@ -21,6 +21,7 @@ export default async function Achievements({ searchParams }: AchievementsPage) {
   await User.init();
   // filter based on query params
   const filter: Partial<Filter> = {};
+  const sort: Partial<Sort> = {};
   if (searchParams) {
     if (searchParams.game) {
       filter.game = searchParams.game;
@@ -31,10 +32,22 @@ export default async function Achievements({ searchParams }: AchievementsPage) {
     if (searchParams.author) {
       filter.author = searchParams.author;
     }
+    if (searchParams.sort && searchParams.order) {
+      if (searchParams.sort === "createdAt") {
+        sort.createdAt = searchParams.order === "asc" ? 1 : -1;
+      }
+      if (searchParams.sort === "comments") {
+        sort.comments = searchParams.order === "asc" ? 1 : -1;
+      }
+      if (searchParams.sort === "likes") {
+        sort.likes = searchParams.order === "asc" ? 1 : -1;
+      }
+    }
   }
   const achievements = await Achievement.find(filter)
     .populate("author")
-    .populate("game");
+    .populate("game")
+    .sort(sort);
 
   const gamesQuery = await Game.find({}).select("name").lean();
   const games = gamesQuery.map((game) => ({
