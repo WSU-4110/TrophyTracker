@@ -2,7 +2,7 @@
 
 import { type Game } from "@/db/Models/Game";
 import { type User } from "@/db/Models/User";
-import { Label, Select } from "flowbite-react";
+import { Select } from "flowbite-react";
 import * as React from "react";
 import SubHeader from "./SubHeader";
 
