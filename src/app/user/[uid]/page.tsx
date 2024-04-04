@@ -6,9 +6,12 @@ import User from "@/db/Models/User";
 import connect from "@/db/connect";
 import { getUserTitle } from "@/utils";
 import { Button } from "flowbite-react";
+import { isValidObjectId } from "mongoose";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Bs123, BsCalendarDate, BsMailbox, BsStarFill } from "react-icons/bs";
+
+// TODO: do generate params here
 
 export default async function SpecificUser({
   params,
@@ -18,6 +21,8 @@ export default async function SpecificUser({
   await connect();
   await User.init();
   await Achievement.init();
+  if (!isValidObjectId(params.uid))
+    return redirect("/users?error=Invalid User ID");
   const user = await User.findOne({ _id: params.uid }).lean();
   const achievements = await Achievement.find({ author: params.uid }).select(
     "likes comments",

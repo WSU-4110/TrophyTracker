@@ -7,6 +7,7 @@ import User from "@/db/Models/User";
 import connect from "@/db/connect";
 import { type Sort, type Filter } from "@/types/Filter";
 import { Button } from "flowbite-react";
+import { isValidObjectId } from "mongoose";
 import { BsPlusSquareFill } from "react-icons/bs";
 export const dynamic = "force-dynamic";
 export const revalidate = 360;
@@ -23,13 +24,13 @@ export default async function Achievements({ searchParams }: AchievementsPage) {
   const filter: Partial<Filter> = {};
   const sort: Partial<Sort> = {};
   if (searchParams) {
-    if (searchParams.game) {
+    if (isValidObjectId(searchParams.game)) {
       filter.game = searchParams.game;
     }
     if (searchParams.difficulty) {
       filter.difficulty = searchParams.difficulty;
     }
-    if (searchParams.author) {
+    if (isValidObjectId(searchParams.author)) {
       filter.author = searchParams.author;
     }
     if (searchParams.sort && searchParams.order) {
