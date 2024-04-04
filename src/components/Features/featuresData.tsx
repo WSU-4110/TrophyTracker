@@ -17,8 +17,8 @@ const featuresData: Feature[] = [
         />
       </svg>
     ),
-    title: 'TrophyTracker',
-    paragraph: 'Lorem Ipsum is simply dummy text of the printing and industry.',
+    title: 'Achievement Tracking',
+    paragraph: 'Track your achievements and trophies with ease! Manage your games and progress!',
     btn: 'Learn More',
     btnLink: '/#'
   },
@@ -38,8 +38,8 @@ const featuresData: Feature[] = [
         />
       </svg>
     ),
-    title: 'TrophyTracker',
-    paragraph: 'Lorem Ipsum is simply dummy text of the printing and industry.',
+    title: 'Leaderboards',
+    paragraph: 'Compete with gamers across the globe and climb the leaderboards to become the best! ',
     btn: 'Learn More',
     btnLink: '/#'
   },
@@ -91,8 +91,8 @@ const featuresData: Feature[] = [
         />
       </svg>
     ),
-    title: 'TrophyTracker',
-    paragraph: 'Lorem Ipsum is simply dummy text of the printing and industry.',
+    title: 'Speedruning',
+    paragraph: 'Speedrun your favorite games and track your progress to improve your time!',
     btn: 'Learn More',
     btnLink: '/#'
   },
@@ -124,8 +124,8 @@ const featuresData: Feature[] = [
         />
       </svg>
     ),
-    title: 'TrophyTracker',
-    paragraph: 'Lorem Ipsum is simply dummy text of the printing and industry.',
+    title: 'Community Forums',
+    paragraph: 'Join the community and talk your favorite games and achievements with others!',
     btn: 'Learn More',
     btnLink: '/#'
   }

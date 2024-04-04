@@ -5,59 +5,41 @@ import SingleTeam from "./SingleTeam";
 const teamData: TeamType[] = [
   {
     id: 1,
-    name: "Sukrut Nadigotti",
-    designation: "Software Developer",
-    image: "/images/team/team-01.png",
-    facebookLink: "/#",
-    twitterLink: "/#",
-    instagramLink: "/#",
+    name: 'Zavaar Shah',
+    designation: 'Fullstack Developer',
+    image: '/images/team/team-01.png',
+    githubLink: 'https://github.com/ThatZiv',
+    LinkedInLink: 'https://www.linkedin.com/in/zavaar-shah/',
+    instagramLink: '/#'
   },
   {
     id: 2,
-    name: "Venkat Yenduri",
-    designation: "Software Developer",
-    image: "/images/team/team-02.png",
-    facebookLink: "/#",
-    twitterLink: "/#",
-    instagramLink: "/#",
+    name: 'Venkat Yenduri',
+    designation: 'Fullstack Developer',
+    image: '/images/team/team-02.png',
+    githubLink: 'https://github.com/XLRA',
+    LinkedInLink: 'https://www.linkedin.com/in/venkatyenduri/',
+    instagramLink: '/#'
   },
   {
     id: 3,
-    name: "Zavaar Shah",
-    designation: "Software Developer",
-    image: "/images/team/team-03.png",
-    facebookLink: "/#",
-    twitterLink: "/#",
-    instagramLink: "/#",
+    name: 'Sukrut Nadigotti',
+    designation: 'Fullstack Developer',
+    image: '/images/team/team-03.png',
+    githubLink: 'https://github.com/SukrutN',
+    LinkedInLink: 'https://www.linkedin.com/in/sukrutn/',
+    instagramLink: '/#'
   },
   {
     id: 4,
-    name: "Pierre Tawfik",
-    designation: "Software Developer",
-    image: "/images/team/team-04.png",
-    facebookLink: "/#",
-    twitterLink: "/#",
-    instagramLink: "/#",
-  },
-  {
-    id: 5,
-    name: "Yusef Turfe",
-    designation: "Software Developer",
-    image: "/images/team/team-05.png",
-    facebookLink: "/#",
-    twitterLink: "/#",
-    instagramLink: "/#",
-  },
-  {
-    id: 6,
-    name: "Alberto Cervantes",
-    designation: "Software Developer",
-    image: "/images/team/team-06.png",
-    facebookLink: "/#",
-    twitterLink: "/#",
-    instagramLink: "/#",
-  },
-];
+    name: 'Pierre Tawfik',
+    designation: 'Fullstack Developer',
+    image: '/images/team/team-04.png',
+    githubLink: 'https://github.com/PierreT20',
+    LinkedInLink: 'https://www.linkedin.com/in/pierretawfik/',
+    instagramLink: '/#'
+  }
+]
 
 const Team = () => {
   return (

@@ -4,6 +4,7 @@ import connect from "@/db/connect";
 import { type ObjectId } from "mongoose";
 import { getServerAuthSession } from "@/server/auth";
 import type ActionsResponse from "@/types/Response";
+import { revalidatePath } from "next/cache";
 
 /**
  * Server action to like an achievement
@@ -23,6 +24,7 @@ export default async function like(
       { _id: achievementId },
       { $addToSet: { likes: session.user.person._id } },
     );
+    revalidatePath(`/achievement/${String(achievementId)}`);
     await db.disconnect();
   } catch (e: unknown) {
     return { error: "An error occurred while liking: " + (e as Error).message };

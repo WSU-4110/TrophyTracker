@@ -58,10 +58,7 @@ export default function GamePage() {
         <span className="tt-layout">
           <p className="w-full text-gray-500">
             These games are provided via the{" "}
-            <Link
-              className="text-indigo-600 hover:underline"
-              href="https://steamcommunity.com/dev"
-            >
+            <Link className="tt-link" href="https://steamcommunity.com/dev">
               Steam Web API
             </Link>
             . Results may be inconsistent.
@@ -85,7 +82,7 @@ export default function GamePage() {
               searchTerms &&
               searchResults.map((game) => (
                 <Link
-                  className="mb-2 w-full cursor-pointer font-bold hover:text-indigo-600 hover:underline"
+                  className="hover:tt-link mb-2 w-full cursor-pointer font-bold"
                   href={`/library/game/${game.appid}`}
                   target="_blank"
                   key={game.appid}
