@@ -1,4 +1,23 @@
+import { permanentRedirect, redirect } from "next/navigation";
+
 const Contact = () => {
+  async function submit(formData: FormData) {
+    "use server";
+    const fullName = formData.get("fullName") as string;
+    const email = formData.get("email") as string;
+    const phone = formData.get("phone") as string;
+    const message = formData.get("message") as string;
+
+    // Print the request here (it will be archived in vercel logging)
+    console.log("Recieved contact request: ", {
+      fullName,
+      email,
+      phone,
+      message,
+    });
+
+    permanentRedirect("/?message=Recieved information.");
+  }
   return (
     <section id="contact" className="relative py-20 md:py-[120px]">
       <div className="absolute left-0 top-0 -z-[1] h-full w-full dark:bg-dark"></div>
@@ -69,7 +88,7 @@ const Contact = () => {
               <h3 className="mb-8 text-2xl font-semibold text-dark dark:text-white md:text-[28px] md:leading-[1.42]">
                 Send us a Message
               </h3>
-              <form>
+              <form action={submit}>
                 <div className="mb-[22px]">
                   <label
                     htmlFor="fullName"
