@@ -12,7 +12,6 @@ import User from "@/db/Models/User";
 import connect from "@/db/connect";
 import { languageArrayJoin, parseHTML } from "@/utils";
 import moment from "moment";
-import { isValidObjectId } from "mongoose";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
@@ -40,8 +39,9 @@ export default async function SpecificAchievement({
 }) {
   if (!params.achievement_id)
     redirect("/achievements?error=No achievement found");
-  if (!isValidObjectId(params.achievement_id))
-    redirect("/achievements?error=Invalid achievement ID");
+  // check if mongo id is valid
+  if (!params.achievement_id.match(/^[0-9a-fA-F]{24}$/))
+    redirect("/achievements?error=Invalid achievement");
   await connect();
   await Game.init();
   await User.init();

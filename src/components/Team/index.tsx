@@ -1,6 +1,6 @@
-import { type TeamType } from "@/types/team";
-import SectionTitle from "../Common/SectionTitle";
-import SingleTeam from "./SingleTeam";
+import { type TeamType } from '@/types/team'
+import SectionTitle from '../Common/SectionTitle'
+import SingleTeam from './SingleTeam'
 
 const teamData: TeamType[] = [
   {
@@ -45,7 +45,7 @@ const Team = () => {
   return (
     <section
       id="team"
-      className="overflow-hidden bg-gray-1 pb-12 pt-20 dark:bg-dark-2 lg:pb-[90px] lg:pt-[120px]"
+      className="bg-gray-1 dark:bg-dark-2 overflow-hidden pb-12 pt-20 lg:pb-[90px] lg:pt-[120px]"
     >
       <div className="container">
         <div className="mb-[60px]">
@@ -65,7 +65,7 @@ const Team = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Team;
+export default Team
