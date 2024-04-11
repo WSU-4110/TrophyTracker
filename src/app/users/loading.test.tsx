@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Loading from './loading'; // Adjust the import path according to your file structure
+import Loading from './loading'; 
 
 describe('Loading Component', () => {
   it('renders the loading message', () => {
