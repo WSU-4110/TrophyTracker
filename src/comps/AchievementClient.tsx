@@ -11,6 +11,7 @@ import unlike from "@/server/actions/achievement/unlike";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { remove } from "@/server/actions/achievement";
+import { Role } from "@/db/Models/User";
 interface AchievementClientProps {
   _id: string;
   authorID: string;
@@ -39,7 +40,9 @@ export default function AchievementClient(props: AchievementClientProps) {
   const [likes, setLikes] = React.useState(props.likes);
   const comments = React.useState(
     props.comments.map((comment) => ({
-      isAuthor: session.data?.user.person._id === comment.author._id,
+      isAuthor:
+        session.data?.user.person._id === comment.author._id ||
+        session.data?.user.person?.role == Role.ADMIN,
       ...comment,
     })),
   )[0];
