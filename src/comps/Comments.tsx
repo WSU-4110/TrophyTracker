@@ -54,6 +54,7 @@ type CommentState = Record<
 >;
 export default function Comments(props: CommentsProps) {
   const [commentState, setCommentState] = React.useState<CommentState>({});
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const router = useRouter();
   const createRef = React.useRef<HTMLFormElement>(null);
   const { addToast } = React.useContext(ToastContext);

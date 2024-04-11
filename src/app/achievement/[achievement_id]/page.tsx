@@ -8,8 +8,9 @@ import Achievement, {
 } from "@/db/Models/Achievement";
 import Comment, { type Comment as CommentType } from "@/db/Models/Comment";
 import Game from "@/db/Models/Game";
+import User from "@/db/Models/User";
 import connect from "@/db/connect";
-import { languageArrayJoin } from "@/utils";
+import { languageArrayJoin, parseHTML } from "@/utils";
 import moment from "moment";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -19,10 +20,11 @@ export const dynamic = "force-dynamic"; // TODO fix the client caching issue
 
 export async function generateStaticParams() {
   await connect();
+  await Achievement.init();
   const achievements = await Achievement.find({}).select("_id");
   const paths = achievements.map((achievement) => ({
     params: {
-      achievement_id: achievement._id,
+      achievement_id: achievement._id.toString(),
     },
   }));
   return paths;
@@ -42,6 +44,7 @@ export default async function SpecificAchievement({
     redirect("/achievements?error=Invalid achievement");
   await connect();
   await Game.init();
+  await User.init();
   await Comment.init();
   const achievement = await Achievement.findById<AchievementType>(
     params.achievement_id,
@@ -71,7 +74,7 @@ export default async function SpecificAchievement({
         ]}
       />
       <div className="grid w-full grid-cols-1 justify-items-center gap-4 md:grid-cols-4 md:justify-items-start">
-        <div className="col-span-1">
+        <div className="col-span-1 justify-start md:justify-center">
           <img
             width="400"
             height="400"
@@ -105,7 +108,9 @@ export default async function SpecificAchievement({
               {moment(achievement.createdAt).fromNow()}
             </p>
           </div>
-          <p>{achievement.content}</p>
+          <div
+            dangerouslySetInnerHTML={{ __html: parseHTML(achievement.content) }}
+          />
           <AchievementClient
             _id={String(achievement._id)}
             likes={
