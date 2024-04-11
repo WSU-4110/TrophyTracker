@@ -109,7 +109,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <a
-                    href="#features-section"
+                    href="/#"
                     className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
                   >
                     Features
@@ -117,7 +117,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <a
-                    href="/about"
+                    href="/#"
                     className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
                   >
                     About
@@ -125,7 +125,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <a
-                    href="#testimonials-section"
+                    href="/#"
                     className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
                   >
                     Testimonial
@@ -165,12 +165,57 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  
+                  <a
+                    href="/#"
+                    className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
+                  >
+                    Refund policy
+                  </a>
                 </li>
               </ul>
             </div>
           </div>
-          
+          <div className="w-full px-4 sm:w-1/2 md:w-1/2 lg:w-3/12 xl:w-2/12">
+            <div className="mb-10 w-full">
+              <h4 className="mb-9 text-lg font-semibold text-white">
+                Our Products
+              </h4>
+              <ul>
+                <li>
+                  <a
+                    href="/#"
+                    className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
+                  >
+                    LineIcons
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/#"
+                    className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
+                  >
+                    Next.js Templates
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/#"
+                    className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
+                  >
+                    TailAdmin
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/#"
+                    className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
+                  >
+                    PlainAdmin
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
           <div className="w-full px-4 md:w-2/3 lg:w-6/12 xl:w-3/12">
             <div className="mb-10 w-full">
               <h4 className="mb-9 text-lg font-semibold text-white">
@@ -179,7 +224,7 @@ const Footer = () => {
               <ul>
                 <li>
                   <a
-                    href="#faq-section"
+                    href="/#"
                     className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
                   >
                     FAQ
@@ -195,13 +240,20 @@ const Footer = () => {
                 </li>
                 <li>
                   <a
-                    href="#contact"
+                    href="/#"
                     className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
                   >
-                    Contact-Us
+                    Support
                   </a>
                 </li>
-                
+                <li>
+                  <a
+                    href="/#"
+                    className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
+                  >
+                    About
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
