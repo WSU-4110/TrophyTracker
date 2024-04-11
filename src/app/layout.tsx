@@ -1,10 +1,7 @@
 import Nav from "@/comps/Nav";
-<<<<<<< HEAD
-=======
 import "@/styles/globals.css";
 import "@/styles/fonts.css";
 import "react-quill/dist/quill.snow.css";
->>>>>>> development
 import { Inter } from "next/font/google";
 
 import SessionProvider from "@/comps/SessionProvider";
