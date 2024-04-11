@@ -1,1 +1,17 @@
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import Loading from './loading';  
+
+describe('Loading Component', () => {
+  test('renders the loading message and spinner', () => {
+    render(<Loading />);
+    
+    expect(screen.getByText(/loading users/i)).toBeInTheDocument();
+   
+    const spinner = screen.getByRole('status');
+    expect(spinner).toBeInTheDocument();
+   
+    expect(spinner).toHaveClass('h-8 w-8');  
+  });
+});
 
