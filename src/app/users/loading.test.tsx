@@ -14,7 +14,7 @@ describe('Loading Component', () => {
 
    
     
-    const spinner = screen.getByTestId('spinner'); // This assumes you've added data-testid="spinner" to your Spinner component
+    const spinner = screen.getByTestId('spinner'); 
     expect(spinner).toBeInTheDocument();
   });
 });
