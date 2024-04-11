@@ -6,6 +6,7 @@ import { BsFillInfoCircleFill } from "react-icons/bs";
 // BsFillInfoCircleFill
 
 // shows a toast message if the error/message query parameter is present in the URL.
+// this will be for server-sided messages
 export default function ToastComp() {
   const searchParams = useSearchParams();
   const error = searchParams.get("error");
@@ -22,7 +23,7 @@ export default function ToastComp() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error, message]);
   return (
-    <span className="mb-1">
+    <span className="animate-in mb-2 ml-2 flex items-center justify-center gap-3 transition-all duration-300 ease-in-out md:ml-0 md:justify-start">
       {showToast.error && (
         <Toast className="mb-2">
           <div className="flex items-center gap-2">
