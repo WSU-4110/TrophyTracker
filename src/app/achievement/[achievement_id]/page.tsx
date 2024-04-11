@@ -12,6 +12,7 @@ import User from "@/db/Models/User";
 import connect from "@/db/connect";
 import { languageArrayJoin, parseHTML } from "@/utils";
 import moment from "moment";
+import { isValidObjectId } from "mongoose";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
@@ -21,6 +22,7 @@ export const dynamic = "force-dynamic"; // TODO fix the client caching issue
 export async function generateStaticParams() {
   await connect();
   await Achievement.init();
+  await User.init();
   const achievements = await Achievement.find({}).select("_id");
   const paths = achievements.map((achievement) => ({
     params: {
@@ -30,8 +32,6 @@ export async function generateStaticParams() {
   return paths;
 }
 
-// TODO: use markdown for content and preserve line breaks and such
-
 export default async function SpecificAchievement({
   params,
 }: {
@@ -39,8 +39,7 @@ export default async function SpecificAchievement({
 }) {
   if (!params.achievement_id)
     redirect("/achievements?error=No achievement found");
-  // check if mongo id is valid
-  if (!params.achievement_id.match(/^[0-9a-fA-F]{24}$/))
+  if (!isValidObjectId(params.achievement_id))
     redirect("/achievements?error=Invalid achievement");
   await connect();
   await Game.init();
