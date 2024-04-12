@@ -13,11 +13,13 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Bs123, BsCalendarDate, BsMailbox, BsStarFill } from "react-icons/bs";
 
+export const revalidate = 360;
+export const dynamic = "force-static";
+
 export async function generateStaticParams() {
   await connect();
   await User.init();
-  await Achievement.init();
-  const users = await User.find({}).lean();
+  const users = await User.find({}).select("_id").lean();
   const paths = users.map((user) => ({
     params: {
       uid: String(user._id),
