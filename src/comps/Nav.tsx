@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Button, Navbar, Dropdown, Spinner } from "flowbite-react";
+import { Button, Navbar, Dropdown, Spinner, Badge } from "flowbite-react";
 import { getSession, signIn, signOut, useSession } from "next-auth/react";
 import ProfilePic from "./ProfilePic";
 import { HiLogout, HiCog, HiOutlineUserCircle } from "react-icons/hi";
 import React from "react";
 import { Poppins } from "next/font/google";
 import { usePathname } from "next/navigation";
+import Role from "@/types/Role";
 
 const poppins = Poppins({ weight: "400", subsets: ["latin"] });
 
@@ -71,11 +72,20 @@ export default function Nav() {
                 <span className="block truncate text-sm font-medium">
                   {session?.user?.email}
                 </span>
+                {session.user?.person.role == Role.ADMIN && (
+                  <Badge className="text-center" color="purple">
+                    {session.user?.person.role.toUpperCase()}
+                  </Badge>
+                )}
               </Dropdown.Header>
-              <Dropdown.Item icon={HiOutlineUserCircle}>
-                Edit Profile
+              <Dropdown.Item
+                as={Link}
+                href={`/user/${String(session.user.person._id)}`}
+                icon={HiOutlineUserCircle}
+              >
+                View Profile
               </Dropdown.Item>
-              <Dropdown.Item icon={HiCog}>Settings</Dropdown.Item>
+              {/* <Dropdown.Item icon={HiCog}>Settings</Dropdown.Item> */}
               <Dropdown.Divider />
               <Dropdown.Item
                 icon={HiLogout}

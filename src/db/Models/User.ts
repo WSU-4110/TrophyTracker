@@ -1,5 +1,5 @@
 import { Schema, model, type Model, models, type ObjectId } from "mongoose";
-import Role from "../../types/Role";
+import type Role from "../../types/Role";
 
 export interface User {
   _id?: ObjectId;
