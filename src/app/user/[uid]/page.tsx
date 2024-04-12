@@ -5,8 +5,9 @@ import Share from "@/comps/Share";
 import Achievement from "@/db/Models/Achievement";
 import User from "@/db/Models/User";
 import connect from "@/db/connect";
+import Role from "@/types/Role";
 import { getUserTitle } from "@/utils";
-import { Button } from "flowbite-react";
+import { Badge, Button } from "flowbite-react";
 import { isValidObjectId } from "mongoose";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -59,15 +60,27 @@ export default async function SpecificUser({
       />
       <div className="w-full text-center">
         <ProfilePic name={name} img={user.img} rounded size={"xl"} />
-        <h1 className="text-2xl font-bold">{name}</h1>
+        <div className="flex items-center justify-center gap-1">
+          <h1 className="text-2xl font-bold">{name}</h1>
+          {user?.role == Role.ADMIN && (
+            <Badge color="purple">{user?.role?.toUpperCase()}</Badge>
+          )}
+        </div>
         <p className="text-sm text-gray-500">
           Received <span className="font-bold">{numLikes} likes</span> &{" "}
           <span className="font-bold">{numComments} comments</span>.
         </p>
       </div>
       <div>
-        <Drawer icon={<Bs123 />} title="User ID">
-          <p>{String(user?._id)}</p>
+        <Drawer icon={<Bs123 />} title="User Info">
+          <p>
+            ID: <b>{String(user?._id)}</b>
+          </p>
+          {user?.role && (
+            <p>
+              Role: <b>{user?.role.toUpperCase()}</b>
+            </p>
+          )}
         </Drawer>
         {user.email && (
           <Drawer icon={<BsMailbox />} title="Email">

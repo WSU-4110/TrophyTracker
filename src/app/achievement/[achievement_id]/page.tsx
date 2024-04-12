@@ -50,7 +50,7 @@ export default async function SpecificAchievement({
     {},
   )
     .populate([
-      { path: "author", model: "User", select: "name img email" },
+      { path: "author", model: "User", select: "name img email role" },
       { path: "game", model: "Game" },
       {
         path: "comments",
