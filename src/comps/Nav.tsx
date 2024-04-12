@@ -52,7 +52,7 @@ export default function Nav() {
     <Navbar fluid rounded>
       <Navbar.Brand as={Link} href="/">
         <Image
-          src="/logo.png"
+          src="/images/logo/logo-white.png"
           width={40}
           height={40}
           className="mr-3"
