@@ -1,14 +1,29 @@
 import Breadcrumbs from "@/comps/Breadcrumbs";
 import Drawer from "@/comps/Drawer";
 import ProfilePic from "@/comps/ProfilePic";
+import Share from "@/comps/Share";
 import Achievement from "@/db/Models/Achievement";
 import User from "@/db/Models/User";
 import connect from "@/db/connect";
 import { getUserTitle } from "@/utils";
 import { Button } from "flowbite-react";
+import { isValidObjectId } from "mongoose";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Bs123, BsCalendarDate, BsMailbox, BsStarFill } from "react-icons/bs";
+
+export async function generateStaticParams() {
+  await connect();
+  await User.init();
+  await Achievement.init();
+  const users = await User.find({}).lean();
+  const paths = users.map((user) => ({
+    params: {
+      uid: String(user._id),
+    },
+  }));
+  return paths;
+}
 
 export default async function SpecificUser({
   params,
@@ -18,6 +33,8 @@ export default async function SpecificUser({
   await connect();
   await User.init();
   await Achievement.init();
+  if (!isValidObjectId(params.uid))
+    return redirect("/users?error=Invalid User ID");
   const user = await User.findOne({ _id: params.uid }).lean();
   const achievements = await Achievement.find({ author: params.uid }).select(
     "likes comments",
@@ -54,26 +71,28 @@ export default async function SpecificUser({
         </Drawer>
         {user.email && (
           <Drawer icon={<BsMailbox />} title="Email">
-            <Link passHref href={`mailto:${user.email}`}>
-              <a className="tt-link">{user.email}</a>
+            <Link className="tt-link" href={`mailto:${user.email}`}>
+              {user.email}
             </Link>
           </Drawer>
         )}
         <Drawer icon={<BsCalendarDate />} title="Last Login">
           <p>{user.lastLogin.toLocaleString()}</p>
         </Drawer>
-        <Drawer
-          icon={<BsStarFill />}
-          title={`${achievements.length} Achievement(s)`}
-        >
-          <Link passHref href={`/achievements/?author=${String(user?._id)}`}>
-            <a>
-              <Button>
-                View {name}&apos;s {achievements.length} achievements
-              </Button>
-            </a>
-          </Link>
-        </Drawer>
+        {achievements.length > 0 && (
+          <Drawer
+            icon={<BsStarFill />}
+            title={`${achievements.length} Achievement(s)`}
+          >
+            <Button
+              as={Link}
+              href={`/achievements/?author=${String(user?._id)}`}
+            >
+              View {name}&apos;s {achievements.length} achievements
+            </Button>
+          </Drawer>
+        )}
+        <Share title="Share Profile" />
       </div>
     </div>
   );
