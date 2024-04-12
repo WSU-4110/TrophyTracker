@@ -1,9 +1,5 @@
 import { Schema, model, type Model, models, type ObjectId } from "mongoose";
-
-export enum Role {
-  USER = "user",
-  ADMIN = "admin",
-}
+import Role from "../../types/Role";
 
 export interface User {
   _id?: ObjectId;

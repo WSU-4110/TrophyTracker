@@ -42,8 +42,8 @@ export default async function SpecificAchievement({
   if (!isValidObjectId(params.achievement_id))
     redirect("/achievements?error=Invalid achievement");
   await connect();
-  await Game.init();
   await User.init();
+  await Game.init();
   await Comment.init();
   const achievement = await Achievement.findById<AchievementType>(
     params.achievement_id,

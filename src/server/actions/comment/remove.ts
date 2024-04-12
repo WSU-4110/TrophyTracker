@@ -1,7 +1,7 @@
 "use server";
 import Achievement from "@/db/Models/Achievement";
 import Comment from "@/db/Models/Comment";
-import { Role } from "@/db/Models/User";
+import Role from "@/types/Role";
 import connect from "@/db/connect";
 import { getServerAuthSession } from "@/server/auth";
 import type ActionsResponse from "@/types/Response";

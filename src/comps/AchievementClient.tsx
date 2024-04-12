@@ -11,7 +11,7 @@ import unlike from "@/server/actions/achievement/unlike";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { remove } from "@/server/actions/achievement";
-import { Role } from "@/db/Models/User";
+import Role from "@/types/Role";
 interface AchievementClientProps {
   _id: string;
   authorID: string;
@@ -38,11 +38,10 @@ export default function AchievementClient(props: AchievementClientProps) {
   //       : [...state, newLike],
   // );
   const [likes, setLikes] = React.useState(props.likes);
+  const isAdmin = session.data?.user.person?.role == Role.ADMIN;
   const comments = React.useState(
     props.comments.map((comment) => ({
-      isAuthor:
-        session.data?.user.person._id === comment.author._id ||
-        session.data?.user.person?.role == Role.ADMIN,
+      isAuthor: session.data?.user.person._id === comment.author._id || isAdmin,
       ...comment,
     })),
   )[0];
@@ -146,7 +145,7 @@ export default function AchievementClient(props: AchievementClientProps) {
           <br />
           {myId ? (
             // eslint-disable-next-line @typescript-eslint/no-base-to-string
-            myId.toString() === props.authorID && (
+            (myId.toString() === props.authorID || isAdmin) && (
               <div
                 onClick={deleteHandler}
                 className="ml-2 mt-[2px] cursor-pointer transition-all hover:text-red-800"
