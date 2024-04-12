@@ -54,7 +54,7 @@ export default async function SpecificAchievement({
       { path: "game", model: "Game" },
       {
         path: "comments",
-        populate: { path: "author", select: "name img email" },
+        populate: { path: "author", select: "name img email role" },
       },
     ])
     .lean();
