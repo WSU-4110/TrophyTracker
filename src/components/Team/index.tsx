@@ -6,7 +6,7 @@ const teamData: TeamType[] = [
   {
     id: 1,
     name: 'Zavaar Shah',
-    designation: 'Fullstack Developer',
+    designation: 'Developer',
     image: '/images/team/team-01.png',
     githubLink: 'https://github.com/ThatZiv',
     LinkedInLink: 'https://www.linkedin.com/in/zavaar-shah/',
@@ -15,7 +15,7 @@ const teamData: TeamType[] = [
   {
     id: 2,
     name: 'Venkat Yenduri',
-    designation: 'Fullstack Developer',
+    designation: 'Developer',
     image: '/images/team/team-02.png',
     githubLink: 'https://github.com/XLRA',
     LinkedInLink: 'https://www.linkedin.com/in/venkatyenduri/',
@@ -24,7 +24,7 @@ const teamData: TeamType[] = [
   {
     id: 3,
     name: 'Sukrut Nadigotti',
-    designation: 'Fullstack Developer',
+    designation: 'Developer',
     image: '/images/team/team-03.png',
     githubLink: 'https://github.com/SukrutN',
     LinkedInLink: 'https://www.linkedin.com/in/sukrutn/',
@@ -33,10 +33,28 @@ const teamData: TeamType[] = [
   {
     id: 4,
     name: 'Pierre Tawfik',
-    designation: 'Fullstack Developer',
+    designation: 'Developer',
     image: '/images/team/team-04.png',
     githubLink: 'https://github.com/PierreT20',
     LinkedInLink: 'https://www.linkedin.com/in/pierretawfik/',
+    instagramLink: '/#'
+  },
+  {
+    id: 5,
+    name: 'Yusef Turfe',
+    designation: 'Developer',
+    image: '/images/team/team-05.png',
+    githubLink: 'https://github.com/Yturfe',
+    LinkedInLink: 'https://www.linkedin.com/in/yusef-turfe-b6b747276/',
+    instagramLink: '/#'
+  },
+  {
+    id: 6,
+    name: 'Alberto Cervantes',
+    designation: 'Developer',
+    image: '/images/team/team-06.png',
+    githubLink: 'https://github.com/AlbertoCervantes30',
+    LinkedInLink: 'https://www.linkedin.com/in/alberto-cervantes-529797200',
     instagramLink: '/#'
   }
 ]
@@ -50,9 +68,8 @@ const Team = () => {
       <div className="container">
         <div className="mb-[60px]">
           <SectionTitle
-            subtitle="Our Team"
             title="Meet Our Team"
-            paragraph="There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form."
+            paragraph="Below are the people who helped bring TrophyTracker to where it is today!"
             width="640px"
             center
           />
