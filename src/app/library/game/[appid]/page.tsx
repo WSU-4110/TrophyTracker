@@ -11,8 +11,20 @@ import { redirect } from "next/navigation";
 import { BsBookmarkCheckFill, BsBookmarkPlusFill } from "react-icons/bs";
 import { FaSteam } from "react-icons/fa";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-dynamic"; // TODO: fix the auth caching issue
 export const revalidate = 360;
+
+export async function generateStaticParams() {
+  await connect();
+  await Game.init();
+  const games = await Game.find({}).lean();
+  const paths = games.map((game) => ({
+    params: {
+      appid: game.steam_appid,
+    },
+  }));
+  return paths;
+}
 
 export default async function page({
   params: { appid },

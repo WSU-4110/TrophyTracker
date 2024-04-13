@@ -59,7 +59,7 @@ export default function Comments(props: CommentsProps) {
   const createRef = React.useRef<HTMLFormElement>(null);
   const { addToast } = React.useContext(ToastContext);
   const [pending, startTransition] = React.useTransition();
-  // NOTE: comment.{name,author,img} are only available due to population in original query
+  // NOTE: comment.{name,author,img,role} are only available due to population in original query
   if (!props) return <Spinner />;
   return (
     <span>
