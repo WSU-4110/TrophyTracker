@@ -1,67 +1,78 @@
-// Importing Image component from next.js for image rendering
-import Image from "next/image";
+import React from 'react';
 
 const HowItWorks = () => {
+  const steps = [
+    {
+      id: 1,
+      title: 'Sign In with GitHub',
+      summary: 'Create your account by signing in through GitHub, ensuring a secure and swift registration process.',
+      imageUrl: '/images/HowItWorks/SignInWithGit.png'
+    },
+    {
+      id: 2,
+      title: 'Click on "Create an Achievement"',
+      summary: 'Access the "Create an Achievement" section at the bottom of your dashboard to start setting up your game achievements. If your game is not there, feel free to add it.',
+      imageUrl: '/images/HowItWorks/CreateAnAchievement.png'
+    },
+    {
+      id: 3,
+      title: 'Select or Add Your Game',
+      summary: 'Choose a game from our extensive library or add a new one if it\'s not already listed.',
+      imageUrl: '/images/HowItWorks/SelectGame.png'
+    },
+    {
+      id: 4,
+      title: 'Name Your Achievement',
+      summary: 'Define your achievements by giving them unique names that describe the milestones you\'ve reached.',
+      imageUrl: '/images/HowItWorks/NameAchiev.png'
+    },
+    {
+      id: 5,
+      title: 'Determine Difficulty',
+      summary: 'Use the slider to set the difficulty level of your achievement, tailoring challenges to your skills.',
+      imageUrl: '/images/HowItWorks/DetermineDifficulty.png'
+    },
+    {
+      id: 6,
+      title: 'Add a Description',
+      summary: 'Describe your achievement, detailing what it entails and any special notes related to completing it.',
+      imageUrl: '/images/HowItWorks/Description.png'
+    },
+    {
+      id: 7,
+      title: 'Upload and Interact',
+      summary: 'Once everything is set, click "Upload" and start enjoying the community interaction with other users.',
+      imageUrl: '' // No image for this step
+    },
+  ];
+
   return (
-    <section
-      id="HowItWorks"
-      className="bg-gray-1 pb-8 pt-20 dark:bg-dark-2 lg:pb-[70px] lg:pt-[120px]"
-    >
-      <div className="container">
-        <div className="wow fadeInUp" data-wow-delay=".2s">
-          <div className="-mx-4 flex flex-wrap items-center">
-            <div className="w-full px-4 lg:w-1/2">
-              <div className="mb-12 max-w-[540px] lg:mb-0">
-                <h2 className="mb-5 text-3xl font-bold leading-tight text-dark dark:text-white sm:text-[40px] sm:leading-[1.2]">
-                  How TrophyTracker Works
-                </h2>
-                <div className="mb-10 text-base leading-relaxed text-body-color dark:text-dark-6">
-                  Follow these simple steps to start tracking your gaming achievements:
-                  <ol className="list-decimal pl-5">
-                    <li>Make an account by signing in with GitHub.</li>
-                    <li>Click on Achievements.</li>
-                    <li>Select your game or add a new one to our library.</li>
-                    <li>Name your achievement.</li>
-                    <li>Use the slider to determine its difficulty.</li>
-                    <li>Add a description of your achievement.</li>
-                    <li>Click Upload and enjoy interacting with other users.</li>
-                  </ol>
-                </div>
-                <a
-                  href="/#"
-                  className="inline-flex items-center justify-center rounded-md bg-primary px-7 py-3 text-center text-base font-medium text-white duration-300 hover:bg-primary/90"
-                >
-                  Get Started
-                </a>
+    <section id="how-it-works" className="bg-gray-100 py-12 dark:bg-gray-800">
+      <div className="container mx-auto px-4">
+        <h1 className="mb-6 text-4xl font-bold text-center text-gray-800 dark:text-white">
+          How It Works
+        </h1>
+        <div className="space-y-8">
+          {steps.map(step => (
+            <div key={step.id} className="bg-white rounded-lg shadow-lg overflow-hidden dark:bg-gray-900 flex flex-col md:flex-row">
+              <div className="p-6 flex-1">
+                <h2 className="mb-3 text-2xl font-semibold text-gray-800 dark:text-white">{`${step.id}. ${step.title}`}</h2>
+                <p className="text-gray-600 dark:text-gray-300">
+                  {step.summary}
+                </p>
               </div>
-            </div>
-            <div className="w-full px-4 lg:w-1/2">
-              <div className="-mx-2 flex flex-wrap sm:-mx-4 lg:-mx-2 xl:-mx-4">
-                <div className="w-full px-2 sm:w-1/2 sm:px-4 lg:px-2 xl:px-4">
-                  <div className="relative mb-4 sm:mb-8 sm:h-[400px] md:h-[540px] lg:h-[400px] xl:h-[500px]">
-                    {/* Step by step image */}
-                    <Image
-                      src="/images/how-it-works/how-it-works-01.jpg"
-                      alt="How It Works Step 1"
-                      fill
-                      className="h-full w-full object-cover object-center"
-                    />
-                  </div>
+              {step.imageUrl && (
+                <div className="md:flex-1">
+                  <img src={step.imageUrl} alt={`Step ${step.id}`} className="w-full h-auto object-contain"/>
                 </div>
-                <div className="w-full px-2 sm:w-1/2 sm:px-4 lg:px-2 xl:px-4">
-                  <div className="relative mb-4 sm:mb-8 sm:h-[220px] md:h-[346px] lg:mb-4 lg:h-[225px] xl:mb-8 xl:h-[310px]">
-                    {/* Detailed instruction image */}
-                    <Image
-                      src="/images/how-it-works/how-it-works-02.jpg"
-                      alt="How It Works Step 2"
-                      fill
-                      className="h-full w-full object-cover object-center"
-                    />
-                  </div>
-                </div>
-              </div>
+              )}
             </div>
-          </div>
+          ))}
+        </div>
+        <div className="mt-8 text-center">
+          <a href="#/" className="inline-block bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 transition duration-300">
+            Get Started
+          </a>
         </div>
       </div>
     </section>
