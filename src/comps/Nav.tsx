@@ -147,6 +147,14 @@ export default function Nav() {
         >
           Users
         </Navbar.Link>
+
+        <Navbar.Link
+          as={Link}
+          href="/Livestream"
+          active={pathname.startsWith("/Livestream")}
+        >
+          Youtube
+        </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
   );
