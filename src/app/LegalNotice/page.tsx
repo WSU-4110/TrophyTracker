@@ -16,23 +16,36 @@ const LegalNotice = () => {
         </div>
 
         <div className="mb-8">
-          <h2 className="mb-3 text-2xl font-semibold text-gray-900 dark:text-white">Privacy Policy</h2>
-          <p className="text-base leading-relaxed text-gray-600 dark:text-gray-400">
-            Your privacy is very important to us. This section explains our policies regarding the collection, use, and disclosure of your personal information when you use our service.
-          </p>
-        </div>
-
-        <div className="mb-8">
           <h2 className="mb-3 text-2xl font-semibold text-gray-900 dark:text-white">Copyright Information</h2>
           <p className="text-base leading-relaxed text-gray-600 dark:text-gray-400">
             All content included on this site, such as text, graphics, logos, button icons, images, and software, is the property of our company or its content suppliers and protected by international copyright laws.
           </p>
         </div>
 
+        <div className="mb-8">
+          <h2 className="mb-3 text-2xl font-semibold text-gray-900 dark:text-white">Disclaimer for TrophyTracker</h2>
+          <p className="text-base leading-relaxed text-gray-600 dark:text-gray-400">
+            All the information on this website - <a href="https://trophy-tracker-wsu.vercel.app/" className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600">https://trophy-tracker-wsu.vercel.app/</a> - is published in good faith and for general information purpose only. TrophyTracker does not make any warranties about the completeness, reliability, and accuracy of this information. Any action you take upon the information on this website (TrophyTracker), is strictly at your own risk. TrophyTracker will not be liable for any losses and/or damages in connection with the use of our website.
+          </p>
+          <p className="text-base leading-relaxed text-gray-600 dark:text-gray-400">
+            By using our website, you hereby consent to our disclaimer and agree to its terms.
+          </p>
+          <p className="text-base leading-relaxed text-gray-600 dark:text-gray-400">
+            Should we update, amend or make any changes to this document, those changes will be prominently posted here.
+          </p>
+        </div>
+
+        <div className="mb-8">
+          <h2 className="mb-3 text-2xl font-semibold text-gray-900 dark:text-white">Accessibility Statement</h2>
+          <p className="text-base leading-relaxed text-gray-600 dark:text-gray-400">
+            We are committed to making our website&apos;s content accessible and user friendly to everyone. If you are having difficulty viewing or navigating the content on this website, or notice any content, feature, or functionality that you believe is not fully accessible to people with disabilities, please email our team on the support page, include &quot;Disabled Access&quot; in the subject line, and provide a description of the specific feature you feel is not fully accessible or a suggestion for improvement.
+          </p>
+        </div>
+
         <div>
           <h2 className="mb-3 text-2xl font-semibold text-gray-900 dark:text-white">Contact Information</h2>
           <p className="text-base leading-relaxed text-gray-600 dark:text-gray-400">
-            If you have any questions about these notices or our service, please contact us on the support page.
+            If you have any questions about these notices or our service, please contact us at <a href="mailto:trophytracker@gmail.com" className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600">trophytracker@gmail.com</a>.
           </p>
         </div>
       </div>
