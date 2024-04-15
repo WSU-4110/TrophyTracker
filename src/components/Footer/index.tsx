@@ -182,7 +182,7 @@ const Footer = () => {
               <ul>
                 <li>
                   <a
-                    href="/#"
+                    href="/Twitchstream"
                     className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
                   >
                     Twitch
@@ -190,7 +190,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <a
-                    href="/youtube-video"
+                    href="/Livestream"
                     className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
                   >
                     Youtube
@@ -215,15 +215,15 @@ const Footer = () => {
               <ul>
                 <li>
                   <a
-                    href="/#"
+                    href="/News"
                     className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
                   >
-                    FAQ
+                    Gaming News
                   </a>
                 </li>
                 <li>
                   <a
-                    href="/#"
+                    href="/Blogs"
                     className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
                   >
                     Blogs
@@ -231,7 +231,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <a
-                    href="/#"
+                    href="/Support"
                     className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
                   >
                     Support
@@ -251,19 +251,19 @@ const Footer = () => {
               <div className="my-1">
                 <div className="-mx-3 flex items-center justify-center md:justify-start">
                   <a
-                    href="/#"
+                    href="/PrivacyPolicy"
                     className="text-gray-7 px-3 text-base hover:text-white hover:underline"
                   >
                     Privacy policy
                   </a>
                   <a
-                    href="/#"
+                    href="/LegalNotice"
                     className="text-gray-7 px-3 text-base hover:text-white hover:underline"
                   >
                     Legal notice
                   </a>
                   <a
-                    href="/#"
+                    href="/TermsOfService"
                     className="text-gray-7 px-3 text-base hover:text-white hover:underline"
                   >
                     Terms of service
