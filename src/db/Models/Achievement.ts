@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Schema, model, type Model, models, type ObjectId } from "mongoose";
 import { type User } from "./User";
 import { type Game } from "./Game";

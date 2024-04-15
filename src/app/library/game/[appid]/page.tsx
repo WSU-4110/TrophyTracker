@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Breadcrumbs from "@/comps/Breadcrumbs";
 import Share from "@/comps/Share";
 import Game from "@/db/Models/Game";
