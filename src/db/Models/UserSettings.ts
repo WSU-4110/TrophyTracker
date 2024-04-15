@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // @deprecated
 // This logic has been shifted to the User schema entirely
 

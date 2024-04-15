@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import About from "@/components/About";
 import Breadcrumb from "@/components/Common/Breadcrumb";
 import LearnMore from "@/components/LearnMore";

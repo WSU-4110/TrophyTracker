@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import AchievementCard from "@/comps/AchievementCard";
 import AchievementFilter from "@/comps/AchievementFilter";
 import Breadcrumbs from "@/comps/Breadcrumbs";
