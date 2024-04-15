@@ -117,7 +117,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <a
-                    href="/#"
+                    href="/about"
                     className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
                   >
                     About
@@ -169,7 +169,6 @@ const Footer = () => {
                     href="/#"
                     className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
                   >
-                    Refund policy
                   </a>
                 </li>
               </ul>
@@ -178,7 +177,7 @@ const Footer = () => {
           <div className="w-full px-4 sm:w-1/2 md:w-1/2 lg:w-3/12 xl:w-2/12">
             <div className="mb-10 w-full">
               <h4 className="mb-9 text-lg font-semibold text-white">
-                Our Products
+                Streams
               </h4>
               <ul>
                 <li>
@@ -186,7 +185,15 @@ const Footer = () => {
                     href="/#"
                     className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
                   >
-                    LineIcons
+                    Twitch
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/youtube-video"
+                    className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
+                  >
+                    Youtube
                   </a>
                 </li>
                 <li>
@@ -194,23 +201,7 @@ const Footer = () => {
                     href="/#"
                     className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
                   >
-                    Next.js Templates
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/#"
-                    className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
-                  >
-                    TailAdmin
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/#"
-                    className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
-                  >
-                    PlainAdmin
+                    
                   </a>
                 </li>
               </ul>
@@ -246,14 +237,7 @@ const Footer = () => {
                     Support
                   </a>
                 </li>
-                <li>
-                  <a
-                    href="/#"
-                    className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
-                  >
-                    About
-                  </a>
-                </li>
+               
               </ul>
             </div>
           </div>
