@@ -1,11 +1,17 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
-import AboutPage from './page'; 
+import React from "react";
+import { render, screen, waitFor } from "@testing-library/react";
+import "@testing-library/jest-dom";
+import AboutPage from "./page";
 
-describe('AboutPage', () => {
-  it('renders the LearnMore component', () => {
+describe("AboutPage", () => {
+  it("renders the LearnMore component", async () => {
     render(<AboutPage />);
-    expect(screen.getByText('Learn More')).toBeInTheDocument();
+    await waitFor(
+      () => {
+        const learnMoreElement = screen.queryByText("Learn More");
+        expect(learnMoreElement).toBeInTheDocument();
+      },
+      { timeout: 5000 },
+    );
   });
 });

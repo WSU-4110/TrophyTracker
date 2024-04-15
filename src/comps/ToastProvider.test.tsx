@@ -1,52 +1,58 @@
-// Import necessary utilities from React and Testing Library
-import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import React from "react";
+import { render, screen, fireEvent } from "@testing-library/react";
+import "@testing-library/jest-dom";
+import { act } from "react-dom/test-utils";
+import { ToastContextProvider, ToastContext } from "./ToastProvider";
 
-// Import the components you are testing
-import { ToastContextProvider, ToastContext } from './ToastProvider';
-
-describe('ToastContextProvider tests', () => {
-  // Using fake timers for this test suite
+describe("ToastContextProvider functionality", () => {
   beforeEach(() => {
-    jest.useFakeTimers();
+    jest.useFakeTimers(undefined);
   });
 
-  // Cleaning up and using real timers after each test
   afterEach(() => {
-    jest.runOnlyPendingTimers();
+    act(() => {
+      jest.runOnlyPendingTimers();
+    });
     jest.useRealTimers();
   });
 
-  test('custom timeout works for a toast', async () => {
+  test("adds and removes a toast correctly", () => {
     const TestComponent = () => {
       const { addToast } = React.useContext(ToastContext);
 
       return (
-        <button onClick={() => addToast({ message: 'Short-lived Message', type: 'success', timeout: 2000 })}>
-          Add Short-lived Toast
+        <button
+          onClick={() =>
+            addToast({ message: "Test Message", type: "info", timeout: 2000 })
+          }
+        >
+          Add Test Toast
         </button>
       );
     };
 
-    render(
-      <ToastContextProvider>
-        <TestComponent />
-      </ToastContextProvider>
+    act(() => {
+      render(
+        <ToastContextProvider>
+          <TestComponent />
+        </ToastContextProvider>,
+      );
+    });
+
+    act(() => {
+      fireEvent.click(screen.getByText("Add Test Toast"));
+    });
+
+    // Here we are specifically checking the closest parent div with 'animate-in' class which wraps the Toast components
+    expect(screen.getByText("Test Message").closest("div")).toBeInTheDocument();
+    expect(screen.getByText("Test Message").closest(".animate-in")).toHaveClass(
+      "animate-in",
     );
 
-    fireEvent.click(screen.getByText('Add Short-lived Toast'));
-
-    // Verifying the toast is displayed as expected
-    expect(await screen.findByText('Short-lived Message')).toBeTruthy();
-
-    // Advancing timers to simulate passage of the custom timeout
-    jest.advanceTimersByTime(2000);
-
-    // Using waitFor to check for the toast's removal after the timeout
-    await waitFor(() => {
-      expect(screen.queryByText('Short-lived Message')).toBeNull();
+    act(() => {
+      jest.advanceTimersByTime(2000);
     });
-  });
 
-  // Here you would add other tests for your ToastContextProvider component
+    expect(screen.queryByText("Test Message")).toBeNull();
+  });
 });
