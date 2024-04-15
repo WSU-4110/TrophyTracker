@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { permanentRedirect, redirect } from "next/navigation";
 
 const Contact = () => {
