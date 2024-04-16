@@ -1,54 +1,49 @@
-import React from 'react';
+import React from "react";
 
 const UpcomingGames = () => {
-  // Example array of upcoming games
-  const games = [
-    {
-      id: 1,
-      title: 'Elden Ring II',
-      releaseDate: 'March 15, 2024',
-      imageUrl: '/images/upcoming/elden-ring-ii.jpg',
-      description: 'Experience the sequel to the critically acclaimed open-world RPG by FromSoftware, featuring an expanded world and deeper lore.'
-    },
-    {
-      id: 2,
-      title: 'Horizon Forbidden West: Return to the Wild',
-      releaseDate: 'May 22, 2024',
-      imageUrl: '/images/upcoming/horizon-forbidden-west.jpg',
-      description: 'Continue Aloy’s adventure in this breathtaking sequel, exploring distant lands and facing new dangers in a post-apocalyptic world.'
-    },
-    {
-      id: 3,
-      title: 'Final Fantasy XVI',
-      releaseDate: 'September 9, 2024',
-      imageUrl: '/images/upcoming/final-fantasy-xvi.jpg',
-      description: 'Dive into the next chapter of this iconic series with a new storyline, enhanced graphics, and innovative gameplay mechanics.'
-    },
-  ];
-
   return (
-    <section id="upcoming-games" className="bg-gray-100 py-12 dark:bg-gray-800">
-      <div className="container mx-auto px-4">
-        <h1 className="mb-6 text-4xl font-bold text-center text-gray-800 dark:text-white">
+    <section
+      id="upcoming-games"
+      className="relative py-12 before:absolute before:inset-0 before:bg-gradient-to-br before:from-gray-900 before:via-black before:to-gray-800 dark:before:from-gray-800 dark:before:via-gray-900 dark:before:to-black"
+    >
+      <div className="container relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h1 className="mb-12 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 bg-clip-text text-center text-6xl font-black leading-tight text-transparent">
           Upcoming Games
         </h1>
-        <div className="space-y-8">
-          {games.map(game => (
-            <div key={game.id} className="bg-white rounded-lg shadow-lg overflow-hidden dark:bg-gray-900 flex flex-col md:flex-row">
-              <img src={game.imageUrl} alt={game.title} className="w-full md:w-1/3 object-cover"/>
-              <div className="p-6 flex-1">
-                <h2 className="mb-3 text-2xl font-semibold text-gray-800 dark:text-white">{game.title}</h2>
-                <p className="text-gray-600 dark:text-gray-300">
-                  {game.description}
-                </p>
-                <p className="text-sm font-semibold text-gray-800 dark:text-white mt-2">
-                  Release Date: {game.releaseDate}
-                </p>
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-14">
+          <div className="col-span-1 flex justify-center sm:col-span-2 lg:col-span-3">
+            <div className="transform rounded-xl bg-white p-10 shadow-2xl backdrop-blur-lg transition-transform duration-300 ease-in-out hover:scale-110 dark:bg-gray-800">
+              <p className="text-xl font-semibold text-gray-600 dark:text-gray-300">
+                Explore the most anticipated games of the year!
+              </p>
+              <div className="mt-10 flex items-center justify-center overflow-hidden rounded-xl">
+                <iframe
+                  src="https://steambase.io/games/upcoming-steam-game-releases"
+                  style={{
+                    border: "none",
+                    boxShadow: "0 4px 14px 0 rgba(0, 118, 255, 0.39)",
+                    borderRadius: "12px",
+                    height: "1000px",
+                    width: "800px",
+                    transition: "transform .2s", // Smooth transition for scaling
+                  }}
+                  name="upcomingGamesIframe"
+                  scrolling="no"
+                  frameBorder="0"
+                  allowFullScreen
+                ></iframe>
               </div>
             </div>
-          ))}
+          </div>
         </div>
       </div>
+      <div
+        className="absolute inset-0 z-0 h-full w-full bg-cover bg-fixed bg-center bg-no-repeat opacity-30"
+        style={{
+          backgroundImage: 'url("https://example.com/background-image.jpg")',
+        }}
+      ></div>{" "}
+      {/* Optional: Background image */}
     </section>
   );
 };
