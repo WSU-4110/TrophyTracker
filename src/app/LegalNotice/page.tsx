@@ -1,52 +1,85 @@
-import React from 'react';
+import React from "react";
 
 const LegalNotice = () => {
   return (
-    <section id="legalnotice" className="bg-gray-100 pb-8 pt-20 dark:bg-gray-800 lg:pb-20 lg:pt-28">
-      <div className="container mx-auto px-4">
-        <h1 className="mb-8 text-4xl font-bold text-center text-gray-900 dark:text-white">
-          Legal Notice
-        </h1>
-
-        <div className="mb-8">
-          <h2 className="mb-3 text-2xl font-semibold text-gray-900 dark:text-white">Terms of Use</h2>
-          <p className="text-base leading-relaxed text-gray-600 dark:text-gray-400">
-            Please read these terms of use carefully before using our services. By accessing this website or using any of our services, you agree to be bound by these terms.
+    <section
+      id="legalnotice"
+      className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-r from-cyan-500 to-blue-500 pb-12 pt-24 dark:from-cyan-600 dark:to-blue-600"
+    >
+      <div className="w-full max-w-4xl overflow-hidden rounded-xl bg-white shadow-2xl dark:bg-gray-800">
+        <div className="p-8 text-center sm:p-12 md:p-16">
+          <h1 className="mb-8 bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-4xl font-bold text-transparent dark:from-green-300 dark:to-blue-400">
+            Legal Notice
+          </h1>
+          <p className="mb-12 text-lg font-light leading-relaxed text-gray-600 dark:text-gray-300">
+            Welcome to our gaming platform. This page outlines the legal terms
+            and conditions governing your use of our services.
           </p>
-        </div>
-
-        <div className="mb-8">
-          <h2 className="mb-3 text-2xl font-semibold text-gray-900 dark:text-white">Copyright Information</h2>
-          <p className="text-base leading-relaxed text-gray-600 dark:text-gray-400">
-            All content included on this site, such as text, graphics, logos, button icons, images, and software, is the property of our company or its content suppliers and protected by international copyright laws.
-          </p>
-        </div>
-
-        <div className="mb-8">
-          <h2 className="mb-3 text-2xl font-semibold text-gray-900 dark:text-white">Disclaimer for TrophyTracker</h2>
-          <p className="text-base leading-relaxed text-gray-600 dark:text-gray-400">
-            All the information on this website - <a href="https://trophy-tracker-wsu.vercel.app/" className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600">https://trophy-tracker-wsu.vercel.app/</a> - is published in good faith and for general information purpose only. TrophyTracker does not make any warranties about the completeness, reliability, and accuracy of this information. Any action you take upon the information on this website (TrophyTracker), is strictly at your own risk. TrophyTracker will not be liable for any losses and/or damages in connection with the use of our website.
-          </p>
-          <p className="text-base leading-relaxed text-gray-600 dark:text-gray-400">
-            By using our website, you hereby consent to our disclaimer and agree to its terms.
-          </p>
-          <p className="text-base leading-relaxed text-gray-600 dark:text-gray-400">
-            Should we update, amend or make any changes to this document, those changes will be prominently posted here.
-          </p>
-        </div>
-
-        <div className="mb-8">
-          <h2 className="mb-3 text-2xl font-semibold text-gray-900 dark:text-white">Accessibility Statement</h2>
-          <p className="text-base leading-relaxed text-gray-600 dark:text-gray-400">
-            We are committed to making our website&apos;s content accessible and user friendly to everyone. If you are having difficulty viewing or navigating the content on this website, or notice any content, feature, or functionality that you believe is not fully accessible to people with disabilities, please email our team on the support page, include &quot;Disabled Access&quot; in the subject line, and provide a description of the specific feature you feel is not fully accessible or a suggestion for improvement.
-          </p>
-        </div>
-
-        <div>
-          <h2 className="mb-3 text-2xl font-semibold text-gray-900 dark:text-white">Contact Information</h2>
-          <p className="text-base leading-relaxed text-gray-600 dark:text-gray-400">
-            If you have any questions about these notices or our service, please contact us at <a href="mailto:trophytracker@gmail.com" className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600">trophytracker@gmail.com</a>.
-          </p>
+          <div className="space-y-8">
+            <div className="animate-fade-in-down">
+              <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">
+                Purpose
+              </h2>
+              <p className="mt-2 text-gray-600 dark:text-gray-400">
+                The primary purpose of this website is to provide a virtual
+                space for users to engage in games and activities purely for
+                entertainment. This platform is strictly for personal use and
+                enjoyment.
+              </p>
+            </div>
+            <div className="animate-fade-in-up">
+              <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">
+                Commercial Activity
+              </h2>
+              <p className="mt-2 text-gray-600 dark:text-gray-400">
+                We do not engage in any form of commercial sales through this
+                platform. There are no goods, services, or monetary transactions
+                offered, solicited, or conducted here.
+              </p>
+            </div>
+            <div className="animate-fade-in-down">
+              <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">
+                No Warranties
+              </h2>
+              <p className="mt-2 text-gray-600 dark:text-gray-400">
+                All games and services on this platform are provided &quot;as
+                is&quot; with no warranties or guarantees. Users participate at
+                their own risk with no promise of performance or accuracy.
+              </p>
+            </div>
+            <div className="animate-fade-in-up">
+              <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">
+                Limitation of Liability
+              </h2>
+              <p className="mt-2 text-gray-600 dark:text-gray-400">
+                The platform, its owners, affiliates, and contributors shall not
+                be liable for any damages or losses that may result from
+                participation in the games or use of the site.
+              </p>
+            </div>
+            <div className="animate-fade-in-down">
+              <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">
+                Intellectual Property
+              </h2>
+              <p className="mt-2 text-gray-600 dark:text-gray-400">
+                All content, including games, graphics, text, and interfaces,
+                provided on the platform are the property of the site owners or
+                are used with permission and are protected by intellectual
+                property rights.
+              </p>
+            </div>
+            <div className="animate-fade-in-up">
+              <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">
+                Acceptance of Terms
+              </h2>
+              <p className="mt-2 text-gray-600 dark:text-gray-400">
+                By using this platform, users agree to comply with and be bound
+                by the terms outlined herein. These terms are subject to change
+                without prior notice, and continued use of the site constitutes
+                agreement to any modified terms.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
