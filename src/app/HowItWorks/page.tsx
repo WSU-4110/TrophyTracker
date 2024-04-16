@@ -86,7 +86,7 @@ const HowItWorks = () => {
         </div>
         <div className="mt-8 text-center">
           <a
-            href="#/"
+            href="/api/auth/signin?callbackUrl=/achievements/create"
             className="inline-block rounded bg-blue-500 px-4 py-2 font-bold text-white transition duration-300 hover:bg-blue-700"
           >
             Get Started

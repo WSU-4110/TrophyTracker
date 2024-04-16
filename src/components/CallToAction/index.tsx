@@ -24,7 +24,7 @@ const CallToAction = () => {
                 </p>
                 {/* Link */}
                 <Link
-                  href="https://trophy-tracker-wsu.vercel.app/api/auth/signin?callbackUrl=https%3A%2F%2Ftrophy-tracker-wsu.vercel.app%2F"
+                  href="/api/auth/signin"
                   className="inline-block rounded-md border border-transparent bg-secondary px-7 py-3 text-base font-medium text-white transition hover:bg-[#0BB489]"
                 >
                   Sign Up
