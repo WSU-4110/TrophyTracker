@@ -170,6 +170,22 @@ export default function Nav() {
         >
           Upcoming
         </Navbar.Link>
+
+        <Navbar.Link
+          as={Link}
+          href="/Leaderboards"
+          active={pathname.startsWith("/Leaderboards")}
+        >
+          Deals
+        </Navbar.Link>
+
+        <Navbar.Link
+          as={Link}
+          href="/Speedrunning"
+          active={pathname.startsWith("/Speedrunning")}
+        >
+          Speedrunning
+        </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
   );
