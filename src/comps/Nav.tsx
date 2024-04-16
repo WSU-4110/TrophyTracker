@@ -80,7 +80,6 @@ export default function Nav() {
                 )}
               </Dropdown.Header>
               <Dropdown.Item
-                as={Link}
                 href={`/user/${String(session.user.person._id)}`}
                 icon={HiOutlineUserCircle}
               >
@@ -159,7 +158,7 @@ export default function Nav() {
         <Navbar.Link
           as={Link}
           href="/Charts"
-          active={pathname.startsWith("/Livestream")}
+          active={pathname.startsWith("/charts")}
         >
           Charts
         </Navbar.Link>
@@ -167,7 +166,7 @@ export default function Nav() {
         <Navbar.Link
           as={Link}
           href="/Upcoming"
-          active={pathname.startsWith("/Livestream")}
+          active={pathname.startsWith("/upcoming")}
         >
           Upcoming
         </Navbar.Link>
