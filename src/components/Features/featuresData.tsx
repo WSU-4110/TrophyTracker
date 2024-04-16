@@ -17,10 +17,10 @@ const featuresData: Feature[] = [
         />
       </svg>
     ),
-    title: 'Achievement Tracking',
+    title: 'Upcoming',
     paragraph: 'Track your achievements and trophies with ease! Manage your games and progress!',
     btn: 'Learn More',
-    btnLink: '/#'
+    btnLink: '/Upcoming'
   },
   {
     id: 2,
@@ -41,7 +41,7 @@ const featuresData: Feature[] = [
     title: 'Leaderboards',
     paragraph: 'Compete with gamers across the globe and climb the leaderboards to become the best! ',
     btn: 'Learn More',
-    btnLink: '/#'
+    btnLink: '/Leaderboards'
   },
   {
     id: 3,
@@ -91,10 +91,10 @@ const featuresData: Feature[] = [
         />
       </svg>
     ),
-    title: 'Speedruning',
+    title: 'Speedrunning',
     paragraph: 'Speedrun your favorite games and track your progress to improve your time!',
     btn: 'Learn More',
-    btnLink: '/#'
+    btnLink: '/Speedrunning'
   },
   {
     id: 4,
@@ -124,10 +124,10 @@ const featuresData: Feature[] = [
         />
       </svg>
     ),
-    title: 'Community Forums',
+    title: 'Charts',
     paragraph: 'Join the community and talk your favorite games and achievements with others!',
     btn: 'Learn More',
-    btnLink: '/#'
+    btnLink: '/Charts'
   }
 ]
 export default featuresData

@@ -34,7 +34,7 @@ describe('featuresData', () => {
   it('should contain specific titles or properties for predefined checks', () => {
     const titles = featuresData.map(feature => feature.title);
     expect(titles).toEqual(expect.arrayContaining([
-      'Achievement Tracking', 'Leaderboards', 'Speedruning', 'Community Forums'
+      'Charts', 'Leaderboards', 'Speedrunning', 'Upcoming'
     ]));
   });
 });
