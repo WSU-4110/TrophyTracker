@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const AboutPage = () => {
   return (
     <main>
-      <Breadcrumb pageName="About Us Page" />
+      <Breadcrumb pageName="Community Chatroom" />
       <LearnMore />
     </main>
   );

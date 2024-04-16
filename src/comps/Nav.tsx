@@ -124,7 +124,7 @@ export default function Nav() {
           href="/about"
           active={pathname.startsWith("/about")}
         >
-          About
+          Chat
         </Navbar.Link>
         <Navbar.Link
           as={Link}
@@ -170,14 +170,6 @@ export default function Nav() {
           active={pathname.startsWith("/Upcoming")}
         >
           Upcoming
-        </Navbar.Link>
-
-        <Navbar.Link
-          as={Link}
-          href="/HowTtWorks"
-          active={pathname.startsWith("/HowTtWorks")}
-        >
-          How it Works
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
