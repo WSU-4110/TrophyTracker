@@ -1,81 +1,42 @@
-import React from 'react';
+import React from "react";
 
 const Speedrunning = () => {
-  // Example speedrunning data
-  const speedruns = [
-    {
-      rank: 1,
-      player: 'FastFalcon',
-      time: '1h 27m 34s',
-      game: 'The Legend of Zelda: Breath of the Wild',
-      category: 'Any%'
-    },
-    {
-      rank: 2,
-      player: 'QuickQuester',
-      time: '45m 16s',
-      game: 'Super Mario Odyssey',
-      category: 'Any%'
-    },
-    {
-      rank: 3,
-      player: 'NimbleNinja',
-      time: '2h 19m 12s',
-      game: 'Dark Souls III',
-      category: 'All Bosses'
-    },
-    // Additional entries can be added here
-  ];
-
   return (
-    <section id="speedrunning" className="bg-gray-100 py-12 dark:bg-gray-800">
-      <div className="container mx-auto px-4">
-        <h1 className="mb-6 text-4xl font-bold text-center text-gray-800 dark:text-white">
-          Speedrunning Records
+    <section
+      id="charts"
+      className="bg-gray-50 py-12 transition duration-500 ease-in-out dark:bg-gray-900"
+    >
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h1
+          className="animate-text mb-12 bg-gradient-to-r from-green-400 via-purple-600 to-blue-500 bg-clip-text text-center text-6xl font-extrabold 
+          text-transparent dark:from-green-300 dark:via-blue-400 dark:to-purple-500"
+        >
+          Speedruns
         </h1>
-        <div className="max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-900">
-          <table className="w-full">
-            <thead className="bg-gray-50 dark:bg-gray-700">
-              <tr>
-                <th className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                  Rank
-                </th>
-                <th className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                  Player
-                </th>
-                <th className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                  Time
-                </th>
-                <th className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                  Game
-                </th>
-                <th className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                  Category
-                </th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-800">
-              {speedruns.map(run => (
-                <tr key={run.rank}>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
-                    {run.rank}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-200">
-                    {run.player}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-200">
-                    {run.time}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-200">
-                    {run.game}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-200">
-                    {run.category}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-14">
+          <div className="col-span-1 flex justify-center sm:col-span-2 lg:col-span-3">
+            <div className="transform rounded-xl bg-white p-10 shadow-2xl filter backdrop-blur-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-inner dark:bg-gray-700">
+              <h2 className="mb-6 text-center text-4xl font-semibold text-gray-800 dark:text-gray-100"></h2>
+              <p className="text-xl text-gray-600 dark:text-gray-200">
+                Check out the fastest times in any game!
+              </p>
+              <div
+                className="mt-10 flex h-64 items-center justify-center overflow-hidden rounded-xl bg-gray-200 dark:bg-gray-600"
+                style={{ height: "1000px", width: "800px" }}
+              >
+                <iframe
+                  src="https://www.speedrun.com/sm64"
+                  style={{ border: "none" }}
+                  name="myiFrame"
+                  scrolling="no"
+                  frameBorder="0"
+                  width="100%"
+                  height="100%"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
