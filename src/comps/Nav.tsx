@@ -170,6 +170,14 @@ export default function Nav() {
         >
           Upcoming
         </Navbar.Link>
+
+        <Navbar.Link
+          as={Link}
+          href="/HowTtWorks"
+          active={pathname.startsWith("/HowTtWorks")}
+        >
+          How it Works
+        </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
   );
