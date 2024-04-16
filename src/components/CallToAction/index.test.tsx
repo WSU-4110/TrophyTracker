@@ -19,7 +19,7 @@ describe('CallToAction Component', () => {
   it('ensures the Sign Up link points to the correct path', () => {
     render(<CallToAction />);
     const signUpLink = screen.getByRole('link', { name: /Sign Up/i });
-    expect(signUpLink).toHaveAttribute('href', '/auth/signin');
+    expect(signUpLink).toHaveAttribute('href', 'https://trophy-tracker-wsu.vercel.app/api/auth/signin?callbackUrl=https%3A%2F%2Ftrophy-tracker-wsu.vercel.app%2F');
   });
 
   describe('SVG Presence', () => {

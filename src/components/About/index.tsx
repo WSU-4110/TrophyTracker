@@ -19,13 +19,13 @@ const About = () => {
                   TrophyTracker
                 </h2>
                 <p className="mb-10 text-base leading-relaxed text-body-color dark:text-dark-6">
-                  TrophyTracker
+                  Want to know about us and the project
                   <br /> <br />
-                  TrophyTracker
+                  Click the link button below
                 </p>
 
                 <a
-                  href="/#"
+                  href="/about"
                   className="inline-flex items-center justify-center rounded-md bg-primary px-7 py-3 text-center text-base font-medium text-white duration-300 hover:bg-primary/90"
                 >
                   Know More
