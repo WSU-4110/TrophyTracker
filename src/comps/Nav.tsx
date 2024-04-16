@@ -159,7 +159,7 @@ export default function Nav() {
         <Navbar.Link
           as={Link}
           href="/Charts"
-          active={pathname.startsWith("/Livestream")}
+          active={pathname.startsWith("/Charts")}
         >
           Charts
         </Navbar.Link>
@@ -167,9 +167,17 @@ export default function Nav() {
         <Navbar.Link
           as={Link}
           href="/Upcoming"
-          active={pathname.startsWith("/Livestream")}
+          active={pathname.startsWith("/Upcoming")}
         >
           Upcoming
+        </Navbar.Link>
+
+        <Navbar.Link
+          as={Link}
+          href="/HowTtWorks"
+          active={pathname.startsWith("/HowTtWorks")}
+        >
+          How it Works
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
