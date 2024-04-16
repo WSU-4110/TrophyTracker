@@ -155,6 +155,22 @@ export default function Nav() {
         >
           Livestream
         </Navbar.Link>
+
+        <Navbar.Link
+          as={Link}
+          href="/Charts"
+          active={pathname.startsWith("/Livestream")}
+        >
+          Charts
+        </Navbar.Link>
+
+        <Navbar.Link
+          as={Link}
+          href="/Upcoming"
+          active={pathname.startsWith("/Livestream")}
+        >
+          Upcoming
+        </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
   );
