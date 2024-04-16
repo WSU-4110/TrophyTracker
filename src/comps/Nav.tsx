@@ -158,7 +158,7 @@ export default function Nav() {
         <Navbar.Link
           as={Link}
           href="/Charts"
-          active={pathname.startsWith("/charts")}
+          active={pathname.startsWith("/Charts")}
         >
           Charts
         </Navbar.Link>
@@ -166,7 +166,7 @@ export default function Nav() {
         <Navbar.Link
           as={Link}
           href="/Upcoming"
-          active={pathname.startsWith("/upcoming")}
+          active={pathname.startsWith("/Upcoming")}
         >
           Upcoming
         </Navbar.Link>
