@@ -8,8 +8,7 @@ import Link from "next/link";
 import React from "react";
 import useSWR from "swr";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const dynamic = "force-static";
 
 export default function GamePage() {
   const [searchTerms, setSearchTerms] = React.useState("");

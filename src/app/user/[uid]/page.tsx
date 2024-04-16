@@ -13,7 +13,6 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Bs123, BsCalendarDate, BsMailbox, BsStarFill } from "react-icons/bs";
 
-export const revalidate = 360;
 export const dynamic = "force-static";
 
 export async function generateStaticParams() {
