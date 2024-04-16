@@ -153,7 +153,7 @@ export default function Nav() {
           href="/Livestream"
           active={pathname.startsWith("/Livestream")}
         >
-          Youtube
+          Livestream
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
