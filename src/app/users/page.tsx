@@ -19,7 +19,7 @@ export const dynamic = "force-static";
 
 export default async function Users() {
   await connect();
-  const users = await User.find({});
+  const users = await User.find({}).lean();
   return (
     <div className="tt-page-layout">
       <h1 className="tt-heading mb-2">Users</h1>
@@ -30,7 +30,7 @@ export default async function Users() {
       <div className="tt-layout">
         {users.map((user) => (
           <Link
-            href={`/user/${user.uid}`}
+            href={`/user/${String(user._id) ?? "?error=This user does not exist."}`}
             className="rounded-md p-2 transition-all hover:bg-slate-200 dark:hover:bg-slate-800"
             key={user.uid}
           >

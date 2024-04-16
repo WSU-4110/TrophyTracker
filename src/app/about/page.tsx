@@ -1,7 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import About from "@/components/About";
 import Breadcrumb from "@/components/Common/Breadcrumb";
 import LearnMore from "@/components/LearnMore";
-import Team from "@/components/Team";
 import { type Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -13,9 +13,8 @@ export const metadata: Metadata = {
 const AboutPage = () => {
   return (
     <main>
-      <Breadcrumb pageName="About Us Page" />
+      <Breadcrumb pageName="Community Chatroom" />
       <LearnMore />
-      <Team />
     </main>
   );
 };

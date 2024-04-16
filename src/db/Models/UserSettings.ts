@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+// @deprecated
+// This logic has been shifted to the User schema entirely
+
 import {
   Schema,
   type InferSchemaType,
@@ -6,7 +10,7 @@ import {
   models,
 } from "mongoose";
 
-export enum Role {
+enum Role {
   USER = "user",
   MODERATOR = "moderator",
   ADMIN = "admin",

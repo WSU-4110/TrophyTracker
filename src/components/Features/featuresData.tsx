@@ -1,4 +1,4 @@
-import { type Feature } from '@/types/feature'
+import { type Feature } from "@/types/feature";
 
 const featuresData: Feature[] = [
   {
@@ -17,10 +17,11 @@ const featuresData: Feature[] = [
         />
       </svg>
     ),
-    title: 'Achievement Tracking',
-    paragraph: 'Track your achievements and trophies with ease! Manage your games and progress!',
-    btn: 'Learn More',
-    btnLink: '/#'
+    title: "Upcoming",
+    paragraph:
+      "Track your achievements and trophies with ease! Manage your games and progress!",
+    btn: "Learn More",
+    btnLink: "/Upcoming",
   },
   {
     id: 2,
@@ -38,10 +39,11 @@ const featuresData: Feature[] = [
         />
       </svg>
     ),
-    title: 'Leaderboards',
-    paragraph: 'Compete with gamers across the globe and climb the leaderboards to become the best! ',
-    btn: 'Learn More',
-    btnLink: '/#'
+    title: "Deals",
+    paragraph:
+      "Find the cheapest games and deals on the market! Save money and time!",
+    btn: "Learn More",
+    btnLink: "/Leaderboards",
   },
   {
     id: 3,
@@ -91,10 +93,11 @@ const featuresData: Feature[] = [
         />
       </svg>
     ),
-    title: 'Speedruning',
-    paragraph: 'Speedrun your favorite games and track your progress to improve your time!',
-    btn: 'Learn More',
-    btnLink: '/#'
+    title: "Speedrunning",
+    paragraph:
+      "Speedrun your favorite games and track your progress to improve your time!",
+    btn: "Learn More",
+    btnLink: "/Speedrunning",
   },
   {
     id: 4,
@@ -124,10 +127,11 @@ const featuresData: Feature[] = [
         />
       </svg>
     ),
-    title: 'Community Forums',
-    paragraph: 'Join the community and talk your favorite games and achievements with others!',
-    btn: 'Learn More',
-    btnLink: '/#'
-  }
-]
-export default featuresData
+    title: "Charts",
+    paragraph:
+      "Join the community and talk your favorite games and achievements with others!",
+    btn: "Learn More",
+    btnLink: "/Charts",
+  },
+];
+export default featuresData;

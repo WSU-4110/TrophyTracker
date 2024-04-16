@@ -1,6 +1,7 @@
 "use server";
 import Achievement from "@/db/Models/Achievement";
 import Comment from "@/db/Models/Comment";
+import Role from "@/types/Role";
 import connect from "@/db/connect";
 import { getServerAuthSession } from "@/server/auth";
 import type ActionsResponse from "@/types/Response";
@@ -23,7 +24,10 @@ export default async function remove(
     const comment = await Comment.findOne({ _id: commentId });
     // is there  a way to do this in one call? (like in ./edit.ts)
     if (!comment) throw new Error("Comment not found");
-    if (comment.author._id != session.user.person._id)
+    if (
+      comment.author._id != session.user.person._id &&
+      session.user.person.role !== Role.ADMIN
+    )
       throw new Error("You can only delete your own comments");
     await Comment.deleteOne({ _id: commentId });
     await Achievement.updateOne(

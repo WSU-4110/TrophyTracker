@@ -109,7 +109,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <a
-                    href="#features-section"
+                    href="/#"
                     className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
                   >
                     Features
@@ -125,7 +125,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <a
-                    href="#testimonials-section"
+                    href="/#"
                     className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
                   >
                     Testimonial
@@ -165,12 +165,48 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  
+                  <a
+                    href="/#"
+                    className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
+                  >
+                  </a>
                 </li>
               </ul>
             </div>
           </div>
-          
+          <div className="w-full px-4 sm:w-1/2 md:w-1/2 lg:w-3/12 xl:w-2/12">
+            <div className="mb-10 w-full">
+              <h4 className="mb-9 text-lg font-semibold text-white">
+                Streams
+              </h4>
+              <ul>
+                <li>
+                  <a
+                    href="/Twitchstream"
+                    className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
+                  >
+                    Twitch
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/Livestream"
+                    className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
+                  >
+                    Youtube
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/#"
+                    className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
+                  >
+                    
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
           <div className="w-full px-4 md:w-2/3 lg:w-6/12 xl:w-3/12">
             <div className="mb-10 w-full">
               <h4 className="mb-9 text-lg font-semibold text-white">
@@ -179,15 +215,15 @@ const Footer = () => {
               <ul>
                 <li>
                   <a
-                    href="#faq-section"
+                    href="/News"
                     className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
                   >
-                    FAQ
+                    Gaming News
                   </a>
                 </li>
                 <li>
                   <a
-                    href="/#"
+                    href="/Blogs"
                     className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
                   >
                     Blogs
@@ -195,13 +231,13 @@ const Footer = () => {
                 </li>
                 <li>
                   <a
-                    href="#contact"
+                    href="/Support"
                     className="text-gray-7 hover:text-primary mb-3 inline-block text-base"
                   >
-                    Contact-Us
+                    Support
                   </a>
                 </li>
-                
+               
               </ul>
             </div>
           </div>
@@ -215,19 +251,19 @@ const Footer = () => {
               <div className="my-1">
                 <div className="-mx-3 flex items-center justify-center md:justify-start">
                   <a
-                    href="/#"
+                    href="/PrivacyPolicy"
                     className="text-gray-7 px-3 text-base hover:text-white hover:underline"
                   >
                     Privacy policy
                   </a>
                   <a
-                    href="/#"
+                    href="/LegalNotice"
                     className="text-gray-7 px-3 text-base hover:text-white hover:underline"
                   >
                     Legal notice
                   </a>
                   <a
-                    href="/#"
+                    href="/TermsOfService"
                     className="text-gray-7 px-3 text-base hover:text-white hover:underline"
                   >
                     Terms of service

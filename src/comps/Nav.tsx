@@ -1,14 +1,16 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import Link from "next/link";
 import Image from "next/image";
-import { Button, Navbar, Dropdown, Spinner } from "flowbite-react";
+import { Button, Navbar, Dropdown, Spinner, Badge } from "flowbite-react";
 import { getSession, signIn, signOut, useSession } from "next-auth/react";
 import ProfilePic from "./ProfilePic";
 import { HiLogout, HiCog, HiOutlineUserCircle } from "react-icons/hi";
 import React from "react";
 import { Poppins } from "next/font/google";
 import { usePathname } from "next/navigation";
+import Role from "@/types/Role";
 
 const poppins = Poppins({ weight: "400", subsets: ["latin"] });
 
@@ -52,7 +54,7 @@ export default function Nav() {
     <Navbar fluid rounded>
       <Navbar.Brand as={Link} href="/">
         <Image
-          src="/logo.png"
+          src="/images/logo/logo-white.png"
           width={40}
           height={40}
           className="mr-3"
@@ -71,11 +73,19 @@ export default function Nav() {
                 <span className="block truncate text-sm font-medium">
                   {session?.user?.email}
                 </span>
+                {session.user?.person.role == Role.ADMIN && (
+                  <Badge className="text-center" color="purple">
+                    {session.user?.person.role.toUpperCase()}
+                  </Badge>
+                )}
               </Dropdown.Header>
-              <Dropdown.Item icon={HiOutlineUserCircle}>
-                Edit Profile
+              <Dropdown.Item
+                href={`/user/${String(session.user.person._id)}`}
+                icon={HiOutlineUserCircle}
+              >
+                View Profile
               </Dropdown.Item>
-              <Dropdown.Item icon={HiCog}>Settings</Dropdown.Item>
+              {/* <Dropdown.Item icon={HiCog}>Settings</Dropdown.Item> */}
               <Dropdown.Divider />
               <Dropdown.Item
                 icon={HiLogout}
@@ -113,7 +123,7 @@ export default function Nav() {
           href="/about"
           active={pathname.startsWith("/about")}
         >
-          About
+          Chat
         </Navbar.Link>
         <Navbar.Link
           as={Link}
@@ -135,6 +145,46 @@ export default function Nav() {
           active={pathname.startsWith("/users")}
         >
           Users
+        </Navbar.Link>
+
+        <Navbar.Link
+          as={Link}
+          href="/Livestream"
+          active={pathname.startsWith("/Livestream")}
+        >
+          Livestream
+        </Navbar.Link>
+
+        <Navbar.Link
+          as={Link}
+          href="/Charts"
+          active={pathname.startsWith("/Charts")}
+        >
+          Charts
+        </Navbar.Link>
+
+        <Navbar.Link
+          as={Link}
+          href="/Upcoming"
+          active={pathname.startsWith("/Upcoming")}
+        >
+          Upcoming
+        </Navbar.Link>
+
+        <Navbar.Link
+          as={Link}
+          href="/Leaderboards"
+          active={pathname.startsWith("/Leaderboards")}
+        >
+          Deals
+        </Navbar.Link>
+
+        <Navbar.Link
+          as={Link}
+          href="/Speedrunning"
+          active={pathname.startsWith("/Speedrunning")}
+        >
+          Speedrunning
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>

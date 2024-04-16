@@ -24,7 +24,7 @@ const CallToAction = () => {
                 </p>
                 {/* Link */}
                 <Link
-                  href="/auth/signin"
+                  href="/api/auth/signin"
                   className="inline-block rounded-md border border-transparent bg-secondary px-7 py-3 text-base font-medium text-white transition hover:bg-[#0BB489]"
                 >
                   Sign Up

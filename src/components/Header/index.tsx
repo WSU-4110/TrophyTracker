@@ -53,7 +53,7 @@ const Header = () => {
       <header
         className={`ud-header left-0 top-0 z-40 flex w-full items-center ${
           sticky
-            ? "shadow-nav border-stroke dark:border-dark-3/20 dark:bg-dark/10 fixed z-[9999] border-b bg-white/80 backdrop-blur-[5px] transition"
+            ? "shadow-nav fixed z-[9999] border-b border-stroke bg-white/80 backdrop-blur-[5px] transition dark:border-dark-3/20 dark:bg-dark/10"
             : "absolute bg-transparent"
         }`}
       >
@@ -113,7 +113,7 @@ const Header = () => {
                   onClick={navbarToggleHandler}
                   id="navbarToggler"
                   aria-label="Mobile Menu"
-                  className="ring-primary absolute right-4 top-1/2 block -translate-y-1/2 rounded-lg px-3 py-[6px] focus:ring-2 lg:hidden"
+                  className="absolute right-4 top-1/2 block -translate-y-1/2 rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden"
                 >
                   <span
                     className={`relative my-1.5 block h-0.5 w-[30px] transition-all duration-300 ${
@@ -145,7 +145,7 @@ const Header = () => {
                 </button>
                 <nav
                   id="navbarCollapse"
-                  className={`navbar border-body-color/50 dark:border-body-color/20 dark:bg-dark-2 absolute right-0 z-30 w-[250px] rounded border-[.5px] bg-white px-6 py-4 duration-300 lg:visible lg:static lg:w-auto lg:border-none lg:!bg-transparent lg:p-0 lg:opacity-100 lg:dark:bg-transparent ${
+                  className={`navbar absolute right-0 z-30 w-[250px] rounded border-[.5px] border-body-color/50 bg-white px-6 py-4 duration-300 dark:border-body-color/20 dark:bg-dark-2 lg:visible lg:static lg:w-auto lg:border-none lg:!bg-transparent lg:p-0 lg:opacity-100 lg:dark:bg-transparent ${
                     navbarOpen
                       ? "visibility top-full opacity-100"
                       : "invisible top-[120%] opacity-0"
@@ -159,7 +159,7 @@ const Header = () => {
                             <Link
                               scroll={false}
                               href={menuItem.path}
-                              className={`ud-menu-scroll text-dark group-hover:text-primary dark:group-hover:text-primary flex py-2 text-base dark:text-white lg:inline-flex lg:px-0 lg:py-6 ${
+                              className={`ud-menu-scroll flex py-2 text-base text-dark group-hover:text-primary dark:text-white dark:group-hover:text-primary lg:inline-flex lg:px-0 lg:py-6 ${
                                 pathUrl === menuItem?.path && "text-primary"
                               }`}
                             >
@@ -171,7 +171,7 @@ const Header = () => {
                               href={menuItem.path}
                               className={`ud-menu-scroll flex py-2 text-base lg:inline-flex lg:px-0 lg:py-6 ${
                                 sticky
-                                  ? "text-dark group-hover:text-primary dark:group-hover:text-primary dark:text-white"
+                                  ? "text-dark group-hover:text-primary dark:text-white dark:group-hover:text-primary"
                                   : "text-body-color dark:text-white lg:text-white"
                               } ${
                                 pathUrl === menuItem?.path &&
@@ -191,7 +191,7 @@ const Header = () => {
                           {pathUrl !== "/" ? (
                             <button
                               onClick={() => handleSubmenu(index)}
-                              className={`ud-menu-scroll text-dark group-hover:text-primary dark:group-hover:text-primary flex items-center justify-between py-2 text-base dark:text-white lg:inline-flex lg:px-0 lg:py-6`}
+                              className={`ud-menu-scroll flex items-center justify-between py-2 text-base text-dark group-hover:text-primary dark:text-white dark:group-hover:text-primary lg:inline-flex lg:px-0 lg:py-6`}
                             >
                               {menuItem.title}
 
@@ -216,7 +216,7 @@ const Header = () => {
                               onClick={() => handleSubmenu(index)}
                               className={`ud-menu-scroll flex items-center justify-between py-2 text-base lg:inline-flex lg:px-0 lg:py-6 ${
                                 sticky
-                                  ? "text-dark group-hover:text-primary dark:group-hover:text-primary dark:text-white"
+                                  ? "text-dark group-hover:text-primary dark:text-white dark:group-hover:text-primary"
                                   : "text-white"
                               }`}
                             >
@@ -241,7 +241,7 @@ const Header = () => {
                           )}
 
                           <div
-                            className={`submenu dark:bg-dark-2 relative left-0 top-full w-[250px] rounded-sm bg-white p-4 transition-[top] duration-300 lg:invisible group-hover:opacity-100 lg:absolute lg:top-[110%] lg:block lg:opacity-0 lg:shadow-lg lg:group-hover:visible lg:group-hover:top-full ${
+                            className={`submenu relative left-0 top-full w-[250px] rounded-sm bg-white p-4 transition-[top] duration-300 lg:invisible group-hover:opacity-100 dark:bg-dark-2 lg:absolute lg:top-[110%] lg:block lg:opacity-0 lg:shadow-lg lg:group-hover:visible lg:group-hover:top-full ${
                               openIndex === index ? "!-left-[25px]" : "hidden"
                             }`}
                           >
@@ -263,7 +263,7 @@ const Header = () => {
                 <button
                   aria-label="theme toggler"
                   onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                  className="text-body-color flex h-8 w-8 items-center justify-center duration-300 dark:text-white"
+                  className="flex h-8 w-8 items-center justify-center text-body-color duration-300 dark:text-white"
                 >
                   <span>
                     <svg
@@ -275,7 +275,7 @@ const Header = () => {
 
                     <svg
                       viewBox="0 0 23 23"
-                      className={`text-dark h-[30px] w-[30px] fill-current dark:hidden ${
+                      className={`h-[30px] w-[30px] fill-current text-dark dark:hidden ${
                         !sticky && pathUrl === "/" && "text-white"
                       }`}
                     >
@@ -298,14 +298,14 @@ const Header = () => {
                     {pathUrl !== "/" || sticky ? (
                       <button
                         onClick={() => signOut()}
-                        className="signUpBtn bg-primary hover:text-dark rounded-lg bg-opacity-100 px-6 py-3 text-base font-medium text-white duration-300 ease-in-out hover:bg-opacity-20"
+                        className="signUpBtn rounded-lg bg-primary bg-opacity-100 px-6 py-3 text-base font-medium text-white duration-300 ease-in-out hover:bg-opacity-20 hover:text-dark"
                       >
                         Sign Out
                       </button>
                     ) : (
                       <button
                         onClick={() => signOut()}
-                        className="signUpBtn hover:text-dark rounded-lg bg-white bg-opacity-20 px-6 py-3 text-base font-medium text-white duration-300 ease-in-out hover:bg-opacity-100"
+                        className="signUpBtn rounded-lg bg-white bg-opacity-20 px-6 py-3 text-base font-medium text-white duration-300 ease-in-out hover:bg-opacity-100 hover:text-dark"
                       >
                         Sign Out
                       </button>
@@ -316,14 +316,14 @@ const Header = () => {
                     {pathUrl !== "/" ? (
                       <>
                         <Link
-                          href="/auth/signin"
-                          className="text-dark px-7 py-3 text-base font-medium hover:opacity-70 dark:text-white"
+                          href="/api/auth/signin"
+                          className="px-7 py-3 text-base font-medium text-dark hover:opacity-70 dark:text-white"
                         >
                           Sign In
                         </Link>
                         <Link
                           href="/auth/signup"
-                          className="bg-primary hover:bg-primary/90 rounded-lg px-6 py-3 text-base font-medium text-white duration-300 ease-in-out dark:bg-white/10 dark:hover:bg-white/20"
+                          className="rounded-lg bg-primary px-6 py-3 text-base font-medium text-white duration-300 ease-in-out hover:bg-primary/90 dark:bg-white/10 dark:hover:bg-white/20"
                         >
                           Sign Up
                         </Link>
@@ -331,7 +331,7 @@ const Header = () => {
                     ) : (
                       <>
                         <Link
-                          href="/auth/signin"
+                          href="/api/auth/signin"
                           className={`px-7 py-3 text-base font-medium hover:opacity-70 ${
                             sticky ? "text-dark dark:text-white" : "text-white"
                           }`}
