@@ -2,6 +2,9 @@
 
 Built By The Trophy Tracker Team
 
+> [!NOTE]
+> To start developing, you must [download](https://nodejs.org/en) Node.js version >= 20. 
+
 1. Clone the repository
 
 ```bash
@@ -58,4 +61,6 @@ You can check out the [create-t3-app GitHub repository](https://github.com/t3-os
 
 ## How do I deploy this?
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information. 
+
+In our case, we deployed directly to Vercel.
